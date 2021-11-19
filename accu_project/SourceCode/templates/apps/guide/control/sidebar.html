@@ -1,0 +1,21 @@
+<div class="sidebar">
+  <nav class="sidebar-nav">
+    <ul class="nav">
+
+      <!-- ======================================================== -->
+      <!-- ======================= Admin User ===================== -->
+      <!-- ======================================================== -->
+      {% if request.user.is_staff and request.user.is_superuser %}
+        {% include 'base/sidebar/admin.html' %}
+      {% endif %}
+      
+      <!-- ======================================================== -->
+      <!-- ==================== Customer User ===================== -->
+      <!-- ======================================================== -->
+      {% if request.user.is_superuser == 0 %}
+        {% include 'base/sidebar/customer.html' %}
+      {% endif %}
+
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>ご利用サイト一覧</span></li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    ご利用サイト一覧
+  </h1>
+</div>
+
+<div class="row mt-4 mx-4">
+  <div class="col-12">
+    <div id="main-content">
+      <div class="row">
+        {% for site in list_sites %}
+        <div class="col-3 pb-2 select-site-card">
+          <a class="card-logo" href="{{url('after_select_site',args=(site.pk,))}}">
+            <div class="card">
+              <div class="card-body text-center position-relative" style="min-height: 80px;">
+                  <img style="height: auto; width: 80%" src='{{site.logo}}' alt='{{site.name}}' />
+              </div>
+              <div class="card-footer">
+                {{site.name}}
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}

@@ -1,0 +1,113 @@
+<!--List Property-->
+<div class="card mt-3">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> <strong>List property</strong>
+    </div>
+    <div class="card-body pt-0">
+
+      <div class="row position-relative">
+        <div class="col-12 custom-datatable-toolbar">
+          <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col-4 text-right">
+              <button type="button" class="btn btn-sm btn-light border add-property mr-2" data-site-id='{{site_id}}'
+                data-type="f22" data-toggle='modal' data-target='#modalCreatePropertySetting' style="margin-bottom: 0.5px">
+                <i class="fa fa-plus mr-1"></i>Add Property
+              </button>
+
+              <div class="dropdown d-inline">
+                <button class="btn-light border dropdown-toggle btn-sm" type="button"
+                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Action
+                </button>
+                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                  
+                  <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modalDeleteBulkSiteProperty"><i
+                      class="fa fa-trash mr-1 text-danger"></i>Delete multiple</a>
+                </div>
+              </div>
+              <!-- <button data-toggle="modal" class="text-danger border btn btn-sm btn-light" data-target="#modalDeleteBulkSiteProperty">
+                  <i class="fa fa-trash mr-1 text-danger"></i>Delete multiple
+              </button> -->
+            </div>
+            
+          </div>
+          
+        </div>
+
+        <div class="col-12 mt-3">
+          <table id="table_f22_property" class="table table-not-in-card table-wrapper table-hover">
+            <thead>
+              <tr>
+                <th class="no-sort"><input onclick="check_uncheck_all(this);" type="checkbox" name="checkAll" id="check_all"></th>
+                <th>No.</th>
+                <th>Property label</th>
+                <th>Property internal name</th>
+                <th>Sort</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for property_info in list_property %}
+    
+              <tr>
+                <td class="td-check"><input type="checkbox" name="check_all_item" class="checkbox" value="{{property_info.id}}" ></td>
+                <td>{{loop.index}}</td>
+                <td>{{property_info.property_label}}</td>
+                <td>{{property_info.property_internal_name}}</td>
+                <td>{{property_info.sort}}</td>
+                <td>
+                  <div class="dropdown">
+                  <button class="btn-light border dropdown-toggle btn-sm dropdown-in-table" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                  </button>
+                  <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                    <button data-toggle="modal"  class="dropdown-item"
+                      data-target="#modalUpdatePropertySetting" data-property-id="{{property_info.id}}" data-type="f22">
+                      <i class="fa fa-edit mr-1"></i>Update
+                    </button>
+    
+                    <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteSiteProperty"
+                      data-property-id="{{property_info.id}}" data-type="f22">
+                      <i class="fa fa-trash mr-1 text-danger"></i>Delete
+                    </button>
+                  </div>
+                </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+</div>
+
+<!-- Notify Email -->
+<div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> <strong>Notify email</strong>
+    </div>
+    <div class="card-body">
+      <div class="row" id="f22-notify-email">
+        <div class="col-6">
+          <input class="form-control" value="{{list_email}}" name ='notify-email' id='notify-email-f22' type='text'>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary btn-sm" onclick="update_notify_email('f22');">Save</button>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$('input[name="notify-email"]').amsifySuggestags({
+});
+</script>

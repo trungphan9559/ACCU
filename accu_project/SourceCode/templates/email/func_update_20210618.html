@@ -1,0 +1,36 @@
+{% extends 'email/base/verify/base.html' %}
+
+{% block body %}
+<!-- Tại đây bao gồm các biến: username, password, url_confirm -->
+<div>
+  <p class="content-info" style="margin-bottom: 0; font-weight: 500;">{{company_name}}</p>
+  <p class="content-info" style="margin-top: 0">{{full_name}}様</p>
+  
+  <p class="content-info" style="margin-top: 25px;">お世話になっております。<br>リードプラスの佐藤です。</p>
+
+  <p class="content-info" style="margin-top: 25px;">本プログラムのサービスメニュー「ウェビナー開催」について以下の通りお知らせいたします。<br/>
+ご確認をお願いいたします。</p>
+
+  <p class="content-info" style="margin-top: 25px;">①フォローコールの中止</p>
+  <p class="content-info" style="margin-top: 25px;">この度、2021年7月より現在のフォローコールのご利用状況等を鑑み<br/>
+    マイクロソフト様と協議の上、中止させていただくこととなりました。<br/>
+    ご了承のほど何卒よろしくお願いいたします。</p>
+
+  <p class="content-info" style="margin-top: 25px;">②パートナー様用管理画面でのウェビナー参加者不参加者情報の確認機能の追加</p>
+  <p class="content-info" style="margin-top: 25px;">ウェビナー終了後に、パートナー様用管理画面の「セミナーコンタクトリスト」からエクセルをダウンロードいただくとウェビナーの参加者不参加の情報を確認することができるようになりました。<br/>
+  ※詳細は「パートナー様用管理画面ご利用マニュアル」を参照ください。</p>
+
+  <p class="content-info" style="margin-top: 25px;">上記に伴い「ウェビナー開催ガイド」「ウェビナー開催必要事項一式」「パートナー様用管理画面ご利用マニュアル」をアップデイトしましたので、合わせてご確認をいただけましたら幸いです。</p>
+
+  <p class="content-info" style="margin-top: 25px;">ご不明な点ございましたら、お気軽にお申し付けください。
+  <br/>引き続きよろしくお願いいたします。</p>
+
+  <p class="content-info" style="margin-top: 25px;">リードプラス　佐藤</p>
+  <p class="content-info" style="margin-top: 25px; font-size: 14px;">※このメールにお心当たりがない方は、お手数ですがメールを破棄してください。<br>※このメールは送信専用となっております。返信はできません。</p>
+  <p class="content-info" style="margin-top: 25px; margin-bottom: 25px;">お問い合わせはこちらからお願いいたします。</p>
+  <p class="content-info" style="margin-top: 25px; margin-bottom: 25px;">お問い合わせフォーム<br>
+    <a target="_blank" href="https://www.accu.net/microsoft/contact">https://www.accu.net/microsoft/contact
+  </p>
+</div>
+
+{% endblock %}

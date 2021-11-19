@@ -1,0 +1,18 @@
+{% extends 'email/base/verify/base.html' %}
+
+{% block title %}
+    Your report has been created
+{% endblock title %}
+
+{% block body %}
+<div>
+  <p class="content-info">Hi,</p>
+  {% if password != "" %}
+    <p class="content-info">Password: {{password}}</p>
+  {% endif %}
+  <p class="content-info"> Your report has been created. Please login to download.</p>
+
+  <a class="button-email button-in-email" href='/' target="_blank" style="margin-bottom: 25px; background: #4b8bd9; padding: 15px 35px; color: #fff; text-decoration: none; display: inline-block; font-weight: 500; border-radius: 2px; margin-top: 10px;">Login to ACCU Tool</a>
+
+</div>
+{% endblock body %}

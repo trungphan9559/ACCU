@@ -1,0 +1,55 @@
+{% include 'base/message.html' %}
+<div>
+  <form action="" method="post" id="user-create-form">
+    {{ crispy(form) }}
+    <input class="btn btn-primary mt-3" type="submit" value="Sign up" id='id_submit' disabled=true>
+  </form>
+</div>
+
+<script>
+  $("#user-create-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    disable_element(form)
+    
+    var group_id = 1;
+    var customer_id = $("#id_customer").val();
+    var url = '/accounts/signup/' + group_id + '/' + customer_id + '/'
+    
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data);
+        enable_element(form)
+        }
+      })
+    });
+
+    $('input#id_email').blur(function() {   
+        var email_value = $('#id_email').val();
+        var domains = $('#id_domain').val();
+        domains = domains.slice(1,domains.length-1);
+        domains = domains.replaceAll("'","").replaceAll(" ","");
+        list_domain = domains.split(',');
+        list_domain = list_domain.map(x => x.replace('@', ''));
+        domain = email_value.slice(email_value.indexOf('@')+1,email_value.length);
+        if (list_domain[0] !== ''){
+          var check_email = list_domain.includes(domain);
+          if (check_email){
+            $("#hint_id_email").text(``);
+            $('#id_submit').attr('disabled', false);
+          }
+          else{
+            $("#hint_id_email").text(`Email must contains ${list_domain}`);
+            $('#id_submit').attr('disabled', true);
+          }
+        }else{
+          $("#hint_id_email").text(`You must input list email domain before`);
+          $('#id_submit').attr('disabled', true);
+        }
+    });
+
+</script>

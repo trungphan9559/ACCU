@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+
+{% block main %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="card-group" style="padding-top: 150px">
+        <div class="card card-login p-4">
+          <div class="card-body">
+            <form method="post">
+              <h1>セキュリティコードを入力</h1>
+              <small class="text-muted mb-3 d-inline-block">ログイン時のメールアドレスに確認メールが届きます。<br>
+                表示される6桁のコードを入力してください。（有効時間：5分）</small>
+              {{crispy(form)}}
+              <input type="hidden" value="{{csrf_token}}">
+              <button class="btn btn-primary">認証</button>
+              <div class="row mt-3">
+                <div class="col-12">
+                  
+                  <p>
+                    <span class="resend text-muted text-resend">セキュリティコードが届かない場合は、再送をお試しください。</span>
+                    <a class="resend resend-button" id='reSend'>セキュリティコードを再送</a>
+                  </p>
+                  <hr/>
+                  <p>
+                    <small>お問い合わせは<a href="https://www.accu.net/microsoft/contact" target="_blank"><u>こちら</u></a>からお願いします。</small>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+  var reSend = document.getElementById('reSend');
+  reSend.addEventListener('click', function(event){
+    $(".message-resend").remove();
+    event.preventDefault();
+    reSend.disabled = true;
+    disable_element($(".card-login"))
+    $.ajax({
+      type: "POST",
+      url: `/accounts/resend-code/`,
+      dataType: "html",
+      data : { 
+          'csrfmiddlewaretoken' : '{{ csrf_token }}' 
+      },
+      success: function(data)
+      {
+        // if(typeof data == 'string') {
+        //   reSend.className = 'btn btn-secondary';
+        // }else{
+        //   reSend.disabled = false;
+        //   reSend.className = 'btn btn-primary';
+        // }
+        $("<span class='d-block resend message-resend w-100 text-success'><i class='fa fa-check mr-1'></i>あなたのメールアドレスへセキュリティコードを送信しました。</span>").insertBefore(".text-resend");
+        enable_element($(".card-login"));
+      }
+    });
+
+  });
+</script>
+{% endblock %}

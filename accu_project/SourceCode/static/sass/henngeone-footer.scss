@@ -1,0 +1,79 @@
+@font-face{
+  font-family: 'Meiryo W53';
+  src: url('font/Meiryo W53 Regular.ttf')
+}
+
+$box-shadow-book: 0 0 6px #bdc3c7;
+
+#cta-banner-background-azure{
+  width: 900px;
+  height: 327px;
+  display: inline-block;
+
+  &-left{
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+  }
+
+  &-right{
+
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 47px;
+    position: relative;
+ 
+    #title-cta{
+      font-family: 'Meiryo W53', sans-serif;
+      font-size: 27px;
+      color: #ffffff;
+      margin-top: 13px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #0000009e;
+    }
+
+    #text-provider{
+      font-family: 'Meiryo W53', sans-serif;
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .hr-style-azure{
+      border: 1px solid #afb8c7;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #text-desciption{
+      color: #ffffff;
+      font-family: 'Meiryo W53', sans-serif;
+      font-size: 17px;
+      text-align: justify;
+      font-weight: 600;
+      text-shadow: 0 0 5px #00000091;
+    }
+
+    #btn-cta{
+      margin-top: 10px;
+      position: absolute;
+      right: 47px;
+      bottom: 24px;
+    }
+
+  } 
+
+  #azure-img-book{
+    max-width: 196px;
+    max-height: 277px;
+    margin-top: 23px; 
+    box-shadow: $box-shadow-book;
+  }
+
+  
+}

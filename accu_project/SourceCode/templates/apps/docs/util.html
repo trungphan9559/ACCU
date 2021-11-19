@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>サイト活用情報</span></li>
+{% endblock %}
+
+{% block main %}
+<div class="container pt-4 pb-4">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    サイト活用情報
+  </h1>
+</div>
+
+<div class="container pt-4 pb-4">
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th style="width: 40px;">No.</th>
+              <th>ファイル名</th>
+              <th style="width: 60px;">形式</th>
+              <th style="width: 80px;">サイズ</th>
+              <th style="width: 130px;">更新日</th>
+              <th style="width: 140px;">ダウンロード</th>
+          </tr>
+      </thead>
+      <tbody>
+            <tr>
+              <td>1</td>
+              <td>サイト有効活用のポイント</td>
+              <td>PDF</td>
+              <td>1,049KB</td>
+              <td>2021年6月23日</td>
+              <td>
+                <a target="_blank" href="/download?file=MS4サイト_サイト有効活用のポイント.pdf">
+                <i class="fa fa-download" aria-hidden="true" style="font-size: 18px;"></i> ダウンロード</a>
+              </td>
+            </tr>
+           <tr>
+              <td>2</td>
+              <td>月次コンタクトリストのスコアリングについて</td>
+              <td>PDF</td>
+              <td>1,176KB</td>
+              <td>2021年8月2日</td>
+              <td>
+                <a target="_blank" href="/download?file=月次コンタクトリストのスコアリングについて.pdf">
+                <i class="fa fa-download" aria-hidden="true" style="font-size: 18px;"></i> ダウンロード</a>
+              </td>
+            </tr>
+      </tbody>
+  </table>
+</div>
+
+{% endblock main %}
+
+{% block script %}
+
+{% endblock %}

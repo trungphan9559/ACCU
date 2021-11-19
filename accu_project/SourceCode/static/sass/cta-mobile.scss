@@ -1,0 +1,61 @@
+$width : 765px;
+$color: #ffffff;
+
+#cta-mb-background{
+  width: $width;
+  display: inline-block;
+  background: pink;
+  padding: 24px 50px 32px 50px;;
+  position: relative;
+
+  #cta-mb-logo{
+    position: absolute;
+    right: 9px;
+    top: 7px;
+  }
+
+  #cta-mb-title{
+    color: $color;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 42px;
+  }
+
+  #mb-img-book{
+    max-width: 224px;
+    
+    float: left;
+  }
+
+  #cta-mb-right{
+    padding-left: 30px;
+    display: inline-block;
+    width: calc(100% - 224px);
+
+    #cta-mb-provider{
+      color: $color;
+      font-size: 19px;
+    }
+
+    hr{
+      border-top: 0.1px solid#b7b7b7;
+    }
+
+    #cta-mb-text-desciption{
+      color: $color;
+      font-size: 27px;
+      text-align: justify;
+      margin-bottom: 60px;
+    }
+
+    #mb-img-button{
+      margin-top: 25px;
+      float:right;
+      position:absolute;
+      right: 50px;
+      bottom: 32px;
+    }
+  }
+
+}

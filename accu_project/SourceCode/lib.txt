@@ -1,0 +1,27 @@
+django
+jinja2
+celery
+python-dateutil
+python-pptx
+django-crispy-forms
+django-session-timeout
+importlib-metadata ==1.7.0
+pyotp
+requests
+django-sslserver
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+django-mysql
+bs4
+workdays
+install
+django-celery-results
+django-celery-beat
+pyzipper
+selenium
+webdriver-manager
+msoffcrypto-tool
+corsheaders
+pandas
+openpyxl

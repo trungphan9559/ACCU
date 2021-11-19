@@ -1,0 +1,40 @@
+{% extends 'registration/base.html' %}
+
+{% block body %}
+<h1>ログイン</h1>
+<p class="text-muted">ログイン情報を入力してください。</p>
+
+<form method="post">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+    {{ crispy(form) }}
+
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-primary button-submit" type="submit">ログイン</button>
+        </div>
+        <div class="col-6 text-right pt-2">
+            <a class="pt-2" href="{{url('password_reset')}}">パスワードを忘れた場合</a>
+        </div>
+    </div>
+    <p class="mt-4">
+        <hr/>
+        <small>お問い合わせは<a href="https://www.accu.net/microsoft/contact" target="_blank"><u>こちら</u></a>からお願いします。</small>
+    </p>
+</form>
+{% endblock body %}
+
+{% block script %}
+<script type="text/javascript">
+    var is_submit = false;
+    $('.button-submit').on('click', function(e) {
+        if(is_submit == false){
+            is_submit = true;
+        }else{
+            $(this).prop('disabled', true)
+        }
+    });
+    
+</script>
+{% endblock %}

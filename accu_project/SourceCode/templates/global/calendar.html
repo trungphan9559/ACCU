@@ -1,0 +1,172 @@
+<!-- Date range picker -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Moment -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type='text/javascript'>
+
+  var start_day = moment().format("YYYY-MM-D");
+  var end_day = moment().format("YYYY-MM-D");
+
+  var start_day_compare = moment().format("YYYY-MM-D");
+  var end_day_compare = moment().format("YYYY-MM-D");
+
+  function init_calendar() {
+    var cb = function (start, end, label) {
+      //Hiển thị cho khách hàng tháng/ngày/năm
+      $("#reportrange span").html(start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD"));
+      start_day = start.format("YYYY-MM-DD")
+      end_day = end.format("YYYY-MM-DD")
+      hide_message('message');
+      console.log(start_day + " - " + end_day)
+    };
+    var optionSet1 = {
+      dateFormat: "YYYY-MM-DD",
+      //startDate: moment().subtract(6, "days"),
+      //endDate: moment(),
+      startDate: moment().add(1, "days"),
+      endDate: moment().add(1, "days"),
+      minDate: "01/01/2012",
+      maxDate: moment().endOf("day"),
+      //Có cái này thì range mới chạy được
+      dateLimit: {
+        days: 365
+      },
+      //hiển thị để chọn năm,  tháng
+      showDropdowns: true,
+      //Hiển thị cái cột  tuần ở bên cạnh
+      showWeekNumbers: true,
+      // timePicker: false,
+      // timePickerIncrement: 1,
+      // timePicker12Hour: true,
+      //Luôn hiện cái bảng dù có chọn là 7 ngày, 1 tháng
+      alwaysShowCalendars: true,
+      ranges: {
+        Today: [moment(), moment()],
+        Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+        "Last 7 Days": [moment().subtract(6, "days"), moment()],
+        "Last 30 Days": [moment().subtract(29, "days"), moment()],
+        "This Month": [moment().startOf("month"), moment().endOf("month")],
+        "Last Month": [
+          moment()
+            .subtract(1, "month")
+            .startOf("month"),
+          moment()
+            .subtract(1, "month")
+            .endOf("month")
+        ]
+      },
+      // opens: 'left',
+      buttonClasses: ["btn btn-default"],
+      applyClass: "btn-small btn-primary",
+      cancelClass: "btn-small",
+      format: "MM/DD/YYYY",
+      separator: " to ",
+      locale: {
+        applyLabel: "Submit",
+        cancelLabel: "Clear",
+        fromLabel: "From",
+        toLabel: "To",
+        customRangeLabel: "Custom",
+        daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+        monthNames: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ]
+      }
+    };
+    //Đặt dữ liệu mặc định cho Chart
+    $("#reportrange").daterangepicker(optionSet1, cb);
+    $("#reportrange span").html(moment().format("YYYY-MM-DD") + " - " + moment().format("YYYY-MM-DD"));
+  }
+
+  function init_calendar_compare() {
+    var cb = function (start, end, label) {
+      //Hiển thị cho khách hàng tháng/ngày/năm
+      $("#reportrange_compare span").html(start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD"));
+      start_day_compare = start.format("YYYY-MM-DD")
+      end_day_compare = end.format("YYYY-MM-DD")
+      hide_message('message');
+      console.log(start_day_compare + " - " + end_day_compare)
+    };
+    var optionSet1 = {
+      dateFormat: "YYYY-MM-DD",
+      //startDate: moment().subtract(6, "days"),
+      //endDate: moment(),
+      startDate: moment().add(1, "days"),
+      endDate: moment().add(1, "days"),
+      minDate: "01/01/2012",
+      maxDate: moment().endOf("day"),
+      //Có cái này thì range mới chạy được
+      dateLimit: {
+        days: 365
+      },
+      //hiển thị để chọn năm,  tháng
+      showDropdowns: true,
+      //Hiển thị cái cột  tuần ở bên cạnh
+      showWeekNumbers: true,
+      // timePicker: false,
+      // timePickerIncrement: 1,
+      // timePicker12Hour: true,
+      //Luôn hiện cái bảng dù có chọn là 7 ngày, 1 tháng
+      alwaysShowCalendars: true,
+      ranges: {
+        Today: [moment(), moment()],
+        Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+        "Last 7 Days": [moment().subtract(6, "days"), moment()],
+        "Last 30 Days": [moment().subtract(29, "days"), moment()],
+        "This Month": [moment().startOf("month"), moment().endOf("month")],
+        "Last Month": [
+          moment()
+            .subtract(1, "month")
+            .startOf("month"),
+          moment()
+            .subtract(1, "month")
+            .endOf("month")
+        ]
+      },
+      // opens: 'left',
+      buttonClasses: ["btn btn-default"],
+      applyClass: "btn-small btn-primary",
+      cancelClass: "btn-small",
+      format: "MM/DD/YYYY",
+      separator: " to ",
+      locale: {
+        applyLabel: "Submit",
+        cancelLabel: "Clear",
+        fromLabel: "From",
+        toLabel: "To",
+        customRangeLabel: "Custom",
+        daysOfWeek: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+        monthNames: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ]
+      }
+    };
+    //Đặt dữ liệu mặc định cho Chart
+    $("#reportrange_compare").daterangepicker(optionSet1, cb);
+    $("#reportrange_compare span").html(moment().format("YYYY-MM-DD") + " - " + moment().format("YYYY-MM-DD"));
+  }
+
+</script>

@@ -1,0 +1,57 @@
+#asana-footer-background {
+  width: 745px;
+  height: 300px;
+  display: inline-block; }
+
+#asana-footer-left {
+  width: 274px;
+  height: 248px;
+  position: relative;
+  float: left; }
+  #asana-footer-left #img-book {
+    width: 190px;
+    height: 246px;
+    margin-top: 27px;
+    margin-left: 32px;
+    position: relative; }
+    #asana-footer-left #img-book #img-book-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+      #asana-footer-left #img-book #img-book-center .img-horizontal {
+        max-width: 190px;
+        max-height: 200px; }
+      #asana-footer-left #img-book #img-book-center .img-btn {
+        margin-top: 20px; }
+
+#asana-footer-img-book {
+  width: 144px;
+  height: 208px;
+  position: absolute;
+  top: 27px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 5px #fff; }
+
+#asana-footer-right {
+  width: calc(100% - 274px);
+  height: 300px;
+  float: left;
+  padding: 17px 25px 25px 25px;
+  box-sizing: border-box; }
+  #asana-footer-right-title {
+    height: 105px;
+    width: 100%;
+    font-size: 33px;
+    font-weight: bold;
+    color: #2d3746;
+    text-shadow: 1px 0 10px #fff, 1px 0 10px #fff, 1px 0 10px #fff, 1px 0 10px #fff;
+    line-height: 40px;
+    border-bottom: 1px solid #fff; }
+  #asana-footer-right-text-description {
+    color: #2d3746;
+    font-weight: bold;
+    font-size: 19px;
+    padding-top: 23px;
+    text-shadow: 1px 0 10px #fff, 1px 0 10px #fff, 1px 0 10px #fff, 1px 0 10px #fff; }

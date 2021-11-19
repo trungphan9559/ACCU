@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block check_login %}
+{% endblock check_login %}
+
+{% block main %}
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-7">
+          <div class="card-group" style="padding-top: 130px; padding-bottom: 130px;">
+              <div class="card card-login p-4">
+                  <div class="card-body">
+                    {% block body %}{% endblock %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

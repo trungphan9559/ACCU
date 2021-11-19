@@ -1,0 +1,169 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>Sites Setting Page Group</span></li>
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <h1 class="text-center py-4 mb-0 font-weight-bold text-primary">
+    Sites Setting Page Group
+  </h1>
+</div>
+
+  <div class="row mx-3 ">
+    <div class="col-12 px-0">
+
+      <div class="row">
+        <div class="col-8">
+
+          
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row mx-3 position-relative table-loading">
+  <div class="col-12 custom-datatable-toolbar">
+
+    <div class="row">
+      <div class="col-8">
+        <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_site" onchange="add_param()">
+            <option value="-1" disabled>-- Site --</option>
+            {% for site in list_sites%}
+              <option value="{{site.pk}}" {{ "selected" if site_setting_group.site_id  == site.pk|int }}>{{site.name}}
+              </option>
+            {%endfor%}  
+        </select>
+      </div>
+
+      <div class="col-4 text-right">
+        <button data-toggle="modal" data-target="#modalCreateSiteGroupPage" data-site-id='{{site_setting_group.site_id}}' class="btn btn-light border btn-sm mr-2" type="button"
+          margin="100px"><i class="fa fa-plus mr-1"></i>Create Group Setting
+        </button>
+
+          <div class="dropdown d-inline">
+            <button class="btn-light border dropdown-toggle btn-sm" type="button"
+              id="dropdownAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+            <div class="dropdown-menu pointer" aria-labelledby="dropdownAction">
+              <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteBulkGroupPage">
+                <i class="fa fa-trash mr-1 text-danger"></i>Delete multiple
+              </button>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 mt-3" id="setting-page-group-index">
+    <table id="table_data_setting_page_group" class="table table-not-in-card table-wrapper table-hover nowrap">
+      <thead>
+        <tr>
+          <th class="no-sort"><input onclick="check_uncheck_all(this);" type="checkbox" name="checkAll" id="check_all"></th>
+          <th class="no-sort">Group Name</th>
+          <th>Common</th>
+          <th class="text-nowrap">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for group_info in site_setting_group.list_setting_page_group %}
+        <tr>
+          <!-- check box -->
+          <td class="td-check"><input type="checkbox" name="check_all_item" class="checkbox" value="{{group_info.id}}" ></td>
+          <!-- group name -->
+          <td>
+            {{group_info.group_name}}
+          </td>
+          <!-- check box -->
+          <td>
+            {% if group_info.is_common == 1 %}
+              <i class="fa fa-check mr-1 text-success"></i>
+            {% else %}
+              <i class="fa fa-close mr-1 text-danger"></i>
+            {% endif %}
+          </td>
+          <td class="text-nowrap">
+            <div class="dropdown">
+              <button class="btn-light border dropdown-toggle btn-sm dropdown-in-table" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More
+              </button>
+              <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                <button data-toggle="modal" data-target="#modalUpdateSiteGroupPage" class="dropdown-item"
+                  data-group-page-id="{{group_info.pk}}">
+                  <i class="fa fa-edit mr-1"></i>Update
+                </button>
+
+                <a class="dropdown-item" href="/pages/setting/?site={{group_info.site_id}}&lp_group={{group_info.pk}}" target="_blank">
+                  <i class="icon-settings"></i>Setting
+                </a>
+
+                <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteSiteGroupPage"
+                  data-group-page-id="{{group_info.pk}}">
+                  <i class="fa fa-trash mr-1 text-danger"></i>Delete
+                </button>
+
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>  
+
+
+
+{% include 'apps/f_1_2_sites/setting_group_page/modal-update-group-page.html' %}
+{% include 'apps/f_1_2_sites/setting_group_page/modal-create-group-page.html' %}
+
+{% with 
+  modal_id = 'modalDeleteSiteGroupPage',
+  modal_title='Delete Site Group Page' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_group_page/modal_site_group_page_delete.html'
+%}
+{% include 'popup/popup_delete.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteBulkGroupPage',
+  modal_title='Delete Bulk Site Group Page' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_group_page/modal_site_group_page_delete_bulk.html'
+%}
+{% include 'popup/popup_delete_bulk.html' %}
+{% endwith %}
+
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    var table = $('#table_data_setting_page_group').DataTable(get_option_datatable())
+
+    show_sort_datatable(table);
+    
+  });
+ 
+
+
+  // Hàm để filter site id
+  function add_param() {
+    var site = $("#id_site").val();
+    url = window.location.origin
+    url = url +`/sites/${site}/setting-group-page`
+
+    window.location = url
+
+  };
+
+</script>
+{% endblock %}

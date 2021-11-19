@@ -1,0 +1,16 @@
+{
+  "name": "accu-v2",
+  "version": "1.0.0",
+  "description": "Set up SASS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "scss": "node-sass --watch static/sass -o static/cta/css/"
+  },
+  "author": "tran",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "node-sass": "^5.0.0"
+  }
+}

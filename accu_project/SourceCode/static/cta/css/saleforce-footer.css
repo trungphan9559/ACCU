@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Meiryo W53';
+  src: url("font/Meiryo W53 Regular.ttf"); }
+
+#saleforce-cta {
+  width: 900px;
+  height: 327px;
+  display: inline-block; }
+  #saleforce-cta-left {
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+    position: relative; }
+  #saleforce-cta-right {
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 47px;
+    position: relative; }
+    #saleforce-cta-right #title-cta {
+      font-size: 27px;
+      color: #ffffff;
+      margin-top: 15px;
+      font-weight: bold;
+      white-space: nowrap; }
+    #saleforce-cta-right #text-provider {
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: bold; }
+    #saleforce-cta-right .hr-style-saleforce {
+      border: 1px solid #afb8c7;
+      margin-top: 12px;
+      margin-bottom: 12px; }
+    #saleforce-cta-right #saleforce-text-desciption {
+      color: #ffffff;
+      font-size: 17px;
+      text-align: justify;
+      font-weight: 600; }
+    #saleforce-cta-right #btn-cta {
+      position: absolute;
+      bottom: 25px;
+      right: 47px; }
+  #saleforce-cta #saleforce-img-book {
+    max-width: 224px;
+    max-height: 280px;
+    box-shadow: 0 0 6px #bdc3c7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }

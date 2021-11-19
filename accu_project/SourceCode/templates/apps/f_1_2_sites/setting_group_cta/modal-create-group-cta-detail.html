@@ -1,0 +1,654 @@
+<input type="hidden" id="site_id_hidden" value="{{site_id}}" />
+
+<!-- Container -->
+<div class="row mt-2">
+  <label class="col-12">Group Name <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-group-name-create" type="text" class="form-control" />
+  </div>
+</div>
+
+</div>
+
+<!-- CTA Templates -->
+
+<div class="row mt-3">
+  <div class="col-6">
+    <div class="row mt-2">
+      <label class="col-12">CTA Middle Templates <small class="text-danger">(*)</small>: </label>
+      <div class="col-12">
+        <select class="form-control select2-single" id="select_cta_middle_templates_create">
+          <option value="">---Select Middle Templates---</option>
+          {%for cta_templates in list_templates_middle_cta%}
+          <option value="{{cta_templates}}">{{cta_templates}}</option>
+          {%endfor%}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="row mt-2">
+      <label class="col-12">CTA Footer Templates <small class="text-danger">(*)</small>: </label>
+      <div class="col-12">
+        <select class="form-control select2-single" id="select_cta_footer_templates_create">
+          <option value="">---Select Footer Templates---</option>
+          {%for cta_templates in list_templates_footer_cta%}
+          <option value="{{cta_templates}}">{{cta_templates}}</option>
+          {%endfor%}
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row mt-2">
+      <label class="col-12">CTA Mobile Templates <small class="text-danger">(*)</small>: </label>
+      <div class="col-12">
+        <select class="form-control select2-single" id="select_cta_mobile_templates_create">
+          <option value="">---Select Mobile Templates---</option>
+          {%for cta_templates in list_templates_mobile_cta%}
+          <option value="{{cta_templates}}">{{cta_templates}}</option>
+          {%endfor%}
+        </select>
+      </div>
+</div>
+
+<div class="row mt-2">
+      <label class="col-12">CTA Sidebar Templates : </label>
+      <div class="col-12">
+        <select class="form-control select2-single" id="select_cta_sidebar_templates_create">
+          <option value="">---Select Sidebar Templates---</option>
+          {%for cta_templates in list_templates_sidebar_cta%}
+          <option value="{{cta_templates}}">{{cta_templates}}</option>
+          {%endfor%}
+        </select>
+      </div>
+</div>
+
+<div class="row mt-2">
+<label class="col-12">CTA Middle Setting <small class="text-danger">(*)</small>: </label>
+<div class="col-6">
+    <!-- Title font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="middle-title-font-size" style="width: 90%;">
+        <span id="middle-title-font-size-value" class="value-slider">-</span>
+    </div>
+    <!-- Title Margin Top-->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="middle-title-margin-top" style="width: 90%;">
+        <span id="middle-title-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+<div class="col-6">
+    <!-- Text font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="middle-text-font-size" style="width: 90%;">
+        <span id="middle-text-font-size-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Text Margin Top -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="middle-text-margin-top" style="width: 90%;">
+        <span id="middle-text-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Provider font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Provider Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="middle-provider-font-size" style="width: 90%;">
+        <span id="middle-provider-font-size-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Text line height  -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="middle-text-line-height" style="width: 90%;">
+        <span id="middle-text-line-height-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Title lineheight size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="middle-title-line-height" style="width: 90%;">
+        <span id="middle-title-line-height-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <div id="is_fixed_line_middle" style="padding-top:25px;" class="custom-control custom-checkbox col-12">
+      <input type="checkbox" name="is_fixed_line_middle" class="checkboxinput custom-control-input"
+        id="check_is_fixed_line_middle">
+      <label for="check_is_fixed_line_middle" class="custom-control-label">
+        Is Fixed Line Middle
+      </label>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="row mt-2">
+<label class="col-12">CTA Footer Setting <small class="text-danger">(*)</small>: </label>
+<div class="col-6">
+    <!-- Title font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="footer-title-font-size" style="width: 90%;">
+        <span id="footer-title-font-size-value" class="value-slider">-</span>
+    </div>
+    <!-- Title Margin Top-->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="footer-title-margin-top" style="width: 90%;">
+        <span id="footer-title-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+<div class="col-6">
+    <!-- Text font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="footer-text-font-size" style="width: 90%;">
+        <span id="footer-text-font-size-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Text Margin Top -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="footer-text-margin-top" style="width: 90%;">
+        <span id="footer-text-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Provider font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Provider Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="footer-provider-font-size" style="width: 90%;">
+        <span id="footer-provider-font-size-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Text line height  -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="footer-text-line-height" style="width: 90%;">
+        <span id="footer-text-line-height-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Title lineheight size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="footer-title-line-height" style="width: 90%;">
+        <span id="footer-title-line-height-value" class="value-slider">-</span>
+    </div>
+</div>
+
+</div>
+
+<div class="row mt-2">
+<label class="col-12">CTA Mobile Setting <small class="text-danger">(*)</small>: </label>
+<div class="col-6">
+    <!-- Title font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="mobile-title-font-size" style="width: 90%;">
+        <span id="mobile-title-font-size-value" class="value-slider">-</span>
+    </div>
+    <!-- Title Margin Top-->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="mobile-title-margin-top" style="width: 90%;">
+        <span id="mobile-title-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+<div class="col-6">
+    <!-- Text font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="mobile-text-font-size" style="width: 90%;">
+        <span id="mobile-text-font-size-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Text Margin Top -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="mobile-text-margin-top" style="width: 90%;">
+        <span id="mobile-text-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Provider font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Provider Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="mobile-provider-font-size" style="width: 90%;">
+        <span id="mobile-provider-font-size-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Text line height  -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="mobile-text-line-height" style="width: 90%;">
+        <span id="mobile-text-line-height-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Title lineheight size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="mobile-title-line-height" style="width: 90%;">
+        <span id="mobile-title-line-height-value" class="value-slider">-</span>
+    </div>
+</div>
+
+</div>
+
+<div class="row mt-2">
+<label class="col-12">CTA Sidebar Setting <small class="text-danger">(*)</small>: </label>
+<div class="col-6">
+    <!-- Title font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="sidebar-title-font-size" style="width: 90%;">
+        <span id="sidebar-title-font-size-value" class="value-slider">-</span>
+    </div>
+    <!-- Title Margin Top-->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="sidebar-title-margin-top" style="width: 90%;">
+        <span id="sidebar-title-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+<div class="col-6">
+    <!-- Text font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="sidebar-text-font-size" style="width: 90%;">
+        <span id="sidebar-text-font-size-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Text Margin Top -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Margin Top:</p>
+        <input type="range" min="-50" max="100" value="0" id="sidebar-text-margin-top" style="width: 90%;">
+        <span id="sidebar-text-margin-top-value" class="value-slider">-</span>
+    </div>
+</div>
+
+<div class="col-6">
+    <!-- Provider font size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Provider Font Size:</p>
+        <input type="range" min="0" max="50" value="0" id="sidebar-provider-font-size" style="width: 90%;">
+        <span id="sidebar-provider-font-size-value" class="value-slider">-</span>
+    </div>
+
+    
+</div>
+
+<div class="col-6">
+    <!-- Text line height  -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Text Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="sidebar-text-line-height" style="width: 90%;">
+        <span id="sidebar-text-line-height-value" class="value-slider">-</span>
+    </div>
+
+    <!-- Title lineheight size -->
+    <div class="slidecontainer setting-pc mt-2">
+        <p class="mb-0">Title Line Height:</p>
+        <input type="range" min="0" max="50" value="24" id="sidebar-title-line-height" style="width: 90%;">
+        <span id="sidebar-title-line-height-value" class="value-slider">-</span>
+    </div>
+</div>
+
+</div>
+
+{% macro factorial(root_name,root_id,child_data) -%}
+
+<li data-expanded="true" value="{{root_id}}">{{root_name}}
+  <ul>
+    {% for _child_1 in child_data %}
+
+    {% if child_data[_child_1]['child'] != {} %}
+    {{ factorial(_child_1,child_data[_child_1].id , child_data[_child_1]['child']) }}
+    {%- else -%}
+    <li value="{{child_data[_child_1].id}}">{{_child_1}}
+    </li>
+    {%- endif %}
+    {% endfor %}
+  </ul>
+</li>
+{%- endmacro %}
+
+<!-- Folder CTA -->
+
+<div class="row mt-3" id="select-folder-cta">
+  <label class="col-12">Folder CTA<small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <div id="example_cta">
+      <div id="cap-view_cta" class="demo-section k-content">
+        <input id="treeview_cta" style="width: 100%;" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id="msg-create-group-cta" class="col-12">
+
+  </div>
+  <div>
+
+    <script type="text/javascript">
+
+
+      // xử lý select_cta_middle_templates_create
+      $('#select_cta_middle_templates_create').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select CTA middle templates',
+        allowClear: false
+      });
+
+      // xử lý select_cta_footer_templates_create
+      $('#select_cta_footer_templates_create').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select CTA footer templates',
+        allowClear: false
+      });
+
+      // xử lý select_cta_footer_templates_create
+      $('#select_cta_mobile_templates_create').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select CTA mobile templates',
+        allowClear: false
+      });
+
+      // Folder
+
+      $(document).ready(function () {
+
+        var list_data_folder_custom = "{{list_data_folder_custom}}"
+        var list_folder = convert_string_to_array(list_data_folder_custom);
+        // Folder pdf
+        var cta = $("#treeview_cta").kendoDropDownTree({
+          placeholder: "Select folder cta...",
+          dataTextField: "text",
+          dataValueField: "id",
+          filter: "startswith",
+          dataSource: list_folder
+        });
+
+      });
+
+
+  // set value cho CTA mobile 
+    var title_size_mb = $("#mobile-title-font-size");
+    var text_size_mb = $("#mobile-text-font-size");
+    var provider_size_mb = $("#mobile-provider-font-size");
+    var title_margin_size_mb = $("#mobile-title-margin-top");
+    var text_margin_size_mb = $("#mobile-text-margin-top");
+
+    var title_size_value_mb = $("#mobile-title-font-size-value");
+    var text_size_value_mb = $("#mobile-text-font-size-value");
+    var provider_mb_size_value = $("#mobile-provider-font-size-value");
+    var title_margin_mb_size_value = $("#mobile-title-margin-top-value");
+    var text_margin_mb_size_value = $("#mobile-text-margin-top-value");
+
+    var title_line_height_mb = $("#mobile-title-line-height");
+    var text_line_height_mb = $("#mobile-text-line-height");
+    var text_line_height_mb_value = $("#mobile-text-line-height-value");
+    var title_line_height_mb_value = $("#mobile-title-line-height-value");
+    title_line_height_mb_value.html(title_line_height_mb.val()) ;
+    text_line_height_mb_value.html(text_line_height_mb.val()) ;
+
+    //Set value ban đầu
+
+    title_size_value_mb.html(title_size_mb.val()) ;
+    text_size_value_mb.html(text_size_mb.val()) ;
+    provider_mb_size_value.html(provider_size_mb.val()) ;
+    title_margin_mb_size_value.html(title_margin_size_mb.val()) ;
+    text_margin_mb_size_value.html(text_margin_size_mb.val()) ;
+
+
+    title_size_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-title-font-size-value").val(title_size_mb.val().toString());
+    });
+
+    title_line_height_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-title-line-height-value").val(title_line_height_mb.val().toString());
+    });
+
+    text_line_height_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-text-line-height-value").val(text_line_height_mb.val().toString());
+    });
+
+    text_size_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-text-font-size-value").val(text_size_mb.val().toString());
+    });
+
+        
+    provider_size_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-provider-font-size-value").val(provider_size_mb.val().toString());
+    });
+
+    title_margin_size_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-title-margin-top-value").val(title_margin_size_mb.val().toString());
+    });
+
+    text_margin_size_mb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#mobile-text-margin-top-value").val(text_margin_size_mb.val().toString());
+    });
+
+  // set value cho CTA sidebar 
+    var title_size_sb = $("#sidebar-title-font-size");
+    var title_line_height_sb = $("#sidebar-title-line-height");
+    var text_size_sb = $("#sidebar-text-font-size");
+    var text_line_height_sb = $("#sidebar-text-line-height");
+    var provider_size_sb = $("#sidebar-provider-font-size");
+    var title_margin_size_sb = $("#sidebar-title-margin-top");
+    var text_margin_size_sb = $("#sidebar-text-margin-top");
+
+    var title_size_value_sb = $("#sidebar-title-font-size-value");
+    var text_size_value_sb = $("#sidebar-text-font-size-value");
+    var provider_sb_size_value = $("#sidebar-provider-font-size-value");
+    var title_margin_sb_size_value = $("#sidebar-title-margin-top-value");
+    var title_line_height_sb_value = $("#sidebar-title-line-height-value");
+    var text_margin_sb_size_value = $("#sidebar-text-margin-top-value");
+    var text_line_height_sb_value = $("#sidebar-text-line-height-value");
+
+
+    //Set value ban đầu
+
+    title_size_value_sb.html(title_size_sb.val()) ;
+    text_size_value_sb.html(text_size_sb.val()) ;
+    provider_sb_size_value.html(provider_size_sb.val()) ;
+    title_margin_sb_size_value.html(title_margin_size_sb.val()) ;
+    text_margin_sb_size_value.html(text_margin_size_sb.val()) ;
+    title_line_height_sb_value.html(title_line_height_sb.val()) ;
+    text_line_height_sb_value.html(text_line_height_sb.val()) ;
+
+
+    title_size_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-title-font-size-value").val(title_size_sb.val().toString());
+    });
+
+    title_line_height_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-title-line-height-value").val(title_line_height_sb.val().toString());
+    });
+
+    text_size_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-text-font-size-value").val(text_size_sb.val().toString());
+    });
+
+    text_line_height_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-text-line-height-value").val(text_line_height_sb.val().toString());
+    });
+        
+    provider_size_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-provider-font-size-value").val(provider_size_sb.val().toString());
+    });
+
+    title_margin_size_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-title-margin-top-value").val(title_margin_size_sb.val().toString());
+    });
+
+    text_margin_size_sb.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#sidebar-text-margin-top-value").val(text_margin_size_sb.val().toString());
+    });
+
+  // set value cho CTA Footer
+    var title_size_footer = $("#footer-title-font-size");
+    var text_size_footer = $("#footer-text-font-size");
+    var provider_size_footer = $("#footer-provider-font-size");
+    var title_margin_size_footer = $("#footer-title-margin-top");
+    var text_margin_size_footer = $("#footer-text-margin-top");
+
+    var title_size_value_footer = $("#footer-title-font-size-value");
+    var text_size_value_footer = $("#footer-text-font-size-value");
+    var provider_footer_size_value = $("#footer-provider-font-size-value");
+    var title_margin_footer_size_value = $("#footer-title-margin-top-value");
+    var text_margin_footer_size_value = $("#footer-text-margin-top-value");
+    var title_line_height_footer = $("#footer-title-line-height");
+    var text_line_height_footer = $("#footer-text-line-height");
+    var text_line_height_footer_value = $("#footer-text-line-height-value");
+    var title_line_height_footer_value = $("#footer-title-line-height-value");
+    title_line_height_footer_value.html(title_line_height_footer.val()) ;
+    text_line_height_footer_value.html(text_line_height_footer.val()) ;
+    //Set value ban đầu
+
+    title_size_value_footer.html(title_size_footer.val()) ;
+    text_size_value_footer.html(text_size_footer.val()) ;
+    provider_footer_size_value.html(provider_size_footer.val()) ;
+    title_margin_footer_size_value.html(title_margin_size_footer.val()) ;
+    text_margin_footer_size_value.html(text_margin_size_footer.val()) ;
+
+    title_line_height_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-title-line-height-value").val(title_line_height_footer.val().toString());
+    });
+
+    text_line_height_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-text-line-height-value").val(text_line_height_footer.val().toString());
+    });
+
+    title_size_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-title-font-size-value").val(title_size_footer.val().toString());
+    });
+
+    text_size_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-text-font-size-value").val(text_size_footer.val().toString());
+    });
+
+        
+    provider_size_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-provider-font-size-value").val(provider_size_footer.val().toString());
+    });
+
+    title_margin_size_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-title-margin-top-value").val(title_margin_size_footer.val().toString());
+    });
+
+    text_margin_size_footer.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#footer-text-margin-top-value").val(text_margin_size_footer.val().toString());
+    });  
+
+
+    // set value cho CTA Middle
+    var title_size_middle = $("#middle-title-font-size");
+    var text_size_middle = $("#middle-text-font-size");
+    var provider_size_middle = $("#middle-provider-font-size");
+    var title_margin_size_middle = $("#middle-title-margin-top");
+    var text_margin_size_middle = $("#middle-text-margin-top");
+
+    var title_size_value_middle = $("#middle-title-font-size-value");
+    var text_size_value_middle = $("#middle-text-font-size-value");
+    var provider_middle_size_value = $("#middle-provider-font-size-value");
+    var title_margin_middle_size_value = $("#middle-title-margin-top-value");
+    var text_margin_middle_size_value = $("#middle-text-margin-top-value");
+
+    var title_line_height_middle = $("#middle-title-line-height");
+    var text_line_height_middle = $("#middle-text-line-height");
+    var text_line_height_middle_value = $("#middle-text-line-height-value");
+    var title_line_height_middle_value = $("#middle-title-line-height-value");
+    title_line_height_middle_value.html(title_line_height_middle.val()) ;
+    text_line_height_middle_value.html(text_line_height_middle.val()) ;
+
+    //Set value ban đầu
+
+    title_size_value_middle.html(title_size_middle.val()) ;
+    text_size_value_middle.html(text_size_middle.val()) ;
+    provider_middle_size_value.html(provider_size_middle.val()) ;
+    title_margin_middle_size_value.html(title_margin_size_middle.val()) ;
+    text_margin_middle_size_value.html(text_margin_size_middle.val()) ;
+
+    title_line_height_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-title-line-height-value").val(title_line_height_middle.val().toString());
+    });
+
+    text_line_height_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-text-line-height-value").val(text_line_height_middle.val().toString());
+    });
+
+    title_size_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-title-font-size-value").val(title_size_middle.val().toString());
+    });
+
+    text_size_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-text-font-size-value").val(text_size_middle.val().toString());
+    });
+
+        
+    provider_size_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-provider-font-size-value").val(provider_size_middle.val().toString());
+    });
+
+    title_margin_size_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-title-margin-top-value").val(title_margin_size_middle.val().toString());
+    });
+
+    text_margin_size_middle.on("change mousemove", function() {
+        $(this).next().html($(this).val());
+        $("#middle-text-margin-top-value").val(text_margin_size_middle.val().toString());
+    });  
+
+    </script>

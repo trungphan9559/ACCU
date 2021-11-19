@@ -1,0 +1,82 @@
+<!-- Title -->
+<div style="margin: auto; text-align: center; width: 330px; height: 50px;">
+  <p style="font-family: 'Roboto', sans-serif; font-size: 45px; color: #555b60; ">Seminar Report</p>
+</div>
+
+ <!-- TITLE PERFORMANCE -->
+ <p style="background-color: #F2FBFF; color: #fff; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 3px; 
+ border-left: 2px solid #20A8D8; color: #5C6873; height: 45px">
+  <span style="font-weight: 500; font-size: 20px; display: inline-block; padding-top: 10px;">Seminar Contact</span>
+ </p>
+
+<div style="width: 100%;  padding-left: 15px; box-sizing: border-box;">
+  {% set color = '#4DBD74' %}
+    {% if number_contact == 0 %}
+        {% set color = '#F86C6B' %}
+  {% endif %}
+  
+  <!--Thời gian gửi mail -->
+  <p
+  style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 12px; font-weight: normal; line-height: 1.3">
+  {{year_send_mail}}年{{month_send_mail}}月{{date_send_mail}}日 {{hour_send_mail}}:{{minute_send_mail}} 現在の集客状況
+  </p>
+  
+  <!--Tên seminar-->
+  <p
+  style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 12px; font-weight: normal; line-height: 1.3; padding-right: 20px">
+  <strong>セミナー名称:</strong> {{seminar_name}}
+  </p>
+
+  <!--Số lượng contact-->
+  <p
+  style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 12px; font-weight: normal; line-height: 1.3">
+  <strong>申込み人数:</strong> <strong style="color: {{color}}">{{number_contact}}</strong>
+  </p>
+
+
+  <!--Link List Seminar on Hubspot-->
+  <p
+  style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 12px; font-weight: normal; line-height: 1.3">
+  <strong>リストへのリンク：</strong> <a href="{{seminar_url_hb}}" target="_blank">{{seminar_url_hb}}</a>
+  </p>
+  
+  <!-- chú thích-->
+  <p
+  style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 12px; font-weight: normal; line-height: 1.3">
+  <span>※ リストへのリンクは内部関係者のみ閲覧可能です。</span>
+  </p>
+</div>
+
+<div style="max-width: 96%; box-sizing: border-box; margin-left: 15px; margin-right: 15px; border: 1px solid #E6E6E6; display: inline-block; margin-top: 10px; border-radius: 5px;">
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0; border-collapse:collapse; vertical-align:top;text-align:left;font-size:12px;color:#333333;line-height:32px;font-weight:normal;margin-top: 10px; box-sizing: border-box;" valign="top" align="left">
+      <tbody>
+        {%set index_url = list_property|length %}
+        <tr style="padding:0;vertical-align:top;text-align:left" valign="top" align="left">
+          {% for property in list_property%}
+            <th style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 13px; font-weight: bold; line-height: 1.3; padding-left: 13px; padding-bottom: 5px; color: #6E6E6E" align="left">{{property}}</th>
+          {% endfor %}
+          
+          <th style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;white-space: normal; font-size: 13px; font-weight: bold; line-height: 1.3; padding-left: 13px; padding-bottom: 5px; color: #6E6E6E; width:10%;" align="left">詳細</th>
+        </tr>
+
+            {%for list_item in list_result%}
+              <tr style="border-top: 1px solid #E6E6E6;">
+                {%for index in list_index%}          
+                  {% if index != index_url %}
+                    <td>
+                      <p style="margin: 0;padding-left: 13px; padding-top: 5px; padding-bottom: 5px; font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; white-space: normal; line-height: 1;">
+                        {{list_item[index]}}
+                      </p>
+                    </td>
+                  {% else %}
+                    <td style="white-space: nowrap;">
+                        <a style="padding-left: 13px; " href="{{list_item[index]}}" target="_blank">詳細</a>
+                    </td>
+                  {%endif%}
+                {%endfor%}  
+              </tr>
+            {%endfor%}
+
+      </tbody>
+    </table>  
+</div>

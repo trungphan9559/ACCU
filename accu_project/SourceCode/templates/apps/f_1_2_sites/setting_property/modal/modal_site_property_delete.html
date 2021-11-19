@@ -1,0 +1,22 @@
+<script>
+    $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+        disable_element($('#{{modal_id}} #modalBody'))
+        var property_id = $(e.relatedTarget).data('property-id');
+        var site_id = $(e.relatedTarget).data('site-id');
+        var type = $(e.relatedTarget).data('type');
+        var url = `/sites/site-property/${property_id}/${type}/delete`
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html",
+            data: {
+            },
+            success: function (response) {
+                $('#{{modal_id}} #modalBody').html(response)
+                enable_element($('#{{modal_id}} #modalBody'))
+            },
+            error: function (xhr, status, e) {
+            }
+        });
+    });
+</script>

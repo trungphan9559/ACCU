@@ -1,0 +1,30 @@
+<div class="text-center">
+  <p style="font-size: 20px;" id="id_confirm_login_user"></p>
+  <input class="btn btn-success" type="submit" value="Confirm" onclick='login_user()'>   
+  <input type="text" id="txtUserId" hidden>  
+</div>
+
+<script type="text/javascript">
+    $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+      var user_email = $(e.relatedTarget).data('user-email');
+      var user_id = $(e.relatedTarget).data('user-id');
+      $('#id_confirm_login_user').text(`Are you sure login to ${user_email} ?`)
+      $('#txtUserId').val(user_id) 
+    })
+
+    function login_user() {
+        disable_element($('#{{modal_id}} #modalBody'));
+        var user_id= $('#txtUserId').val();
+        $.ajax({
+            type: "POST",
+            url: `/accounts/login-user/${user_id}/`,
+            dataType: "html",
+            data : { 
+                'csrfmiddlewaretoken' : '{{ csrf_token }}' 
+            },
+            success : function(response) {
+                location.replace("/");
+            }
+        });
+    };
+</script>

@@ -1,0 +1,32 @@
+{% include 'base/message.html' %}
+<div>
+  <form method="post" action="{{url('customer_update',args=(customer.pk,))}}" id="customer-update-form">
+    {{ crispy(form) }}
+  </form>
+  <button class="btn btn-primary mt-3" onclick="update_customer()">編集</button>
+</div>
+
+<script>
+  $('input[name="exclude_email"]').amsifySuggestags({
+  });
+  $('input[name="email_domain"]').amsifySuggestags({
+  });
+
+  function update_customer(){
+  
+    //e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $("#customer-update-form");
+    disable_element(form)
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data)
+        enable_element(form)
+      }
+      })
+    }
+</script>

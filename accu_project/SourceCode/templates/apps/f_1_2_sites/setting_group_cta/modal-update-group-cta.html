@@ -1,0 +1,219 @@
+<div class="modal fade" id="modalUpdateSiteGroupCTA"  role="dialog" aria-labelledby="modalUpdateSiteGroupCTA" aria-hidden="true" data-dropback="static">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Update Site Group Page</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="modalUpdateSiteGroupCTABody" class="modal-body">
+        <div class="body-content">
+          
+        </div><!--End body content-->
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button onclick="update_site_group_cta();" id="btnUpdateSiteGroupCTA" class="btn btn-primary" type="button">
+          Update</button>
+      </div>
+    </div>
+    <!-- /.modal-content-->
+  </div>
+  <!-- /.modal-dialog-->
+</div>
+<!-- /.modal-->
+
+<script type="text/javascript">
+  
+  var is_submit_form_create = false
+  $('#modalUpdateSiteGroupCTA').on('hidden.bs.modal', function (e) {
+    $('#modalUpdateSiteGroupCTABody .body-content').children().remove();
+    if ( is_submit_form_create == true ){
+      disable_element($(".table-loading"));
+      location.reload();  
+    }
+    
+  });
+  
+
+  $('#modalUpdateSiteGroupCTA').on('shown.bs.modal', function (e) {
+    is_submit_form_create = false;
+    disable_element($("#modalUpdateSiteGroupCTA .modal-body"))
+    //Xử lý option select type_seminar khi mở modal create
+    
+    $('#btnUpdateSiteGroupCTA').attr('disabled', true);
+    var group_cta_id = $(e.relatedTarget).data('group-cta-id');
+        
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-update-group-cta-setting",
+      dataType: "html",
+      data : {
+        "group_cta_id": group_cta_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}' 
+      },
+      success : function(response) {
+        $('#modalUpdateSiteGroupCTABody .body-content').html(response);
+        $('#btnUpdateSiteGroupCTA').attr('disabled', false);
+        
+        enable_element($("#modalUpdateSiteGroupCTA .modal-body"))
+      },
+      error: function(xhr, status, e) {
+        $('#modalUpdateSiteGroupCTABody .body-content').html('Load form failed.');
+        enable_element($("#modalUpdateSiteGroupCTA .modal-body"))
+      }
+      });
+    
+  });
+
+  function update_site_group_cta() {
+    
+    var group_cta_id = $("#group_cta_id_hidden").val();
+    var site_id = $("#site_id_hidden").val();
+    var folder_cta_id = $("#treeview_cta").data("kendoDropDownTree").value();
+
+    var group_name = $("#txt-group-name-edit").val(); 
+    var cta_templates_middle = $("#select_cta_middle_templates_edit").val(); 
+    var cta_templates_footer = $("#select_cta_footer_templates_edit").val(); 
+    var cta_templates_mobile = $("#select_cta_mobile_templates_edit").val(); 
+    var cta_templates_sidebar = $("#select_cta_sidebar_templates_edit").val(); 
+
+    var middle_text_font_size = $("#middle-text-font-size-edit").val();
+    var middle_text_margin = $("#middle-text-margin-top-edit").val();
+    var middle_provider_font_size = $("#middle-provider-font-size-edit").val();
+    var middle_title_margin = $("#middle-title-margin-top-edit").val();
+    var middle_title_font_size = $("#middle-title-font-size-edit").val();
+    var middle_title_line_heigh = $("#middle-title-line-height-edit").val();
+    var middle_text_line_heigh = $("#middle-text-line-height-edit").val();
+
+    var footer_text_font_size = $("#footer-text-font-size-edit").val();
+    var footer_text_margin = $("#footer-text-margin-top-edit").val();
+    var footer_provider_font_size = $("#footer-provider-font-size-edit").val();
+    var footer_title_margin = $("#footer-title-margin-top-edit").val();
+    var footer_title_font_size = $("#footer-title-font-size-edit").val();
+    var footer_title_line_heigh = $("#footer-title-line-height-edit").val();
+    var footer_text_line_heigh = $("#footer-text-line-height-edit").val();
+
+    var mobile_text_font_size = $("#mobile-text-font-size-edit").val();
+    var mobile_text_margin = $("#mobile-text-margin-top-edit").val();
+    var mobile_provider_font_size = $("#mobile-provider-font-size-edit").val();
+    var mobile_title_margin = $("#mobile-title-margin-top-edit").val();
+    var mobile_title_font_size = $("#mobile-title-font-size-edit").val();
+    var mobile_title_line_heigh = $("#mobile-title-line-height-edit").val();
+    var mobile_text_line_heigh = $("#mobile-text-line-height-edit").val();
+
+    var sidebar_text_font_size = $("#sidebar-text-font-size-edit").val();
+    var sidebar_text_margin = $("#sidebar-text-margin-top-edit").val();
+    var sidebar_provider_font_size = $("#sidebar-provider-font-size-edit").val();
+    var sidebar_title_margin = $("#sidebar-title-margin-top-edit").val();
+    var sidebar_title_font_size = $("#sidebar-title-font-size-edit").val();
+    var sidebar_title_line_heigh = $("#sidebar-title-line-height-edit").val();
+    var sidebar_text_line_heigh = $("#sidebar-text-line-height-edit").val();
+
+    var is_fixed_line_middle = 0;
+    if ($('#check_is_fixed_line_middle_edit').is(":checked"))
+    {
+      // it is checked
+      is_fixed_line_middle = 1
+    }
+
+    // check_folder_cta_id 
+    var check_folder_cta_id = false;
+    if (folder_cta_id != undefined ){
+      check_folder_cta_id = true;
+    }
+
+    // check_cta_templates 
+    var check_cta_templates = false;
+    if (cta_templates_middle != "" && cta_templates_middle != undefined  && cta_templates_footer != "" && cta_templates_footer != undefined && cta_templates_mobile != "" && cta_templates_mobile != undefined){
+      check_cta_templates = true;
+    }
+
+
+    
+
+    $('#btnUpdateSiteGroupCTA').attr('disabled', true);
+    
+    hide_message('msg-update-group-cta');
+    disable_element($("#modalUpdateSiteGroupCTA .body-content"));
+        
+    if( group_name != "" && check_folder_cta_id && check_cta_templates){
+      
+      $.ajax({
+        type: "POST",
+        url: "/sites/ajax/save-update-group-cta-setting",
+        dataType: "html",
+        data : {
+          "group_cta_id" :group_cta_id,
+          "site_id" : site_id,
+          "group_name" : group_name,
+          "folder_cta_id" : folder_cta_id,
+          "cta_templates_middle" : cta_templates_middle,
+          "cta_templates_footer" : cta_templates_footer,
+          "cta_templates_mobile" : cta_templates_mobile,
+          "cta_templates_sidebar" : cta_templates_sidebar,
+
+          "mobile_text_font_size" : mobile_text_font_size,
+          "mobile_text_margin" : mobile_text_margin,
+          "mobile_provider_font_size" : mobile_provider_font_size,
+          "mobile_title_margin" : mobile_title_margin,
+          "mobile_title_font_size" : mobile_title_font_size,
+          "mobile_title_line_heigh" : mobile_title_line_heigh,
+          "mobile_text_line_heigh" : mobile_text_line_heigh,
+
+          "sidebar_text_font_size" : sidebar_text_font_size,
+          "sidebar_text_margin" : sidebar_text_margin,
+          "sidebar_provider_font_size" : sidebar_provider_font_size,
+          "sidebar_title_margin" : sidebar_title_margin,
+          "sidebar_title_font_size" : sidebar_title_font_size,
+          "sidebar_title_line_heigh" : sidebar_title_line_heigh,
+          "sidebar_text_line_heigh" : sidebar_text_line_heigh,
+          
+          "footer_text_font_size" : footer_text_font_size,
+          "footer_text_margin" : footer_text_margin,
+          "footer_provider_font_size" : footer_provider_font_size,
+          "footer_title_margin" : footer_title_margin,
+          "footer_title_font_size" : footer_title_font_size,
+          "footer_title_line_heigh" : footer_title_line_heigh,
+          "footer_text_line_heigh" : footer_text_line_heigh,
+
+          "middle_text_font_size" : middle_text_font_size,
+          "middle_text_margin" : middle_text_margin,
+          "middle_provider_font_size" : middle_provider_font_size,
+          "middle_title_margin" : middle_title_margin,
+          "middle_title_font_size" : middle_title_font_size,
+          "is_fixed_line_middle" : is_fixed_line_middle,
+          "middle_title_line_heigh" : middle_title_line_heigh,
+          "middle_text_line_heigh" : middle_text_line_heigh,
+          'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          $('#btnUpdateSiteGroupCTA').attr('disabled', false);
+          enable_element($("#modalUpdateSiteGroupCTA .body-content"));
+          if (response == 1){
+            show_success_message('msg-update-group-cta','Update Group Page Success!');
+            is_submit_form_create = true;
+          }
+          else{
+            show_error_message('msg-update-group-cta','Group Name was exist!');
+          }
+  
+        
+        },
+        error: function(xhr, status, e) {
+          $('#modalUpdateSiteGroupCTABody .body-content').html('Load form failed.');
+        }
+      });
+      
+      }
+     else{
+        $('#btnUpdateSiteGroupCTA').attr('disabled', false);
+        enable_element($("#modalUpdateSiteGroupCTABody .body-content"));
+        show_error_message('msg-update-group-cta','Please complete the required fields!');
+      } 
+    
+  };
+
+
+    
+</script>

@@ -1,0 +1,112 @@
+
+<input type="hidden" id ="customer_id_hidden" value="{{customer_id}}" />
+<input type="hidden" id ="site_id_hidden" value="{{site_current}}" />
+<input type="hidden" id ="is_auth_hidden" value="{{is_auth_hub}}" />
+
+<!-- Customer -->
+<div class="row">
+  <label for="customer-code" class="col-12">顧客: <b>{{customer_info.name}}</b> <i>({{customer_info.code}}) </i></label>
+</div>
+
+<!-- Select Site -->
+<div class="row mt-2">
+  <label for="customer-code" class="col-3">サイトを選択:</label>
+  <div class="col-9">
+      <select class="form-control" id="select_site">
+        {%for site in list_site%}
+          {%if site.id|int == site_current|int%}
+            <option value="{{site.id}}" selected >{{site.name}}</option>
+          {%else%}
+            <option value="{{site.id}}" >{{site.name}}</option>
+          {%endif%}  
+        {% endfor %}
+      </select>
+  </div>
+</div>
+
+
+<!-- Contact Property -->
+<div class="row mt-2">
+  <label class="col-3">Hubspotフォーム <small class="text-danger">(*)</small>: </label>
+  {%if is_auth_hub == true%}
+  <div class="col-9">
+      <select class="form-control select2-multiple "  id="select_hb_form" multiple="">
+        {%for form_hb in list_form_hb%}
+          {% if form_hb.guid in list_hb_form_current %}
+            <option value="{{form_hb.get('guid')}}" selected >{{form_hb.get('name')}}</option>
+          {% else %}
+            <option value="{{form_hb.get('guid')}}" >{{form_hb.get('name')}}</option>
+          {% endif %}
+        {%endfor%}
+      </select>
+  </div>
+  {%else%}
+  <div class="col-9">
+    <a href="{{url('auth',args=(site_current,))}}"
+               class="btn-warning border btn-sm d-inline ml-2"><i
+                class="fa fa-cog mr-1"></i>認証設定
+    </a>
+    <span class="ml-2"><span class="text-danger">注意:</span> 設定を追加する前に、サイトを認証してくださいs</span>
+  </div>
+  {%endif%}
+</div>
+
+
+<!-- Default File Password -->
+<div class="row mt-2">
+  <label for="default-file-password" class="col-3">ファイルのパスワード<br>(デフォルト)</label>
+  <div class="col-9">
+      <input class="form-control" value="{{default_file_password}}" id='default_file_password' type='text' name="default-file-password">
+  </div>
+</div>
+
+<!-- 主チャンネル -->
+<div class="row mt-2">
+  <label for="default-file-password" class="col-3">主チャンネル</label>
+  <div class="col-9">
+      <input {% if is_main_channel %}checked{% endif %} type="checkbox" id="check_is_main_channel" value="1" />
+  </div>
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id = "msg-save-customer-setting" class="col-12">
+    
+  </div>
+<div>
+
+<script type="text/javascript">
+  
+  $("#select_hb_form").select2({
+      theme: 'bootstrap',
+      placeholder: 'select your hb',
+      allowClear: true
+  });
+  
+  $('select#select_site').on('change', function() {
+    var site_id = $("select#select_site").val();
+    var customer_id = $("#customer_id_hidden").val();
+    disable_element($("#modalCustomerSetting .body-content"));
+    $.ajax({
+      type: "POST",
+      url: "/customers/ajax-load-customer-setting",
+      dataType: "html",
+      data : {
+        "customer_id": customer_id,
+        "site_id" : site_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}' 
+      },
+      success : function(response) {
+        enable_element($("#modalCustomerSetting .body-content"));
+        $('#modalCustomerSettingBody .body-content').html(response);
+        $('#btnSaveSettingContactReport').attr('disabled', false);
+
+      },
+      error: function(xhr, status, e) {
+        $('#modalCustomerSettingBody .body-content').html('Load form failed.');
+      }
+    });
+  });
+
+</script>
+

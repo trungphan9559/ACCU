@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>顧客一覧</span></li>
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container">
+    <h1 class="pt-4 text-center font-weight-bold text-primary">顧客一覧</h1>
+</div>
+
+
+
+<div class="container mt-3 mb-5 table-loading">
+
+    <div class="row mt-4 mx-4">
+        <div class="col-12">
+            <div class="container">
+                <div class="row">
+                    <select class="form-control form-control-toolbar form-control-sm" id="id_customer_group"
+                        onchange="add_param()">
+
+                        {% for group in list_customer_groups%}
+                        <option value="{{group.pk}}" {{ "selected" if request.GET.get('group') == group.pk|string }}>
+                            {{group.name}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select class="form-control form-control-toolbar form-control-sm ml-3" id="id_site"
+                        onchange="add_param()">
+                        <option value="-1">-- サイト --</option>
+                        {% for site in list_sites%}
+                        <option value="{{site.pk}}" {{ "selected" if request.GET.get('site') == site.pk|string }}>
+                            {{site.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mx-4">
+        <div class="col-12">
+            <div class="container p-0">
+              <div class="row">
+                {% for customer in admin_user %}
+                <div class="col-3 pb-2 select-site-card position-relative">
+                    <div class="card">
+                        <div class="card-body text-center" style="height: 145px;">
+                            <a class="position-absolute group-link"
+                                href="{{url('customer_list') + '?group=' + request.GET.get('group',customer.customer_group.id|string) + '&customer_id=' + customer.pk}}"
+                                style="font-size: 20px;">
+                                {{customer.name}} 
+                                <small class="text-muted d-block" style="font-size: 12px;">({{customer.code}})</small>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+    </div>
+
+</div>
+
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+    function add_param() {
+        var group = $("#id_customer_group").val();
+
+        var site = $("#id_site").val();
+        disable_element($(".table-loading"));
+        window.location.search = `?group=${group}&site=${site}`
+    }
+</script>
+
+{% endblock %}

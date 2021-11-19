@@ -1,0 +1,32 @@
+{% include 'base/message.html' %}
+<div id="form">
+  <form action="{{url('customer_create')}}" method="post" id="customer-create-form">
+    {{ crispy(form) }}
+  </form>
+  <button class="btn btn-primary mt-3" onclick="create_customer()">保存する</button>
+</div>
+
+
+
+<script>
+
+  $('input[name="exclude_email"]').amsifySuggestags({
+  });
+  $('input[name="email_domain"]').amsifySuggestags({
+  });
+
+  function create_customer(){
+    var form = $("#customer-create-form");
+    disable_element(form)
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        $('#form').html(data)
+        }
+      })
+  }
+</script>

@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'HirakakuStdW8';
+  src: url("font/copyfonts.com_hirakakustd-w8-opentype.otf"); }
+
+#cta-banner {
+  display: inline-block; }
+  #cta-banner-background {
+    width: 745px;
+    height: 300px;
+    display: inline-block; }
+    #cta-banner-background-left {
+      display: inline-block;
+      position: relative;
+      height: 100%;
+      width: 254px;
+      float: left; }
+      #cta-banner-background-left #img-book {
+        width: 190px;
+        height: 246px;
+        margin-top: 27px;
+        margin-left: 32px;
+        position: relative; }
+        #cta-banner-background-left #img-book #img-book-center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); }
+          #cta-banner-background-left #img-book #img-book-center .img-horizontal {
+            max-width: 190px;
+            max-height: 200px; }
+          #cta-banner-background-left #img-book #img-book-center .img-btn {
+            margin-top: 20px; }
+    #cta-banner-background-right {
+      display: inline-block;
+      height: 100%;
+      width: calc(100% - 254px);
+      float: left; }
+      #cta-banner-background-right-top {
+        display: inline-block;
+        width: 100%;
+        height: calc(100% - 170px);
+        float: left;
+        position: relative; }
+        #cta-banner-background-right-top .title-main {
+          position: absolute;
+          font-family: 'Noto Sans JP', sans-serif;
+          font-weight: bold;
+          font-style: normal;
+          font-size: 33px;
+          color: #003366;
+          top: 50%;
+          transform: translateY(-50%);
+          margin-left: 25px;
+          line-height: 40px;
+          text-shadow: 0 0 10px #fff; }
+      #cta-banner-background-right-bottom {
+        display: inline-block;
+        height: 170px;
+        width: 100%; }
+        #cta-banner-background-right-bottom .text-description {
+          display: inline-block;
+          font-family: 'Noto Sans JP', sans-serif;
+          font-weight: 100;
+          font-style: normal;
+          color: #ffffff;
+          padding-left: 25px;
+          padding-right: 23px;
+          width: 100%;
+          padding: 25px;
+          text-shadow: 0 0 2px #000000;
+          font-size: 15.1px;
+          line-height: 26px; }

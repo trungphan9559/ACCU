@@ -1,0 +1,53 @@
+<div class="col-12 mt-3">
+    <table id="table_battery" class="table table-not-in-card table-wrapper table-hover table-font-small">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th class="no-sort">Type</th>
+          <th class="no-sort">Name</th>
+          <th class="no-sort">Label</th>
+          <th class="no-sort">Capacity</th>
+          <th class="no-sort">Producer</th>
+          <th class="no-sort">Location Used</th>
+          <th class="no-sort">Time</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for battery in list_batrerys %}
+        <tr>
+          <td class="td-check">{{loop.index}}</td>
+
+          <td class="pt-2 pb-3">{{battery.type}} </td>
+          <td class="pt-2 pb-3">{{battery.name}} </td>
+          <td class="pt-2 pb-3">{{battery.label}} </td>
+          <td class="pt-2 pb-3">{{battery.capacity}} </td>
+          <td class="pt-2 pb-3">{{battery.producer}} </td>
+          <td class="pt-2 pb-3">{{battery.location}} </td>
+          <td class="pt-2 pb-3">{{battery.current_time}} </td>
+         
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    var option_addition = {
+      fixedHeader: {
+          header: true,
+          headerOffset: $('header').height()
+      }
+    }
+
+    var table = $('#table_battery').DataTable(get_option_datatable(option_addition))
+
+    show_sort_datatable(table)
+
+  });
+    
+</script>
+{% endblock %}

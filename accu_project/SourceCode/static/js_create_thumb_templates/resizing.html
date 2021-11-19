@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto&display=swap"
+    rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/style.css">
+  <link type="text/css" rel="stylesheet" href="./css/fontawesome.min.css">
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+  <title>Created Thumb Templates</title>
+</head>
+
+<body>
+  <section style="height:300px ;  witdh :400px">
+    <div class="resize-drag-1" style="height: 150px;width: 400px;">
+      Title CTA
+    </div>
+
+    <div class="resize-drag-2" style="height: 150px;width: 400px;">
+      Bottom CTA
+    </div>
+  </section>
+    
+
+</body>
+
+</html>
+
+
+
+
+
+<script>
+  interact('.resize-drag-1')
+    .resizable({
+      // resize from all edges and corners
+      //edges: { left: true, right: true, bottom: true, top: true },
+      edges: {  bottom: true, top: true },
+
+      listeners: {
+        move(event) {
+          var target = event.target
+          var x1 = (parseFloat(target.getAttribute('data-x')) || 0)
+          var y1 = (parseFloat(target.getAttribute('data-y')) || 0)
+
+          // update the element's style
+          target.style.width = event.rect.width + 'px'
+          target.style.height = event.rect.height + 'px'
+
+          // translate when resizing from top or left edges
+          x1 += event.deltaRect.left
+          y1 += event.deltaRect.top
+
+          target.style.webkitTransform = target.style.transform =
+            'translate(' + x1 + 'px,' + y1 + 'px)'
+
+          target.setAttribute('data-x', x1)
+          target.setAttribute('data-y', y1)
+          //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+          //target.textContent = "Contribute to sales through inbound marketing Support from marketing to develop new customers and maximize sales efficiency"
+        }
+      },
+      modifiers: [
+        // keep the edges inside the parent
+        interact.modifiers.restrictEdges({
+          outer: 'parent'
+        }),
+
+        // minimum size
+        interact.modifiers.restrictSize({
+          min: { width: 100, height: 50 }
+        })
+      ],
+
+      inertia: true
+    })
+    .draggable({
+      listeners: { move: window.dragMoveListener },
+      inertia: true,
+      modifiers: [
+        interact.modifiers.restrictRect({
+          restriction: 'parent',
+          endOnly: true
+        })
+      ]
+    });
+
+    interact('.resize-drag-2')
+    .resizable({
+      // resize from all edges and corners
+      //edges: { left: true, right: true, bottom: true, top: true },
+      edges: {  bottom: true, top: true },
+
+      listeners: {
+        move(event) {
+          var target = event.target
+          var x2 = (parseFloat(target.getAttribute('data-x')) || 0)
+          var y2 = (parseFloat(target.getAttribute('data-y')) || 0)
+
+          // update the element's style
+          target.style.width = event.rect.width + 'px'
+          target.style.height = event.rect.height + 'px'
+
+          // translate when resizing from top or left edges
+          x2 += event.deltaRect.left
+          y2 += event.deltaRect.top
+          //y1 -= y2
+          target.style.webkitTransform = target.style.transform =
+            'translate(' + x2 + 'px,' + y2 + 'px)'
+
+          target.setAttribute('data-x', x2)
+          target.setAttribute('data-y', y2)
+          //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+          //target.textContent = "Contribute to sales through inbound marketing Support from marketing to develop new customers and maximize sales efficiency"
+        }
+      },
+      modifiers: [
+        // keep the edges inside the parent
+        interact.modifiers.restrictEdges({
+          outer: 'parent'
+        }),
+
+        // minimum size
+        interact.modifiers.restrictSize({
+          min: { width: 100, height: 50 }
+        })
+      ],
+
+      inertia: true
+    })
+    .draggable({
+      listeners: { move: window.dragMoveListener },
+      inertia: true,
+      modifiers: [
+        interact.modifiers.restrictRect({
+          restriction: 'parent',
+          endOnly: true
+        })
+      ]
+    });
+</script>

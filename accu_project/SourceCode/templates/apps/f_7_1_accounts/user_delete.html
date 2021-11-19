@@ -1,0 +1,13 @@
+<form action="{{url('user_delete',args=(data_user.pk,))}}" method="post">
+  <div class="text-center">
+    <p style="font-size: 20px;">Are you want to delete "{{data_user.first_name}} {{data_user.last_name}}"?</p>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    <input class="btn btn-danger" type="submit" value="Confirm">  
+  </div>
+</form>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    disable_element($('#modalDeleteUser #modalBody'))
+  })
+</script>

@@ -1,0 +1,66 @@
+@font-face{
+  font-family: 'Meiryo UI W53';
+  src: url('font/Meiryo UI W53 Regular.ttf')
+}
+
+#cta-banner-background-dynamics365{
+  width: 900px;
+  height: 327px;
+  display: inline-block;
+
+  &-left{
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+  }
+
+  &-right{
+
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 47px;
+    position: relative;
+
+    #title-cta{
+      font-size: 29px;
+      color: #ffffff;
+      margin-top: 13px;
+    }
+
+    #text-provider{
+      color: #fff;
+      text-align: right;
+      font-size: 14px;
+    }
+
+    .hr-style-dynamics365{
+      border: 1px solid #afb8c7;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #text-desciption{
+      color: #ffffff;
+      font-size: 16px;
+      text-align: justify;
+    }
+
+    #btn-cta{
+      position: absolute;
+      bottom: 19px;
+      right: 47px;
+    }
+
+  }
+ 
+  #dynamics365-img-book{
+    width: 196px;
+    margin-top: 23px;
+    box-shadow: 0 0 7px #fff;
+  }
+
+  
+}

@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>SELECT SCREEN</span></li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    SELECT SCREEN
+  </h1>
+</div>
+
+<div class="row mt-4 mx-4">
+  <div class="col-12">
+    <div id="main-content" class="container">
+      <div class="row">
+      {% for group in list_groups %}
+        <div class="col-4 pb-2 select-site-card position-relative">
+
+          <div class="card">
+            <div class="card-body text-center" style="height: 145px;">
+              <a class="position-absolute group-link" href="{{url('admin_user') + '?group=' + group.pk|string}}" style="font-size: 20px;">
+                {{group.name}}
+              </a>
+            </div>
+          </div>
+          
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}

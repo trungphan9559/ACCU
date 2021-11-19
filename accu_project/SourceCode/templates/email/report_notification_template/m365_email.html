@@ -1,0 +1,39 @@
+{% extends 'email/base/verify/base.html' %}
+
+{% block body %}
+<!-- Tại đây bao gồm các biến: username, password, url_confirm -->
+<div>
+    <div>{{customer_name}}</div>
+    <div>{{first_user_name}}様</div>
+
+    <p class="content-info" style="margin-top: 25px;">お世話になっております。</p>
+    <p class="content-info" style="margin-top: 25px;">リードプラス　マイクロソフトメディア運営事務局です。</p>
+
+    <p class="content-info" style="margin-top: 25px;">【{{date_report}}】月次レポートが更新されました。</p>
+    <ul>
+        <li>月次パフォーマンスレポート</li>
+        <li>月次コンタクトレポート</li>
+    </ul>
+    <p class="content-info" style="margin-top: 25px;">レポートは管理画面にログインいただき、ダウンロードすることでご確認いただけます。</p>
+    <p class="content-info" style="margin-top: 25px;">ログイン： <a href="https://msp.accu.net/">https://msp.accu.net/</a> </p>
+
+    <p class="content-info" style="margin-top: 25px;">月次コンタクトレポート（xlsx）のダウンロードパスワードは以下の通りです。</p>
+    <ul>
+        <li>BizApp チャンネル：cloudtimes</li>
+        <li>クラウド実践チャンネル：azure</li>
+        <li>デジタルトランスフォーメーション チャンネル：dxchannel</li>
+        <li>Microsoft 365チャネル：biz2cloud</li>
+    </ul>
+
+
+    <p class="content-info" style="margin-top: 25px;">どうぞよろしくお願いいたします。</p>
+    <p class="content-info" style="margin-top: 25px; font-size: 14px;" >※このメールにお心当たりがない方は、お手数ですがメールを破棄してください。<br>※このメールは送信専用となっております。返信はできません。</p>
+    
+
+    <p class="content-info" style="margin-top: 25px;">お問い合わせはこちらからお願いいたします。 </p>
+    <p class="content-info" style="margin-top: 25px;">お問い合わせフォーム <br>
+    <a href="https://www.accu.net/microsoft/contact">https://www.accu.net/microsoft/contact</a>
+    </p>
+</div>
+
+{% endblock %}

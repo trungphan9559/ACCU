@@ -1,0 +1,118 @@
+<input type="hidden" id="site_id_hidden" value="{{site_id}}" />
+<input type="hidden" id="data_dict_property" value="{{dict_property}}" />
+<input type="hidden" id="type_hidden" value="{{type}}" />
+
+<!-- Property -->
+<div class="row">
+  <label class="col-12">Property <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <select class="form-control select2-single" id="select_property_create">
+      {%for property in list_property%}
+      <option value="{{property.get('internal_name')}}">{{property.get('internal_name')}}</option>
+      {%endfor%}
+    </select>
+  </div>
+</div>
+
+<!-- Property Name -->
+<div class="row mt-3">
+  <label class="col-12">Property Name <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-property-name" type="text" class="form-control" />
+  </div>
+</div>
+
+
+<!-- Property Sort -->
+<div class="row mt-3">
+  <label class="col-12">Sort<small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-sort" type="number" class="form-control" min="1" />
+  </div>
+</div>
+
+<!-- LIST PROPERTY-->
+<div id="property_container" class="row mt-3 d-none">
+  <label class="col-12">Property Options :</label>
+  <div class="col-12" id="property_content">
+  </div>
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id="msg-create-property-setting" class="col-12">
+  </div>
+<div>
+
+<script type="text/javascript">
+  var dict_property = $("#data_dict_property").val();
+  var property_internal_name = $("#select_property_create").val();
+  
+  dict_property = dict_property.replace(/'/g, "\"").toString();
+  dict_property =  JSON.parse(dict_property)
+  
+  $(document).ready(function(){
+    show_property(dict_property,property_internal_name);
+  });
+  function show_property(dict_property,property_internal_name) {
+    var list_property = dict_property[property_internal_name];
+    var html_add = `<div class='col-12 mt-2'>
+                      <div class="row">
+                        <div class="col-6">
+                          <label class="form-control">Value</label>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-control">Label</label>
+                        </div>
+                      </div>
+                  </div>   
+                  `
+    $("#property_container").addClass("d-none");
+    if(list_property.length > 0){
+      var j = 0; 
+      $("#property_container").removeClass("d-none");
+      for (let key of list_property) {
+        for (var i = 0 in key) {
+          j += 1
+          var internal_name = Object.keys(key)[0];
+          var label = key[i];
+          html_add += `<div class='col-12 mt-2'>
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <input id="txt-property-internal-name-${j}" value="${internal_name}" disabled type="text" class="form-control" />
+                                      </div>
+                                      <div class="col-6">
+                                        <input id="txt-property-label-${j}" value="${label}" type="text" class="form-control" />
+                                      </div>
+                                    </div>
+                                </div>   
+                                `
+        }
+      }
+      $("#property_content").html(html_add);
+    }
+    
+  };
+
+  $("#select_property_create").change(function() {
+    var property_internal_name_change = $("#select_property_create").val();
+    show_property(dict_property,property_internal_name_change);
+  });
+
+  // xử lý select multi exclude page
+  $('#select_property_create').select2({
+    theme: 'bootstrap',
+    placeholder: 'Select Property',
+    allowClear: false
+  });
+
+  // xử lý select multi exclude page
+  $('#select_forms').select2({
+    theme: 'bootstrap',
+    placeholder: 'Select Forms',
+    allowClear: true
+  });
+
+  
+
+</script>

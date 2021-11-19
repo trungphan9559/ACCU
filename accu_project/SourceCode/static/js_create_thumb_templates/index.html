@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto&display=swap" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/fontawesome.min.css">
+  <script src='./js/jquery.min.js'></script>
+  <title>Slide</title>
+
+  <style>
+    /* =================================== */
+    /* ============= img-book ============ */
+    /* =================================== */
+
+
+    .resize-drag-1 {
+      width: 120px;
+      border-radius: 8px;
+      padding: 20px;
+      /* margin: 1rem; */
+      background-color: #29e;
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+
+      touch-action: none;
+
+      /* This makes things *much* easier */
+      box-sizing: border-box;
+    }
+
+    .resize-drag-2 {
+      width: 120px;
+      border-radius: 8px;
+      padding: 20px;
+      /* margin: 1rem; */
+      background-color: rgb(238, 75, 34);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+
+      touch-action: none;
+
+      /* This makes things *much* easier */
+      box-sizing: border-box;
+    }
+
+    section{
+      position:relative
+    }
+
+    /* New CSS */
+
+    .line-shadow-white{
+      display: inline-flex;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+
+    .wrapper-img{
+      position: relative;
+      display: inline-flex;
+      background: url('img/book-line-550.png');
+      border-top: 2px solid #d3d3d3;
+      border-bottom: 2px solid #d3d3d3;
+      border-radius: 8px;
+    }
+
+    .wrapper-img img{
+      mix-blend-mode: multiply;
+      /* backdrop-filter: blur(0px); */
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="line-shadow-white">
+      <div class="wrapper-img" id="thumb-img">
+        <img src="img/thumb-test-2.png" alt="Empty image" style="width: 550px;" id="img-book">
+      </div>  
+    </div>
+</body>
+</html>

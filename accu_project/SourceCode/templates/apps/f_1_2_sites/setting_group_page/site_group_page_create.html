@@ -1,0 +1,46 @@
+{% include 'base/message.html' %}
+<div id="form">
+  <form action="{{url('setting_group_page_create',args=(site_id,))}}" method="post" id="site-group-page-create-form">
+    {{ crispy(form) }}
+    <input class="btn btn-primary mt-3" type="submit" value="Save">
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+  
+  $('#id_resource_top_page_id').addClass("select2-single");
+    $('#id_hb_list_master_id').addClass("select2-single");
+    // xử lý select multi exclude page
+    $('#id_resource_top_page_id').select2({
+      theme: 'bootstrap',
+      placeholder: 'Select Resource Page',
+      allowClear: false
+    });
+
+    // xử lý select multi exclude page
+    $('#id_hb_list_master_id').select2({
+      theme: 'bootstrap',
+      placeholder: 'Select Hubspot List',
+      allowClear: false
+    });
+
+  $("#site-group-page-create-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+    disable_element(form)
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        $('#form').html(data)
+        
+      }
+    });
+  })
+</script>

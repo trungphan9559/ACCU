@@ -1,0 +1,33 @@
+{% if request.session.customer_id and request.session.site_id%}
+  <li class="nav-title">機能一覧</li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url('monthly_pttx_report_list',args=(request.session.customer_id,request.session.site_id))}}">
+      <i class="nav-icon fa fa-area-chart"></i>月次パフォーマンスレポート<br><small style="padding-left: 25px;">(PowerPoint形式)</small></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url('monthly_contact_report_list',args=(request.session.customer_id,request.session.site_id))}}">
+      <i class="nav-icon fa fa-bar-chart"></i>月次コンタクトレポート<br><small style="padding-left: 25px;">(Excel形式)</small></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url('seminar_report',args=(request.session.customer_id,request.session.site_id))}}">
+      <i class="nav-icon fa fa-line-chart"></i>セミナーコンタクトリスト<br><small style="padding-left: 25px;">(Excel形式)</small></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url('ondemand_report',args=(request.session.customer_id,request.session.site_id))}}">
+      <i class="nav-icon fa fa-line-chart"></i>オンデマンドコンタクトリスト<br><small style="padding-left: 25px;">(Excel形式)</small></a>
+  </li>
+  <li class="nav-title">アカウント</li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url('customer_user')}}">
+      <i class="nav-icon fa fa-vcard-o"></i>アカウント情報</a>
+  </li>
+  <li class="nav-title">ドキュメント</li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs">
+      <i class="nav-icon fa fa-book"></i>ガイド/依頼用書式</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/util">
+      <i class="nav-icon fa fa-suitcase"></i>	サイト活用情報</a>
+  </li>
+{% endif %}

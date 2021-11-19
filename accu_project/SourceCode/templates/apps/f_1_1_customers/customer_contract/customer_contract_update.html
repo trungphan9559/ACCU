@@ -1,0 +1,274 @@
+{% include 'base/message.html' %}
+<div>
+  <form method="post" action="{{url('customer_contract_update',args=(customercontract.pk,))}}" id="contract-update-form">
+    {{ crispy(form) }}
+    <input class="btn btn-primary mt-3" type="submit" value="Update">
+  </form>
+</div>
+
+<script>
+
+  var start_date_old = '{{customercontract.start_date}}'
+  var end_date_old = '{{customercontract.end_date}}'
+  var start_date_option_old = '{{customercontract.start_date_option}}'
+  var end_date_option_old = '{{customercontract.end_date_option}}'
+  var start_date_free_old = '{{customercontract.start_date_free}}'
+  var end_date_free_old = '{{customercontract.end_date_free}}'
+
+  $(document).ready(function() {
+    $('input#id_end_date').attr('disabled', true);
+    var plan_val = $('select[name=plan] option').filter(':selected').val()
+    
+
+    $("#div_id_contract_period_option").addClass("d-none");
+    $("#div_id_start_date_option").addClass("d-none");
+    $("#div_id_end_date_option").addClass("d-none");
+    $("#div_id_site_id_main_channel").addClass("d-none");
+    $("#div_id_site_id_op_1").addClass("d-none");
+    $("#div_id_site_id_op_2").addClass("d-none");
+    $("#div_id_goal_main_channel").addClass("d-none");
+    $("#div_id_goal_op1").addClass("d-none");
+    $("#div_id_goal_op2").addClass("d-none");
+    $("#div_id_contract_period_free").addClass("d-none");
+    $("#div_id_start_date_free").addClass("d-none");
+    $("#div_id_end_date_free").addClass("d-none");
+    $("#div_id_is_free").addClass("d-none");
+
+    if (plan_val == 1 || plan_val == 2 || plan_val == 3 ){
+      $("#div_id_is_free").removeClass("d-none");
+    }
+
+    if ( $("#id_option_2").is(":checked") || $("#id_option_2").is(":checked"))  {
+      
+      $("#div_id_contract_period_option").removeClass("d-none");
+      $("#div_id_start_date_option").removeClass("d-none");
+      $("#div_id_end_date_option").removeClass("d-none");
+    }
+
+    if($("#id_is_free").is(":checked")){
+      $("#div_id_contract_period_free").removeClass("d-none");
+      $("#div_id_start_date_free").removeClass("d-none");
+      $("#div_id_end_date_free").removeClass("d-none");
+    }
+
+    if($("#id_option_2").is(":checked")){
+      $("#div_id_site_id_main_channel").removeClass("d-none");
+      $("#div_id_site_id_op_1").removeClass("d-none");
+      $("#div_id_site_id_op_2").removeClass("d-none");
+      $("#div_id_goal_main_channel").removeClass("d-none");
+      $("#div_id_goal_op1").removeClass("d-none");
+      $("#div_id_goal_op2").removeClass("d-none");
+    }
+
+    
+
+  });
+
+    $("select#id_plan").change(function() {
+
+    var plan_val = $(this).val();
+
+    if (plan_val == 1 || plan_val == 2 || plan_val == 3 ){
+      $("#div_id_is_free").removeClass("d-none");
+    }
+    else{
+      $("#div_id_is_free").addClass("d-none");
+    }
+  });
+
+  $("#id_is_free").change(function() {
+  // Check input( $( this ).val() ) for validity here
+    if ($("#id_is_free").is(":checked")) {
+      $("#div_id_contract_period_free").removeClass("d-none");
+      $("#div_id_start_date_free").removeClass("d-none");
+      $("#div_id_end_date_free").removeClass("d-none");
+
+    }
+
+    if( !$("#id_is_free").is(":checked")){
+      $("#div_id_contract_period_free").addClass("d-none");
+      $("#div_id_start_date_free").addClass("d-none");
+      $("#div_id_end_date_free").addClass("d-none");
+    }
+    
+  });
+
+  $("#id_option_2").change(function() {
+  // Check input( $( this ).val() ) for validity here
+    if ($("#id_option_2").is(":checked")) {
+      $("#div_id_contract_period_option").removeClass("d-none");
+      $("#div_id_start_date_option").removeClass("d-none");
+      $("#div_id_end_date_option").removeClass("d-none");
+      
+      $("#div_id_site_id_main_channel").removeClass("d-none");
+      $("#div_id_site_id_op_1").removeClass("d-none");
+      $("#div_id_site_id_op_2").removeClass("d-none");
+      $("#div_id_goal_main_channel").removeClass("d-none");
+      $("#div_id_goal_op1").removeClass("d-none");
+      $("#div_id_goal_op2").removeClass("d-none");
+    }
+    else{
+      $("#div_id_site_id_main_channel").addClass("d-none");
+      $("#div_id_site_id_op_1").addClass("d-none");
+      $("#div_id_site_id_op_2").addClass("d-none");
+      $("#div_id_goal_main_channel").addClass("d-none");
+      $("#div_id_goal_op1").addClass("d-none");
+      $("#div_id_goal_op2").addClass("d-none");
+    }
+
+    if( !$("#id_option_2").is(":checked") && !$("#id_option_1").is(":checked")){
+      $("#div_id_contract_period_option").addClass("d-none");
+      $("#div_id_start_date_option").addClass("d-none");
+      $("#div_id_end_date_option").addClass("d-none");
+    }
+
+  });
+
+  $("#id_option_1").change(function() {
+  // Check input( $( this ).val() ) for validity here
+    if ($("#id_option_1").is(":checked")) {
+      $("#div_id_contract_period_option").removeClass("d-none");
+      $("#div_id_start_date_option").removeClass("d-none");
+      $("#div_id_end_date_option").removeClass("d-none");
+
+    }
+
+    if( !$("#id_option_2").is(":checked") && !$("#id_option_1").is(":checked")){
+      $("#div_id_contract_period_option").addClass("d-none");
+      $("#div_id_start_date_option").addClass("d-none");
+      $("#div_id_end_date_option").addClass("d-none");
+    }
+    
+  });
+
+
+  show_date_format("id_start_date", value=start_date_old)
+  show_date_format("id_end_date", value=end_date_old, disable=true)
+  
+  var contract_period_change = false;
+  var contract_start_date_change = false;
+  $("input#id_contract_period").change(function(){
+    
+    contract_period_change = true;
+    var contract_period = $("input#id_contract_period").val();
+    var start_date = $("input#id_start_date").val();
+    if(start_date != ""){
+      var no_of_months = $("input#id_contract_period").val();
+      var currentDate = moment(start_date);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("input#id_end_date").val(future_date);
+    }
+  });
+
+  $("input#id_start_date").change(function(){
+    contract_start_date_change = true
+    var contract_period = $("input#id_contract_period").val();
+    var start_date = $("input#id_start_date").val();
+    if(contract_period != ""){
+      var no_of_months = $("input#id_contract_period").val();
+      var currentDate = moment(start_date);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("input#id_end_date").val(future_date);
+    }
+  });
+  
+  show_date_format("id_start_date_option", value=start_date_option_old)
+  show_date_format("id_end_date_option", value=end_date_option_old, disable=true)
+
+  var contract_period_option_change = false;
+  var contract_start_date_option_change = false;
+  $("input#id_contract_period_option").change(function () {
+
+    contract_period_option_change = true;
+    var contract_period = $("input#id_contract_period_option").val();
+    var start_date_option = $("#id_start_date_option").val();
+    if (start_date_option != "") {
+      var no_of_months = $("input#id_contract_period_option").val();
+      var currentDate = moment(start_date_option);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("#id_end_date_option").val(future_date);
+    }
+  });
+
+  $("#id_start_date_option").change(function () {
+    contract_start_date_option_change = true
+    var contract_period = $("input#id_contract_period_option").val();
+    var start_date_option = $("#id_start_date_option").val();
+    if (contract_period != "") {
+      var no_of_months = $("input#id_contract_period_option").val();
+      var currentDate = moment(start_date_option);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("#id_end_date_option").val(future_date);
+    }
+  });
+
+  show_date_format("id_start_date_free", value=start_date_free_old)
+  show_date_format("id_end_date_free", value=end_date_free_old, disable=true)
+
+  var contract_period_free_change = false;
+  var contract_start_date_free_change = false;
+  $("input#id_contract_period_free").change(function () {
+
+    contract_period_free_change = true;
+    var contract_period = $("input#id_contract_period_free").val();
+    var start_date_free = $("#id_start_date_free").val();
+    if (start_date_free != "") {
+      var no_of_months = $("input#id_contract_period_free").val();
+      var currentDate = moment(start_date_free);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("#id_end_date_free").val(future_date);
+    }
+  });
+
+  $("#id_start_date_free").change(function () {
+    contract_start_date_free_change = true
+    var contract_period = $("input#id_contract_period_free").val();
+    var start_date_free = $("#id_start_date_free").val();
+    if (contract_period != "") {
+      var no_of_months = $("input#id_contract_period_free").val();
+      var currentDate = moment(start_date_free);
+      var future_date = moment(currentDate).add(no_of_months, 'months').format('YYYY-MM-DD');
+      var future_date = moment(future_date).add(-1, 'days').format('YYYY-MM-DD');
+      $("#id_end_date_free").val(future_date);
+    }
+  });
+
+  $("#contract-update-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    disable_element(form)
+    var url = form.attr('action');
+    var start_date = $("#id_start_date").val();
+    var end_date = $("#id_end_date").val();
+    var start_date_option = $("#id_start_date_option").val();
+    var end_date_option = $("#id_end_date_option").val();
+    var start_date_free = $("#id_start_date_free").val();
+    var end_date_free = $("#id_end_date_free").val();
+    data = form.serialize() + `&end_date=${end_date}` + `&start_date=${start_date}`
+
+    if (end_date_free != "None" && start_date_free != "None") {
+      data += `&end_date_free=${end_date_free}` + `&start_date_free=${start_date_free}`
+    }
+    if (end_date_option != "None" && start_date_option != "None") {
+      data += `&end_date_option=${end_date_option}` + `&start_date_option=${start_date_option}`
+    }
+    
+
+    
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data, // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data)
+        enable_element(form)
+      }
+      })
+    });
+</script>

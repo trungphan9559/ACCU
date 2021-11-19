@@ -1,0 +1,36 @@
+.f31-progress-CTA-tab{
+  width: 100%;
+  border-radius: 3px;
+}
+
+.carousel-cta-middle .carousel-control-prev{
+  left: -23px !important;
+  background-color: #c8ced3;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 20px !important;
+}
+
+.carousel-cta-middle .carousel-control-next{
+  left: 150px !important;
+  background-color: #c8ced3;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: 20px !important;
+}
+
+.f31-cta-click-rate-number{
+  color: #2f353a !important; 
+  font-size:10px; 
+  font-weight: 500
+}
+
+.f31-label-in-progress{
+  line-height: 3px; 
+  font-size: 11px;
+  color: #73818f
+}
+
+.f31-number{
+  font-size: 10.5px;
+}

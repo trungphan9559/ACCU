@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block main %}
+  <h2>Code: {{ site.code }}</h2>
+  <p>Name :  {{ site.name }}</p>
+  <p>Url :  {{ site.url }}</p>
+  <a >
+    <img src="{{ site.logo }}" width="150" height="70">
+  </a>
+  <p>Active : {{ site.is_active }}</p>
+  <p>Asana Project Id : {{ site.asana_project_id }}</p>
+  <p>Customer : {{ site.customer_id }}</p>
+  <p>Person in charge id : {{ site.person_in_charge_id }}</p>
+  <p>Person in charge management id : {{ site.person_in_charge_management_id }}</p>
+
+<p><a href="{{url('site_update',args=(site.pk,))}}">Update</a></p>
+<p><a href="{{url('site_delete',args=(site.pk,))}}">Delete</a></p>
+{% endblock main %}

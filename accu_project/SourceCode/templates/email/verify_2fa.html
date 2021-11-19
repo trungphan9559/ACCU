@@ -1,0 +1,23 @@
+{% extends 'email/base/verify/base.html' %}
+
+{% block title %}
+    Download File Title
+{% endblock title %}
+
+{% block body %}
+<div>
+  <p class="content-info" style="margin-top: 0">[セキュリティコード] <strong>{{token}}</strong></p>
+
+  <p class="content-info" style="margin-top: 25px;">上記のセキュリティコードを画面に入力してください。</p>
+  <p class="content-info">セキュリティコードの有効期限は、{{date}}です。</p>
+
+    <p class="content-info" style="margin-top: 25px;">
+  ログインできないなどの問題がございましたら、下記お問い合わせフォームまでご連絡ください。<br>
+  <a target="_blank" href="https://www.accu.net/microsoft/contact">https://www.accu.net/microsoft/contact
+  </p>
+  <p class="content-info" style="margin-top: 25px; margin-bottom: 25px;">どうぞよろしくお願いいたします。</p>
+  <!-- {%if url_confirm != -1%}
+  <a class="button-email button-in-email" href='{{url_confirm}}' style="margin-bottom: 25px; background: #4b8bd9; padding: 15px 35px; color: #fff; text-decoration: none; display: inline-block; font-weight: 500; border-radius: 2px; margin-top: 10px;">Click to verify</a>
+  {%endif%} -->
+</div>
+{% endblock body %}

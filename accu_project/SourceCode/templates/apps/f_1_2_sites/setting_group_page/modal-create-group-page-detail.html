@@ -1,0 +1,161 @@
+<input type="hidden" id="site_id_hidden" value="{{site_id}}" />
+
+<!-- Container -->
+<div class="row mt-2">
+  <label class="col-12">Group Name <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-group-name-create" type="text" class="form-control" />
+  </div>
+</div>
+
+<!-- Resource Top Page -->
+<div class="row mt-3">
+  <label class="col-12">Resource Top Page <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <select class="form-control select2-single" id="select_resource_top_page_create">
+      {%for top_page_info in list_resource_page%}
+      <option value="{{top_page_info.get('id')}}">{{top_page_info.get('name')}}</option>
+      {%endfor%}
+    </select>
+  </div>
+</div>
+
+<!-- Hubspot List Master -->
+<div class="row mt-3">
+  <label class="col-12">Hubspot List Master <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <select class="form-control select2-single " id="select_hb_list_master_create">
+      {%for hb_list_info in list_hb_list%}
+      <option value="{{hb_list_info.get('id')}}">{{hb_list_info.get('name')}}</option>
+      {%endfor%}
+    </select>
+  </div>
+</div>
+
+<!-- Hubspot List Name Default -->
+<div class="row mt-3">
+  <label class="col-12">Hubspot List Name Template <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-hb-list-name-create" type="text" class="form-control" />
+  </div>
+</div>
+
+<!-- Is Common -->
+<div class="row mt-3">
+  <div class="col-12">
+    <div id="is_setting_common" class="custom-control custom-checkbox col-12">
+      <input type="checkbox" name="is_setting_common" class="checkboxinput custom-control-input"
+        id="check_is_common_create">
+      <label for="check_is_common_create" class="custom-control-label">
+        Is Common
+      </label>
+    </div>
+  </div>
+
+</div>
+</div>
+
+{% macro factorial(root_name,root_id,child_data) -%}
+
+<li data-expanded="true" value="{{root_id}}">{{root_name}}
+  <ul>
+    {% for _child_1 in child_data %}
+
+    {% if child_data[_child_1]['child'] != {} %}
+    {{ factorial(_child_1,child_data[_child_1].id , child_data[_child_1]['child']) }}
+    {%- else -%}
+    <li value="{{child_data[_child_1].id}}">{{_child_1}}
+    </li>
+    {%- endif %}
+    {% endfor %}
+  </ul>
+</li>
+{%- endmacro %}
+
+<!-- Folder thumb -->
+<div class="row mt-3">
+  <div class="col-12">
+    <div class="row">
+      <label class="col-12">Folder thumb<small class="text-danger">(*)</small>: </label>
+      <div class="col-12">
+        <div id="example">
+          <div id="cap-view" class="demo-section k-content">
+            <input id="treeview_thumb" style="width: 100%;" />
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-12 mt-3">
+    <label class="col-12 p-0">Folder pdf<small class="text-danger">(*)</small>: </label>
+    <div class="row" id="select-folder-pdf">
+      <div class="col-12">
+        <div id="example_pdf">
+          <div id="cap-view_pdf" class="demo-section k-content">
+            <input id="treeview_pdf" style="width: 100%;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id="msg-create-group-page" class="col-12">
+
+  </div>
+  <div>
+
+    <script type="text/javascript">
+
+
+      // xử lý select multi exclude page
+      $('#select_resource_top_page_create').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select Resource Page',
+        allowClear: false
+      });
+
+      // xử lý select multi exclude page
+      $('#select_hb_list_master_create').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select Hubspot List',
+        allowClear: false
+      });
+
+      // Folder
+
+      $(document).ready(function () {
+
+        var list_data_folder_custom = "{{list_data_folder_custom}}"
+        var list_folder = convert_string_to_array(list_data_folder_custom);
+        console.log(list_folder,"list_folder")
+
+        // Folder thumb
+        var thumb = $("#treeview_thumb").kendoDropDownTree({
+          placeholder: "Select folder thumb...",
+          dataTextField: "text",
+          dataValueField: "id",
+          filter: "startswith",
+          dataSource: list_folder
+        });
+
+        // Folder pdf
+        var pdf = $("#treeview_pdf").kendoDropDownTree({
+          placeholder: "Select folder pdf...",
+          dataTextField: "text",
+          dataValueField: "id",
+          filter: "startswith",
+          dataSource: list_folder
+        });
+
+      });
+
+
+
+    </script>

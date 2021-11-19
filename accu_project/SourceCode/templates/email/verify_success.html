@@ -1,0 +1,24 @@
+{% extends 'email/base/verify/base.html' %}
+
+{% block body %}
+<!-- Tại đây bao gồm các biến: username, password, url_confirm -->
+<div>
+    <div>{{company_name}}</div>
+    <div>{{last_name}}様</div>
+    <p class="content-info" style="margin-top: 25px;">この度は、「ACCU TOOL」へご登録いただき、ありがとうございます。</p>
+    <p class="content-info" style="margin-top: 25px;">アカウント登録が完了いたしましたのでご連絡いたします。</p>
+    <br>
+
+    <div>メールアドレス：{{user_name}}</div>
+    <div>ログイン URL：{{url_login}}</div>
+
+  <p class="content-info" style="margin-top: 25px;">
+  ログインできないなどの問題がございましたら、下記お問い合わせフォームまでご連絡ください。<br>
+  <a target="_blank" href="https://www.accu.net/microsoft/contact">https://www.accu.net/microsoft/contact
+  </p>
+  <p class="content-info" style="margin-top: 25px;">どうぞよろしくお願いいたします。</p>
+
+
+</div>
+
+{% endblock %}

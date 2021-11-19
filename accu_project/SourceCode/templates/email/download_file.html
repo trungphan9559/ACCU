@@ -1,0 +1,33 @@
+{% extends 'email/base/base.html' %}
+
+{% block title %}
+    Download File Title
+{% endblock title %}
+
+{% block body %}
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0;border-collapse:collapse;padding:0;vertical-align:top;text-align:left;font-size:14px;color:#333333;line-height:32px;font-weight:normal;" valign="top" align="left">
+    <tbody>
+        <tr style="padding:0;vertical-align:top;text-align:left" valign="top"
+        align="left">
+            <td>
+                <p style="font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 18px; font-weight: bold; line-height: 1.3;Margin: 0 auto;margin: 0 auto; padding: 0; margin-bottom:10px;">
+                    Thank you for used accu Tool</p>
+            </td>
+        </tr>
+         <tr style="padding:0;vertical-align:top;text-align:left" valign="top"
+            align="left">
+            <td
+                style="word-wrap:break-word;vertical-align:top;color:#333333;border-collapse:collapse;"
+                valign="top" align="left">
+                <a target="_blank" style="color:#1974d2;text-decoration:none;display:block;padding-top:5px;font-family: 'Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 15px; font-weight: normal; line-height: 1.3" href="{{download_url}}" >
+                    Download File
+                </a>
+            </td>
+        </tr>
+        <tr style="padding:0;vertical-align:top;text-align:left" valign="top"
+            align="left">
+            <td style="border-bottom:1px solid #D8D8D8;line-height:20px;">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock body %}

@@ -1,0 +1,80 @@
+$width-left: 254px;
+$width-right: calc(100% - 254px);
+$height-full: 300px;
+#box-footer{
+  &-background{
+    width: 745px;
+    height: $height-full;
+    display: inline-block;
+  } 
+
+  &-left{
+    width: $width-left;
+    height: 248px;
+    position: relative;
+    float: left;
+    #img-book{
+      width: 190px;
+      height: 246px;
+      margin-top: 27px;
+      margin-left: 32px;
+      position: relative;
+
+      #img-book-center{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .img-horizontal{
+          // position: absolute;
+          max-width: 190px;
+          max-height: 200px;
+          // top: 50%;
+          // left: 50%;
+          // transform: translate(-50%, -50%);
+        }   
+        .img-btn{
+          // position: absolute;
+          // bottom: 0;
+          // left: 15%;
+          margin-top: 20px;
+        }       
+      }
+    }
+  }
+  
+  &-img-book{
+    width: 144px;
+    height: 208px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-right{
+    width: $width-right;
+    height: $height-full; 
+    float: left;
+    padding: 25px;
+    box-sizing: border-box;
+
+    &-title{
+      height: 105px;
+      width: 100%;
+      font-size: 33px;
+      font-weight: bold;
+      color: #033864;
+      text-shadow: 0 0 4px #fff;
+      // font-family: 'Noto San JP', sans-serif;
+      line-height: 40px;
+    }
+  }
+}
+
+#box-footer-description{
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 23px;
+}

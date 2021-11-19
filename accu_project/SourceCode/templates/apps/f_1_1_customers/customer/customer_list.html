@@ -1,0 +1,285 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>顧客管理</span></li>
+{% endblock %}
+
+{% block main %}
+<div class="row mx-3 mt-3">
+  <div class="col-12" id="message">
+
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    顧客管理
+  </h1>
+</div>
+
+
+<div class="row mx-3 mb-5 position-relative table-loading">
+  <div class="col-12 custom-datatable-toolbar">
+    <div class="row">
+      <div class="col-8 text-nowrap">
+
+        <select class="form-control form-control-toolbar form-control-sm" id="id_site" onchange="add_param()">
+          <option value="-1">- サイト -</option>
+          {% for site in list_sites%}
+          <option value="{{site.pk}}" {{ "selected" if request.GET.get('site') == site.pk|string }}>{{site.name}}
+          </option>
+          {% endfor %}
+        </select>
+
+        <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_status" onchange="add_param()">
+          <option value="-1" >- 契約状況 -</option>
+          <option value="1" {{ "selected" if request.GET.get('status') == '1' }}>契約中</option>
+          <option value="2" {{ "selected" if request.GET.get('status') == '2' }}>開始前</option>
+          <option value="0" {{ "selected" if request.GET.get('status') == '0' }}>終了</option>
+        </select>
+
+        <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_plan" onchange="add_param()">
+          <option value="-1">- プラン -</option>
+          {% for plan in list_plans %}
+          <option value="{{plan.auth_group.id}}"
+            {{ "selected" if request.GET.get('plan') == plan.auth_group.id|string }}>{{plan.auth_group.name}}</option>
+          {% endfor %}
+        </select>
+
+        <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_option" onchange="add_param()">
+          <option value="-1">- オプション -</option>
+          {% for option in list_options %}
+          <option value="{{option.auth_group.id}}"
+            {{ "selected" if request.GET.get('option') == option.auth_group.id|string }}>{{option.auth_group.name}}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-4 text-right">
+        {% if request.GET.get('group') != none and request.GET.get('group') != '-1'%}
+        <button data-toggle="modal" data-target="#modalCreateCustomer" class="btn btn-light border btn-sm mr-2" type="button"
+          margin="100px" data-toggle="modal" data-target="#modalCreateCustomer"><i class="fa fa-plus mr-1"></i>顧客を新規追加</button>
+        {% endif %}
+        <a class="btn btn-light border btn-sm mr-2" href="/customers/download-customer-list?group={{request.GET.get('group',-1)}}&site={{request.GET.get('site',-1)}}&plan={{request.GET.get('plan',-1)}}&option={{request.GET.get('option',-1)}}&status={{request.GET.get('status',-1)}}">
+            <i class="fa fa-download mr-1"></i>CSV出力</a>
+
+        <div class="dropdown d-inline">
+
+          <button class="btn-light border dropdown-toggle btn-sm" type="button"
+            id="dropdownAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            アクション
+          </button>
+
+          <div class="dropdown-menu pointer" aria-labelledby="dropdownAction">
+            
+            <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteBulkCustomer">
+              <i class="fa fa-trash mr-1 text-danger"></i>一括削除
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 mt-3">
+    <table id="table_data" class="table table-not-in-card table-wrapper table-hover table-font-small">
+      <thead>
+        <tr>
+          <th style="width: 0px;" class="no-sort"><input onclick="check_uncheck_all(this);" type="checkbox" name="checkAll" id="check_all"></th>
+          <th>顧客名</th>
+          <th class="no-sort">サイトURL</th>
+          <th class="no-sort">プラン <small>(現在)</small></th>
+          <th class="no-sort">契約サイト (メインサイト)</th>
+          <th>契約状況</th>
+          <th class="text-nowrap no-sort">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in list_customers %}
+        <tr>
+          <td class="td-check"><input type="checkbox" name="check_all_item" class="checkbox" value="{{customer.pk}}"></td>
+
+          <td class="pt-2 pb-3">
+            <div data-toggle="tooltip" title="{{customer.name}}">
+                <p class="mb-0 text-ellipsis">
+                  {% if customer.is_prioritize %}
+                  <i class="fa fa-star text-success" aria-hidden="true"></i>
+                  {% endif %}
+                  {{customer.name}}
+                </p>
+                <small class="text-muted d-block" style="line-height: 0;">({{customer.code}})</small>
+            </div>
+         </td>
+          <td>
+            {% if customer.domain != "" %}
+              <div class="icon-last-text">
+                <a href="{{customer.domain}}" target="_blank" class="text-ellipsis" data-toggle="tooltip" title="{{customer.domain}}">{{customer.domain}}
+                </a>
+                <i class="fa fa-external-link small"></i>
+              </div>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td style="min-width: 120px;">
+            {% if customer.plan_name %}
+              <p class="mb-0">{{customer.plan_name}}</p>
+              {% if customer.option_name %}
+                <small class="text-muted">({{ customer.option_name }})</small>
+              {% endif %}
+            {% endif %}
+          </td>
+          <td>
+              {{customer.site_name}}
+          </td>
+          <td>
+            {% if customer.is_active == True %}
+            <span class="badge badge-success" style="width: 60px;"></i>契約中</span>
+            {% else %}
+                {% if customer.is_next_contract %}
+                    <span class="badge badge-warning" style="width: 60px;">開始前</span>
+                {% else %}
+                    <span class="badge badge-danger" style="width: 60px;">終了</span>
+                {% endif %}
+            {% endif %}
+
+          </td>
+          <td class="text-nowrap">
+            <div class="dropdown">
+              <button class="btn-light border dropdown-toggle btn-sm dropdown-in-table" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                アクション
+              </button>
+              <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                <button data-toggle="modal" class="dropdown-item" data-target="#modalUpdateCustomer"
+                  data-customer-id="{{customer.pk}}">
+                  <i class="fa fa-edit mr-1"></i>情報編集
+                </button>
+                <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteCustomer"
+                  data-customer-id="{{customer.pk}}">
+                  <i class="fa fa-trash mr-1 text-danger"></i>削除
+                </button>
+                <a class="dropdown-item" href="{{url('user_list') + '?group=' + customer.customer_group.pk|string + '&customer=' + customer.pk|string }}"><i class="fa fa-user-circle-o mr-1"></i>ユーザー管理</a>
+                <a class="dropdown-item" href="{{url('customer_contract_list') + '?group=' + customer.customer_group.pk|string + '&customer=' + customer.pk|string }}"><i class="fa fa-handshake-o mr-1"></i>契約管理</a>
+                <a class="dropdown-item" href="{{url('monthly_pttx_report_management_list') + '?group=' + customer.customer_group.pk|string + '&customer=' + customer.pk|string }}"><i class="fa fa-line-chart mr-1"></i>レポート管理</a>
+                {%if customer.site.all() %}
+                  <button 
+                          data-customer-id = {{customer.pk}} 
+                          data-toggle='modal'
+                          data-target='#modalCustomerSetting' 
+                          class="dropdown-item">
+                          <i class="fa fa-cog mr-1"></i>顧客設定
+                  </button>
+                {%endif%}
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% with 
+  modal_id = 'modalCreateCustomer',
+  modal_title='顧客を新規追加' ,
+  modal_body_tmp = 'apps/f_1_1_customers/customer/modal_customer_create.html'
+%}
+{% include 'popup/popup_create.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalUpdateCustomer',
+  modal_title='顧客を編集' ,
+  modal_body_tmp = 'apps/f_1_1_customers/customer/modal_customer_update.html'
+%}
+{% include 'popup/popup_update.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteCustomer',
+  modal_title='顧客を削除' ,
+  modal_body_tmp = 'apps/f_1_1_customers/customer/modal_customer_delete.html'
+%}
+{% include 'popup/popup_delete.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteBulkCustomer',
+  modal_title='顧客を一括に削除' ,
+  modal_body_tmp = 'apps/f_1_1_customers/customer/modal_customer_delete_bulk.html'
+%}
+{% include 'popup/popup_delete_bulk.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalCreatUser',
+  modal_title='ユーザーを新規追加' ,
+  modal_body_tmp = 'apps/f_7_1_accounts/modal_signup.html'
+%}
+{% include 'popup/popup_create.html' %}
+{% endwith %}
+
+{% include 'apps/f_1_1_customers/customer/modal-customer-setting.html' %}
+{% endblock main %}
+
+
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    var option_addition = {
+      fixedHeader: {
+          header: true,
+          headerOffset: $('header').height()
+      }
+    }
+
+    var table = $('#table_data').DataTable(get_option_datatable(option_addition))
+
+    show_sort_datatable(table)
+
+    var customer_name = "{{request.GET.get('q','')}}"
+    $("input[type='search']").val(customer_name).keyup()
+    disable_enable_checkbox();
+  });
+
+  $('.checkbox').change(function () {
+    disable_enable_checkbox();
+  });
+
+  $('#check_all').change(function () {
+    disable_enable_checkbox();
+  });
+
+
+  function disable_enable_checkbox(){
+    var list_id = [];
+    var id = $('.checkbox:checked').map(function(){
+      list_id.push($(this).val()); 
+    });
+    if(list_id.length ==  0 ){
+      $("#dropdownAction").css("cursor","no-drop");
+      $("#dropdownAction").prop("disabled",true);
+    }else{
+      $("#dropdownAction").css("cursor","pointer");
+      $("#dropdownAction").prop("disabled",false);
+    }
+  }
+
+  function add_param() {
+    var group = 1;
+    var plan = $("#id_plan").val();
+    var option = $("#id_option").val();
+    var site = $("#id_site").val();
+    var status = $("#id_status").val();
+    disable_element($(".table-loading"));
+
+    window.location.search = `?group=${group}&site=${site}&plan=${plan}&option=${option}&status=${status}`
+  };
+</script>
+{% endblock %}

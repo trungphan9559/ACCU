@@ -1,0 +1,18 @@
+<footer class="app-footer">
+
+  <div class="col-6">
+    <div class="ml-auto text-left">
+      {% if request.user.is_superuser %}
+        {% if request.session.current_revision and request.session.database_name and request.session.type_environment %}
+          <span>{{request.session.database_name}} ({{request.session.type_environment}}) || Version: {{request.session.current_revision}}</span>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="ml-auto text-right">
+      <span>© TP Co., Ltd. All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>

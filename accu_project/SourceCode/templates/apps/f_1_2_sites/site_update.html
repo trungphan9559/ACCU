@@ -1,0 +1,25 @@
+{% include 'base/message.html' %}
+
+<form method="post" action="{{url('site_update',args=(site.pk,))}}" id="site-update-form">
+  {{ crispy(form) }}
+  <input class="btn btn-primary mt-3 modal-button-submit" type="submit" value="Update">
+</form>
+
+<script>
+  $("#site-update-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    disable_element(form)
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data);
+        enable_element(form);
+      }
+      })
+    });
+</script>

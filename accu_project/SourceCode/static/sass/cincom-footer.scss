@@ -1,0 +1,74 @@
+@import './Abstracts/extend';
+
+#cincom-footer{
+  width: 900px;
+  height: 327px;
+  display: inline-block;
+  position: relative;
+
+  &-left{
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+    padding-left: 47px;
+    position: relative;
+  }
+
+  &-right{
+
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 47px;
+
+    #title-cta{
+      font-size: 29px;
+      color: #ffffff;
+      height: 107px;
+      position: relative;
+
+      .title-main{
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+      }
+    }
+
+    #text-provider{
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    #cincom-line{
+      padding-top: 11px;
+      padding-bottom: 14px;
+    }
+
+    #text-desciption{
+      color: #ffffff;
+      font-size: 18px;
+      text-align: justify;
+    }
+
+    #btn-cta{
+      margin-top: 10px;
+      position: absolute;
+      bottom: 25px;
+      right: 47px;
+    }
+
+  }
+
+  #cincom-img-book{
+    max-width: 205px;
+    max-height:279px;
+    box-shadow: 0 0 7px #ffffff8c;
+    @extend %TestAlignMiddle;
+  }
+
+  
+}

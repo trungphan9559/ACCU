@@ -1,0 +1,42 @@
+<div class="text-center">
+  <p style="font-size: 20px;" id="id_confirm_delete_bulk"></p>
+  <input class="btn btn-danger" type="submit" value="Confirm" onclick='del_list_site_property()'>  
+</div>
+
+<script type="text/javascript">
+  $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+    var list_id = $('.checkbox:checked').map(function(){
+                        return $(this).val();
+                  }).get();
+    
+    if(list_id.length == 1){
+      $('#id_confirm_delete_bulk').text(`Are you sure delete: ${list_id.length} site property?`)
+    }else{
+      $('#id_confirm_delete_bulk').text(`Are you sure delete: ${list_id.length} sites property?`)
+    }
+  })
+
+  function del_list_site_property() {
+    disable_element($('#{{modal_id}} #modalBody'))
+    
+    var list_id = $('.checkbox:checked').map(function(){
+                        return $(this).val();
+                  }).get();
+
+    $.ajax({
+        type: "POST",
+        url: "{{url('site_property_delete_bulk')}}",
+        dataType: "html",
+        data : { 
+          'list_id' : list_id.toString(), 
+          'csrfmiddlewaretoken' : '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          location.reload();
+        }
+    });
+  };
+</script>
+
+
+

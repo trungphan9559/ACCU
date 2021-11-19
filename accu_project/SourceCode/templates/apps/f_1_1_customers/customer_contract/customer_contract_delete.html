@@ -1,0 +1,13 @@
+<form action="{{url('customer_contract_delete',args=(customercontract.pk,))}}" id="customer-delete-form" method="post">
+  <div class="text-center">
+    <p style="font-size: 20px;"><span class="text-danger">【{{customercontract.start_date}}】</span>を削除してもよろしいですか。</p>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    <input class="btn btn-danger" type="submit" value="Confirm">
+  </div>
+</form>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    disable_element($('#modalDeleteContract #modalBody'))
+  });
+</script>

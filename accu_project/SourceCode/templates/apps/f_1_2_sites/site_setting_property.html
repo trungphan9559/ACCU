@@ -1,0 +1,332 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>Sites Setting Property</span></li>
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <h1 class="text-center py-4 mb-0 font-weight-bold text-primary">
+    Sites Setting Property
+  </h1>
+</div>
+
+<div class="table-loading">
+  <div class="row mx-3 ">
+    <div class="col-12 px-0">
+
+      <div class="row">
+        <div class="col-8">
+
+          <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_site" onchange="add_param()">
+            <option value="-1" disabled>-- Site --</option>
+            {% for site in list_sites%}
+              <option value="{{site.pk}}" {{ "selected" if site_setting_property.site_id  == site.pk|int }}>{{site.name}}
+              </option>
+            {%endfor%}  
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class=" mx-4 mt-4" id="tab-data-content">
+      <div class="col-12 p-0">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="f21-tab" data-toggle="tab" href="#f21" role="tab" aria-controls="f21" aria-selected="true">F21 Contact report (Excel)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="f22-tab" data-toggle="tab" href="#f22" role="tab" aria-controls="f22" aria-selected="false">F22 Monthly report (PTTX)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="f23-tab" data-toggle="tab" href="#f23" role="tab" aria-controls="f23" aria-selected="false">F23 Seminar report (Excel)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="f24-tab" data-toggle="tab" href="#f24" role="tab" aria-controls="f24" aria-selected="false">F24 Contact List Report (Excel)</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <!-- Tab 21 -->
+          <div class="tab-pane fade show active p-0" id="f21" role="tabpanel" aria-labelledby="f21-tab">
+              <div id="content_overview_screen" class="position-relative row">
+                <div class="col-12 mt-3" id="content_f21_property">
+    
+                </div>
+              </div>
+          </div>
+
+          <!-- Tab 22 -->
+          <div class="tab-pane fade p-0" id="f22" role="tabpanel" aria-labelledby="f22-tab">
+            <div id="content_f22_property">
+                    
+            </div>
+          </div>
+
+          <!-- Tab 23 -->
+          <div class="tab-pane fade p-0" id="f23" role="tabpanel" aria-labelledby="f23-tab">
+            <div class="row position-relative">
+              <div class="col-12" id="content_f23_property">
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 24 -->
+          <div class="tab-pane fade p-0" id="f24" role="tabpanel" aria-labelledby="f24-tab">
+            <div class="row position-relative">
+              <div class="col-12" id="content_f24_property">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% with 
+  modal_id = 'modalUpdateSiteProperty',
+  modal_title='Update Site Property' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_property/modal/modal_site_property_update.html'
+%}
+{% include 'popup/popup_update.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteSiteProperty',
+  modal_title='Delete Site Property' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_property/modal/modal_site_property_delete.html'
+%}
+{% include 'popup/popup_delete.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalCreateSiteProperty',
+  modal_title='Add New Property' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_property/modal/modal_site_property_create.html'
+%}
+{% include 'popup/popup_create.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteBulkSiteProperty',
+  modal_title='Delete Bulk Site Property' ,
+  modal_body_tmp = 'apps/f_1_2_sites/setting_property/modal/modal_site_property_delete_bulk.html'
+%}
+{% include 'popup/popup_delete_bulk.html' %}
+{% endwith %}
+
+{% include 'apps/f_1_2_sites/setting_property/modal/modal-create-property_setting.html' %}
+{% include 'apps/f_1_2_sites/setting_property/modal/modal-update-property-setting.html' %}
+
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+
+  //1) Jquery giữ tab khi reload trang
+  $('#myTab a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+  });
+
+  // store the currently selected tab in the hash value
+  $("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
+    var id = $(e.target).attr("href").substr(1);
+    window.location.hash = id;
+  });
+
+  // on load of the page: switch to the currently selected tab
+  var hash = window.location.hash;
+  $('#myTab a[href="' + hash + '"]').tab('show');
+  
+  // end giữ tab khi load trang
+  
+  $(document).ready(function () {
+    //var table = $('#table_data').DataTable(get_option_datatable())
+
+   // show_sort_datatable(table);
+    load_data();
+    
+  });
+ 
+
+
+  // Hàm để filter site id
+  function add_param() {
+    var site = $("#id_site").val();
+    url = window.location.origin
+    url = url +`/sites/${site}/setting-property`
+
+    window.location = url
+
+  };
+
+  // hàm load lại dữ liệu trang
+  function load_data() {
+    load_data_f21_property();
+    load_data_f22_property();
+    load_data_f23_property();
+    load_data_f24_property();
+  };
+
+  // hàm load dữ liệu tab f21
+  function load_data_f21_property() {
+    var e_loading_seminar_setting = $("#content_f21_property");
+    var site_id = $("#id_site").val();
+    disable_element(e_loading_seminar_setting);
+    $('.add-property').attr('disabled', true);
+
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-data-f21-property",
+      dataType: "html",
+      data: {
+        site_id: site_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function (response) {
+        enable_element(e_loading_seminar_setting)
+        $('#content_f21_property').html(response);
+
+        var table = $('#table_f21_property').DataTable(get_option_datatable())
+        show_sort_datatable(table);
+
+        $('.add-property').attr('disabled', false);
+      },
+      error: function (xhr, status, e) {
+      }
+    });
+  }
+
+  // hàm load dữ liệu tab f22
+  function load_data_f22_property() {
+    var e_loading_seminar_setting = $("#content_f22_property");
+    var site_id = $("#id_site").val();
+    disable_element(e_loading_seminar_setting);
+    $('.add-property').attr('disabled', true);
+
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-data-f22-property",
+      dataType: "html",
+      data: {
+        site_id: site_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function (response) {
+        enable_element(e_loading_seminar_setting)
+        $('#content_f22_property').html(response);
+
+        var table = $('#table_f22_property').DataTable(get_option_datatable())
+        show_sort_datatable(table);
+
+        $('.add-property').attr('disabled', false);
+      },
+      error: function (xhr, status, e) {
+      }
+    });
+  }
+
+  // hàm load dữ liệu f23
+  function load_data_f23_property() {
+    var e_loading_seminar_setting = $("#content_f23_property");
+    var site_id = $("#id_site").val();
+    disable_element(e_loading_seminar_setting);
+    $('.add-property').attr('disabled', true);
+
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-data-f23-property",
+      dataType: "html",
+      data: {
+        site_id: site_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function (response) {
+        enable_element(e_loading_seminar_setting)
+        $('#content_f23_property').html(response);
+
+        var table = $('#table_f23_property').DataTable(get_option_datatable())
+        show_sort_datatable(table);
+
+        $('.add-property').attr('disabled', false);
+      },
+      error: function (xhr, status, e) {
+      }
+    });
+  }
+  // hàm load dữ liệu f24
+  function load_data_f24_property() {
+    var e_loading_seminar_setting = $("#content_f24_property");
+    var site_id = $("#id_site").val();
+    disable_element(e_loading_seminar_setting);
+    $('.add-property').attr('disabled', true);
+
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-data-f24-property",
+      dataType: "html",
+      data: {
+        site_id: site_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function (response) {
+        enable_element(e_loading_seminar_setting)
+        $('#content_f24_property').html(response);
+
+        var table = $('#table_f24_property').DataTable(get_option_datatable())
+        show_sort_datatable(table);
+
+        $('.add-property').attr('disabled', false);
+      },
+      error: function (xhr, status, e) {
+      }
+    });
+  }
+
+  // Hàm update notify email
+  function update_notify_email(type) {
+    //var e_loading_seminar_setting = $("#content_f23_property");
+    var e_loading_update_email = $(`#${type}-notify-email`);
+    var site_id = $("#id_site").val();
+    var list_email = $(`input#notify-email-${type}`).val();
+    
+    disable_element(e_loading_update_email);
+    $('.add-property').attr('disabled', true);
+
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/update-notify-email",
+      dataType: "html",
+      data: {
+        site_id: site_id,
+        list_email: list_email,
+        type : type,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function (response) {
+        if(type =="f21"){
+          enable_element(e_loading_update_email)
+          load_data_f21_property();
+        }
+        else if(type="f22"){
+          enable_element(e_loading_update_email)
+          load_data_f22_property();
+        }
+
+      },
+      error: function (xhr, status, e) {
+      }
+    });
+  }
+
+
+</script>
+{% endblock %}

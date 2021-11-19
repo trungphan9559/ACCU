@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto&display=swap" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/fontawesome.min.css">
+  <title>Created Thumb Templates 1</title>
+
+  <style>
+    .wrapper-img{
+      position: relative;
+      display: inline-flex;
+    }
+
+    .resize-drag-1 {
+      width: 120px;
+      border-radius: 8px;
+      padding: 20px;
+      /* margin: 1rem; */
+      background-color: #29e;
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+
+      touch-action: none;
+
+      /* This makes things *much* easier */
+      box-sizing: border-box;
+    }
+
+    .resize-drag-2 {
+      width: 120px;
+      border-radius: 8px;
+      padding: 20px;
+      /* margin: 1rem; */
+      background-color: rgb(238, 75, 34);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+
+      touch-action: none;
+
+      /* This makes things *much* easier */
+      box-sizing: border-box;
+    }
+
+    #img-book-slide{
+      border-radius: 5px;
+    }
+
+    .line-shadow-white{
+      width:100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1px solid #c0c0c0; 
+      border-radius: 7px;
+      
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="wrapper-img" id="thumb-img">
+      <img id="img-book" src="{{path_image_main}}" width="892px"/>
+      <div class="line-shadow-white" style="background: url('{{path_image_main}}'), url('{{path_book_line}}'), #c0c0c014;
+      background-blend-mode: multiply;"></div>
+    </div>
+  </section> 
+</body>
+
+</html>

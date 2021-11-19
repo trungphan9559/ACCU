@@ -1,0 +1,80 @@
+@import './Abstracts/variable';
+@import './Abstracts/extend';
+
+$d365-pr-24 : 24px;
+$color-text: rgb(0, 97, 213);
+
+#box-middlecta{
+
+  position: relative;
+
+  &-background{
+    width: 736px;
+    height: 352px;
+    display: inline-block;
+    background: $background-define-middle;
+  } 
+
+  &-left{
+    width: 244px;
+    position: absolute;
+    top: 0; 
+    left: 0;
+  }
+
+  &-img-book{
+    max-width: 241px;
+    max-height: 352px;
+  }
+
+  &-right{
+    position: absolute;
+    left: 244px;
+    top: 0;
+    width: 492px;
+    height: 352px;
+    
+    &-title{
+      font-family: 'Noto San JP', sans-serif;
+      font-weight: bold;
+      width: 100%;
+      font-size: 29px;
+      color:$color-text;
+      padding: 16px $d365-pr-24 20px 20px;
+      height: 115px;
+      position: relative;
+
+      .title-main{
+        @extend %TestAlignMiddle;
+      }
+    }
+
+    &-hr{
+      border: 1px solid #bababa;
+      margin-left: 20px;
+      margin-right: $d365-pr-24;
+      margin-top:0;
+      margin-bottom: 0;
+    }
+
+    &-text-description{
+      text-align: justify;
+      font-size: 26px; 
+      padding-top: 20px;
+      padding-left: 20px;
+      padding-right: $d365-pr-24;
+      color: #404040;
+    }
+
+    &-provider{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin-right: $d365-pr-24;
+      margin-bottom: 14px;
+      color: $color-text;
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
+}

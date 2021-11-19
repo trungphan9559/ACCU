@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="card mx-4">
+
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> <strong>Authen</strong>
+    </div>
+  
+    <div class="card-body">
+      <div class="row">
+        {% if site_auth.last_hub_refresh_token == '-1' %}
+          <div class="col-2">
+            <a class="btn btn-danger" href="{{hb_auth_link}}">Click here to auth Hubspot</a>
+          </div>
+        {% endif %}
+  
+        {% if site_auth.last_ga_refresh_token == '-1' %}
+          <div class="col-2">
+            <a class="btn btn-danger" href="{{ga_auth_link}}">Click here to auth GA</a>
+          </div>
+        {% endif %}
+        
+        {% if site_auth.last_gsc_refresh_token == '-1' %}
+          <div class="col-2">
+            <a class="btn btn-danger" href="{{gsc_auth_link}}">Click here to auth GSC</a>
+          </div>
+        {% endif %} 
+      </div>
+    </div>
+  
+    </div>
+  </div>
+{% endblock main %}

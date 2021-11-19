@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  {% include "email/base/verify/head.html" %}
+</head>
+<body style="-moz-box-sizing: border-box; -ms-text-size-adjust: 100%; -webkit-box-sizing: border-box; -webkit-text-size-adjust: 100%; Margin: 0; background-color: #f4f4f4 !important;  ;box-sizing: border-box; color: #2f353a; font-family: 'Roboto','RobotoDraft', 'Helvetica','Arial','Noto Sans Japanese', YuGothic, '游ゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;; font-size: 16px; font-weight: normal; line-height: 1.5; margin: 0; min-width: 100%; padding-bottom: 100px ; text-align: left; width: 100% !important;
+padding-left:15px; padding-right:15px">
+  
+  <!-- ====================================== -->
+  <!-- =============== Header =============== -->
+  <!-- ====================================== -->
+  <div style="margin: auto; text-align:center; height: 135px; justify-content: center; padding-top: 80px; box-sizing: border-box;">
+    <img src="https://www.accu.net/hubfs/Image/accu-logo.png" width="150" alt="ACCU TOOL"/>
+  </div>
+
+  <!-- ====================================== -->
+  <!-- =============== Content ============== -->
+  <!-- ====================================== -->
+  <div style="background: #fff; margin: auto; border: 1px solid #e9e9e9; box-sizing: border-box; border-radius: 10px; max-width: 600px; padding: 25px">
+ 
+    <!-- =============================================== -->
+    <!-- =============== Content detail ================ -->
+    <!-- =============================================== -->
+    <div>
+      {% block body %}
+      {% endblock %}
+    </div>
+
+    <div style="border-top: 1px solid #dedfe0; padding-top: 10px">
+      {% include "email/base/verify/footer.html" %}
+    </div>
+
+  </div>
+
+  <!-- ====================================== -->
+  <!-- =============== Footer =============== -->
+  <!-- ====================================== -->
+  <div style="text-align: center; padding-top: 20px; font-size: 13px; color:#5c6873">
+    © TP Co., Ltd. All Rights Reserved.
+  </div>
+
+  </div>
+
+<!-- end coded_template: id:6113294975 path:ClassicV1/templates/email/Email_Basic.html -->
+</body>
+</html>

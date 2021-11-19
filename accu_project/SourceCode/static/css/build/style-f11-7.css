@@ -1,0 +1,13 @@
+.f117-input-text-create-inlink .amsify-suggestags-area{
+  width: 83% !important;
+}
+
+.f117-input-text-create-inlink .amsify-suggestags-input-area{
+  border-bottom-left-radius: unset;
+  border-top-left-radius: unset;
+}
+
+.f117-input-text-create-inlink .amsify-suggestags-input{
+  max-width: unset !important;
+  width: 255px !important;
+}

@@ -1,0 +1,111 @@
+<div class="modal fade" id="modalCustomerSetting"  role="dialog" aria-labelledby="modalCustomerSetting" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">顧客設定</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="modalCustomerSettingBody" class="modal-body">
+        <div class="body-content">
+          
+        </div><!--End body content-->
+      </div>
+      <div class="modal-footer">
+        <button onclick="save_customer_setting();" id="btnSaveSettingContactReport" class="btn btn-sm btn-primary" type="button">
+          <i class="fa fa-save"></i> 保存する</button>
+        <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+    <!-- /.modal-content-->
+  </div>
+  <!-- /.modal-dialog-->
+</div>
+<!-- /.modal-->
+
+<script type="text/javascript">
+
+  $('#modalCustomerSetting').on('hidden.bs.modal', function (e) {
+    $('#modalCustomerSettingBody .body-content').children().remove();
+  });
+
+  $('#modalCustomerSetting').on('shown.bs.modal', function (e) {
+    //Xử lý option select type_seminar khi mở modal create
+    $('#btnSaveSettingContactReport').attr('disabled', true);
+
+    var customer_id = $(e.relatedTarget).data('customer-id')
+    $('#modalCustomerSettingBody .body-content').html(get_loading_bar());
+    $.ajax({
+      type: "POST",
+      url: "/customers/ajax-load-customer-setting",
+      dataType: "html",
+      data : {
+        "customer_id": customer_id, 
+        'csrfmiddlewaretoken': '{{ csrf_token }}' 
+      },
+      success : function(response) {
+        $('#modalCustomerSettingBody .body-content').html(response);
+        $('#btnSaveSettingContactReport').attr('disabled', false);
+
+      },
+      error: function(xhr, status, e) {
+        $('#modalCustomerSettingBody .body-content').html('Load form failed.');
+      }
+    });
+
+  });
+
+
+  function save_customer_setting() {
+    var list_hb_form = "-1";
+    var default_file_password = $('#default_file_password').val();
+    var is_main_channel = $('#check_is_main_channel').is(':checked') ? 1 : 0;
+    var customer_id = $('#customer_id_hidden').val();
+    var site_id = $('#site_id_hidden').val();
+    var is_auth = $('#is_auth_hidden').val();
+    
+    if (is_auth == "True"){
+      if ($("#select_hb_form").val().toString().length > 0)
+      {
+        list_hb_form = $("#select_hb_form").val().toString();
+      }
+    }
+    
+
+    hide_message('msg-save-customer-setting');
+
+    $('#btnSaveSettingContactReport').attr('disabled', true);
+    hide_message('msg-save-customer-setting');
+    disable_element($("#modalCustomerSetting .body-content"));
+    if(list_hb_form != "-1" ){
+      $.ajax({
+        type: "POST",
+        url: "/customers/ajax-save-customer-setting",
+        dataType: "html",
+        data : {
+          "site_id" : site_id,
+          "customer_id" : customer_id,
+          "list_hb_form" : list_hb_form,
+          "default_file_password" : default_file_password,
+          'is_main_channel': is_main_channel,
+          'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          $('#btnSaveSettingContactReport').attr('disabled', false);
+          enable_element($("#modalCustomerSetting .body-content"));
+          show_success_message('msg-save-customer-setting','顧客設定を更新しました。');
+          
+        },
+        error: function(xhr, status, e) {
+          $('#modalCustomerSetting .body-content').html('Load form failed.');
+        }
+      });
+      }
+     else{
+        $('#btnSaveSettingContactReport').attr('disabled', false);
+        enable_element($("#modalCustomerSetting .body-content"));
+        show_error_message('msg-save-customer-setting','Please complete the required fields!');
+      } 
+  }
+</script>

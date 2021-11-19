@@ -1,0 +1,1 @@
+from __LP_Library.Hack_Check_Rank.check_rank.handle_google_search_rank import get_rank_keyword as HandleRankKeyword

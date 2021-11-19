@@ -1,0 +1,36 @@
+#cta-banner-background-dynamics365 {
+  width: 900px;
+  height: 327px;
+  display: inline-block; }
+  #cta-banner-background-dynamics365-left {
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left; }
+  #cta-banner-background-dynamics365-right {
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 60px; }
+    #cta-banner-background-dynamics365-right #title-cta {
+      font-size: 29px;
+      color: #ffffff;
+      margin-top: 13px; }
+    #cta-banner-background-dynamics365-right #text-provider {
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 14px; }
+    #cta-banner-background-dynamics365-right .hr-style-dynamics365 {
+      border: 1px solid #afb8c7; }
+    #cta-banner-background-dynamics365-right #text-desciption {
+      color: #ffffff;
+      font-size: 18px;
+      text-align: justify; }
+    #cta-banner-background-dynamics365-right #btn-cta {
+      margin-top: 10px; }
+  #cta-banner-background-dynamics365 #dynamics365-img-book {
+    width: 196px;
+    margin-top: 23px;
+    box-shadow: 0 0 4px #fff; }

@@ -1,0 +1,56 @@
+#bell24-middlecta-right-title .title-main {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); }
+
+#bell24-middlecta {
+  position: relative; }
+  #bell24-middlecta-background {
+    width: 736px;
+    height: 352px;
+    display: inline-block;
+    background: #f6f6f6; }
+  #bell24-middlecta-left {
+    width: 244px;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  #bell24-middlecta-img-book {
+    max-width: 244px;
+    max-height: 352px; }
+  #bell24-middlecta-right {
+    position: absolute;
+    left: 244px;
+    top: 0;
+    width: 492px;
+    height: 352px; }
+    #bell24-middlecta-right-title {
+      font-weight: bold;
+      width: 100%;
+      font-size: 33px;
+      color: #00b48d;
+      padding: 16px 24px 20px 20px;
+      height: 120px;
+      position: relative; }
+    #bell24-middlecta-right-hr {
+      border: 1px solid #bababa;
+      margin-left: 20px;
+      margin-right: 24px;
+      margin-top: 0;
+      margin-bottom: 0; }
+    #bell24-middlecta-right-text-description {
+      text-align: justify;
+      font-size: 26px;
+      padding-top: 20px;
+      padding-left: 20px;
+      padding-right: 24px;
+      color: #404040; }
+    #bell24-middlecta-right-provider {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin-right: 24px;
+      margin-bottom: 14px;
+      color: #00b48d;
+      font-weight: bold;
+      font-size: 15px; }

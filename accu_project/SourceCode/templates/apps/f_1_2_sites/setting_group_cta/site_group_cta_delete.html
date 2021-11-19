@@ -1,0 +1,16 @@
+
+
+
+<form action="{{url('site_group_cta_delete',args=(pk,))}}" id="site-group-cta-delete-form" method="post">
+  <div class="text-center">
+    <p style="font-size: 20px;">Are you want to delete group: "{{group_name}}"?</p>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    <input class="btn btn-danger" type="submit" value="Confirm">  
+  </div>
+</form>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    disable_element($('#modalDeleteSiteProperty #modalBody'))
+  });
+</script>

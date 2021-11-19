@@ -1,0 +1,26 @@
+{% include 'base/message.html' %}
+<div>
+  <form method="post" action="{{url('user_update',args=(data_user.pk,))}}" id="user-update-form">
+    {{ crispy(form) }}
+    <input class="btn btn-primary mt-3" type="submit" value="Update">
+  </form>
+</div>
+
+<script>
+  $("#user-update-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    disable_element(form)
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data)
+        
+      }
+      })
+    });
+</script>

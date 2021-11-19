@@ -1,0 +1,170 @@
+<input type="hidden" id ="group_page_id_hidden" value="{{obj_group_page.id}}" />
+<input type="hidden" id ="site_id_hidden" value="{{obj_group_page.site.id}}" />
+<input type="hidden" id ="folder_pdf_id_hidden" value="{{obj_group_page.folder_pdf_id}}" />
+<input type="hidden" id ="folder_thumb_id_hidden" value="{{obj_group_page.folder_thumb_id}}" />
+
+<!-- Container -->
+<div class="row mt-2">
+  <label class="col-12">Group Name <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+      <input id="txt-group-name" value="{{obj_group_page.group_name}}" type="text" class="form-control" />
+  </div>
+</div>
+
+<!-- Resource Top Page -->
+<div class="row mt-2">
+  <label class="col-12">Resource Top Page <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <select class="form-control select2-single"  id="select_resource_top_page" >
+      {%for top_page_info in list_resource_page%}
+        {% if top_page_info.id|int == obj_group_page.resource_top_page_id|int %}
+          <option value="{{top_page_info.get('id')}}" selected >{{top_page_info.get('name')}}</option>
+        {% else %}
+          <option value="{{top_page_info.get('id')}}"  >{{top_page_info.get('name')}}</option>
+        {% endif %}
+      {%endfor%}
+    </select>
+  </div>
+</div>
+
+<!-- Hubspot List Master -->
+<div class="row mt-2">
+  <label class="col-12">Hubspot List Master <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <select class="form-control select2-single "  id="select_hb_list_master" >
+      {%for hb_list_info in list_hb_list%}
+        {% if hb_list_info.id|int == obj_group_page.hb_list_master_id|int %}
+          <option value="{{hb_list_info.get('id')}}" selected >{{hb_list_info.get('name')}}</option>
+        {% else %}
+          <option value="{{hb_list_info.get('id')}}"  >{{hb_list_info.get('name')}}</option>
+        {% endif %}
+      {%endfor%}
+    </select>
+  </div>
+</div>
+
+<!-- Hubspot List Name Default -->
+<div class="row mt-2">
+  <label class="col-12">Hubspot List Name Default <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+      <input id="txt-hb-list-name" value="{{obj_group_page.hb_list_name_default}}" type="text" class="form-control" />
+  </div>
+</div>
+
+<!-- Is Common -->
+<div class="row mt-2">
+<div class="col-12">
+    <div id="is_setting_common" class="custom-control custom-checkbox col-12">
+    <input type="checkbox" name="is_setting_common" class="checkboxinput custom-control-input" id="check_is_common" {%if is_common == 1 %}checked {%endif%}>
+      <label for="check_is_common" class="custom-control-label">
+        Is Common
+      </label>
+    </div>
+  </div>
+
+</div>
+</div>
+
+{% macro factorial(root_name,root_id,child_data,folder_id) -%}
+                
+  <li data-expanded="true" value="{{root_id}}" {{'aria-selected = "true"' if root_id|string == folder_id|string }} aria-selected="{{'true' if root_id|string == folder_id|string }}"     
+  >{{root_name}}
+      <ul> 
+            {% for _child_1 in child_data %}
+
+              {% if child_data[_child_1]['child'] != {} %}
+                  {{ factorial(_child_1,child_data[_child_1].id , child_data[_child_1]['child'],folder_id) }}
+              {%- else -%}      
+                  <li 
+                  {%if child_data[_child_1].id|string  == folder_id|string  %} disabled aria-selected= "true"  {%else%} aria-selected= "false" {%endif%}
+                  value="{{child_data[_child_1].id}}">{{_child_1}}
+                  
+                  </li>
+              {%- endif %}
+          {% endfor %}
+      </ul>
+  </li>
+{%- endmacro %}
+
+<!-- Folder thumb -->
+<div class="row mt-2">
+  <label class="col-12">Folder thumb<small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <div id="example">
+      <div id="cap-view" class="demo-section k-content">
+        <input id="treeview_thumb" style="width: 100%;" />
+      </div>
+    </div>
+  </div>  
+  
+  <div class="col-12 mt-3">
+    <label class="col-12 p-0">Folder pdf<small class="text-danger">(*)</small>: </label>
+    <div class="row" id="select-folder-pdf">
+      <div class="col-12">
+        <div id="example_pdf">
+          <div id="cap-view_pdf" class="demo-section k-content">
+            <input id="treeview_pdf" style="width: 100%;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id = "msg-update-group-page" class="col-12">
+    
+  </div>
+<div>
+
+<script type="text/javascript">
+
+// xử lý select multi exclude page
+$('#select_resource_top_page').select2({
+  theme: 'bootstrap',
+  placeholder: 'Select Resource Page',
+  allowClear: false
+});
+
+// xử lý select multi exclude page
+$('#select_hb_list_master').select2({
+  theme: 'bootstrap',
+  placeholder: 'Select Hubspot List',
+  allowClear: false
+});
+
+$(document).ready(function () {
+
+var list_data_folder_custom = "{{list_data_folder_custom}}"
+var list_folder = convert_string_to_array(list_data_folder_custom);
+console.log(list_folder,"list_folder")
+
+// ============= Folder thumb
+var thumb = $("#treeview_thumb").kendoDropDownTree({
+  placeholder: "Select folder thumb...",
+  dataTextField: "text",
+  dataValueField: "id",
+  filter: "startswith",
+  dataSource: list_folder
+});
+var dropdowntree_thumb = $("#treeview_thumb").data("kendoDropDownTree");
+var folder_thumb_id = parseInt("{{obj_group_page.folder_thumb_id}}")
+dropdowntree_thumb.value(folder_thumb_id);
+
+// Folder pdf
+var pdf = $("#treeview_pdf").kendoDropDownTree({
+  placeholder: "Select folder pdf...",
+  dataTextField: "text",
+  dataValueField: "id",
+  filter: "startswith",
+  dataSource: list_folder
+});
+var dropdowntree_pdf = $("#treeview_pdf").data("kendoDropDownTree");
+var folder_pdf_id = parseInt("{{obj_group_page.folder_pdf_id}}")
+dropdowntree_pdf.value(folder_pdf_id);
+
+});
+
+</script>  

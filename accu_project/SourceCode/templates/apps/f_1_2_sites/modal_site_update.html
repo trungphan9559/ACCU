@@ -1,0 +1,25 @@
+<div id='site-update'>
+
+</div>
+<script>
+    $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+        disable_element($('#{{modal_id}} #modalBody'))
+        var site_id = $(e.relatedTarget).data('site-id');
+        var url = `/sites/${site_id}/update`;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html",
+            data: {
+            },
+            success: function (response) {
+                enable_element($('#{{modal_id}} #modalBody'))
+                $('#site-update').html(response)
+            },
+            error: function (xhr, status, e) {
+            }
+        });
+    });
+
+
+</script>

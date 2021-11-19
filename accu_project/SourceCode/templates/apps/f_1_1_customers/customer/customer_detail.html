@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+
+{% block main %}
+  <h2>Name: {{ customer.name }}</h2>
+  <p>Tool Url: {{ customer.tool_url }}</p>
+
+<p><a href="{{url('customer_update',args=(customer.pk,))}}">編集</a></p>
+<p><a href="{{url('customer_delete',args=(customer.pk,))}}">削除</a></p>
+{% endblock main %}

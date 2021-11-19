@@ -1,0 +1,204 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>サイト管理</span></li>
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <h1 class="text-center py-4 mb-0 font-weight-bold text-primary">
+    サイト管理
+  </h1>
+</div>
+
+<div class="row mx-3 position-relative table-loading">
+  <div class="col-12 custom-datatable-toolbar">
+
+    <div class="row">
+      <div class="col-8">
+
+        <select class="form-control form-control-toolbar form-control-sm" id="id_type" onchange="add_param()">
+          <option value="-1" >- タイプ -</option>
+          <option value="channel" {{ "selected" if request.GET.get('type') == 'channel' }}>チャンネル</option>
+          <option value="coporate" {{ "selected" if request.GET.get('type') == 'coporate' }}>コーポレート</option>
+        </select>
+
+        <select class="form-control form-control-toolbar form-control-sm ml-2" id="id_status" onchange="add_param()">
+          <option value="-1" >- 状態 -</option>
+          <option value="1" {{ "selected" if request.GET.get('status') == '1' }}>有効</option>
+          <option value="0" {{ "selected" if request.GET.get('status') == '0' }}>無効</option>
+        </select>
+      </div>
+
+      <div class="col-4 text-right">
+
+        <button data-toggle="modal" data-target="#modalCreateSite" class="btn btn-light border btn-sm mr-2" type="button"
+          margin="100px" data-toggle="modal" data-target="#modalCreateSite"><i class="fa fa-plus mr-1"></i>サイトを新規追加
+        </button>
+
+          <div class="dropdown d-inline">
+            <button class="btn-light border dropdown-toggle btn-sm" type="button"
+              id="dropdownAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              行動
+            </button>
+            <div class="dropdown-menu pointer" aria-labelledby="dropdownAction">
+              <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteBulkSite">
+                <i class="fa fa-trash mr-1 text-danger"></i>削除
+              </button>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 mt-3">
+    <table id="table_data" class="table table-not-in-card table-wrapper table-hover nowrap">
+      <thead>
+        <tr>
+          <th class="no-sort">
+            <input onclick="check_uncheck_all(this);" type="checkbox" name="checkAll" id="check_all">
+          </th>
+          <th class="no-sort">コード</th>
+          <th>サイト名</th>
+          <th>URL</th>
+          <th>ロゴ</th>
+          <th>状態</th>
+          <th>タイプ</th>
+          <th>運用担当者</th>
+          <th>管理者</th>
+
+          <th class="text-nowrap">行動</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for site in list_site %}
+        <tr>
+          <td class="td-check"><input type="checkbox" name="check_all_item" class="checkbox" value="{{site.pk}}" ></td>
+          <td><a href="{{url('site_detail',args=(site.pk,))}}">{{site.id}}</a></td>
+          <td>
+            <div data-toggle="tooltip" title="{{site.name}}" class="text-ellipsis">
+              {{site.name}}
+            </div>
+          </td>
+          <td>
+            <div data-toggle="tooltip" title="{{site.url}}" class="text-ellipsis">
+              <a href="{{site.url}}" target="_blank">{{site.url}}</a>
+            </div>
+          </td>
+          <td>
+            <img src="{{site.logo}}" height="15">
+          </td>
+          <td>
+            {% if site.is_active == True %}
+              <span class="badge badge-success badge-pill"><i class="fa fa-check mr-1"></i>有効</span>
+            {% else %}
+              <span class="badge badge-danger badge-pill"><i class="fa fa-close mr-1"></i>無効</span>
+            {% endif %}
+          </td>
+          <td>{{site.type[0]|upper}}{{site.type[1:]}}   </td>
+          <td>{{site.person_in_charge.email}}</td>
+          <td>{{site.person_in_charge_management.email}}</td>
+
+          <td class="text-nowrap">
+            <div class="dropdown">
+              <button class="btn-light border dropdown-toggle btn-sm dropdown-in-table" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                行動
+              </button>
+              <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                <!--<a class="dropdown-item" href="{{url('site_update',args=(site.pk,))}}"><i
+                    class="fa fa-edit mr-1"></i>Update</a>-->
+                <button data-toggle="modal" data-target="#modalUpdateSite" class="dropdown-item"
+                  data-target="#modalUpdateSite" data-site-id="{{site.pk}}">
+                  <i class="fa fa-edit mr-1"></i>編集
+                </button>
+
+                <button data-toggle="modal" class="dropdown-item text-danger" data-target="#modalDeleteSite"
+                  data-site-id="{{site.pk}}">
+                  <i class="fa fa-trash mr-1 text-danger"></i>削除
+                </button>
+
+                <a class="dropdown-item" href="{{url('auth',args=(site.id,))}}"><i class="fa fa-user-o mr-1"></i>Auth</a>
+                <a class="dropdown-item" href="{{url('site_setting_property',args=(site.id,))}}"><i class="fa fa-cog mr-1"></i>Setting Property</a>
+                <a class="dropdown-item" href="{{url('site_setting_group_page',args=(site.id,))}}"><i class="fa fa-cog mr-1"></i>Setting Group Page</a>
+                <a class="dropdown-item" href="{{url('site_setting_group_cta',args=(site.id,))}}"><i class="fa fa-cog mr-1"></i>Setting Group CTA</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% with 
+  modal_id = 'modalCreateSite',
+  modal_title='Create New Site' ,
+  modal_body_tmp = 'apps/f_1_2_sites/modal_site_create.html'
+%}
+{% include 'popup/popup_create.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalUpdateSite',
+  modal_title='Update Site' ,
+  modal_body_tmp = 'apps/f_1_2_sites/modal_site_update.html'
+%}
+{% include 'popup/popup_update.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteSite',
+  modal_title='Delete Site' ,
+  modal_body_tmp = 'apps/f_1_2_sites/modal_site_delete.html'
+%}
+{% include 'popup/popup_delete.html' %}
+{% endwith %}
+
+{% with 
+  modal_id = 'modalDeleteBulkSite',
+  modal_title='Delete Bulk Site' ,
+  modal_body_tmp = 'apps/f_1_2_sites/modal_site_delete_bulk.html'
+%}
+{% include 'popup/popup_delete_bulk.html' %}
+{% endwith %}
+
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+
+  $(document).ready(function () {
+
+    var scrollX = get_scroll_table(1530)
+
+    var option_addition = {
+      "scrollX": scrollX,
+    } 
+
+    var table = $('#table_data').DataTable(get_option_datatable(option_addition))
+
+    show_sort_datatable(table)
+
+    var w = window.innerWidth;
+    if (w <= 1280) {
+      $("#table_data").css('min-height', 300)
+    }
+  });
+
+  function add_param() {
+    disable_element($(".table-loading"));
+    var type = $("#id_type").val();
+    var status = $("#id_status").val();
+    var group = 1;  
+
+    
+
+    window.location.search = `?group=${group}&type=${type}&status=${status}`
+  };
+</script>
+{% endblock %}

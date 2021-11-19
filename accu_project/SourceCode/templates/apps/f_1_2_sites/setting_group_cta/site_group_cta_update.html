@@ -1,0 +1,47 @@
+{% include 'base/message.html' %}
+
+<form method="post" action="{{url('site_group_page_update',args=(pk,))}}" id="site-group-page-update-form">
+  {{ crispy(form) }}
+  <input class="btn btn-primary mt-3 modal-button-submit" type="submit" value="Update">
+</form>
+
+<script>
+  $('#id_resource_top_page_id').addClass("select2-single");
+  $('#id_lp_form_id').addClass("select2-single");
+  $('#id_lp_email_id').addClass("select2-single");
+
+  $("#id_resource_top_page_id").select2({
+      theme: 'bootstrap',
+      placeholder: 'select resource page',
+      allowClear: false
+  });
+
+  $("#id_lp_form_id").select2({
+      theme: 'bootstrap',
+      placeholder: 'select hubspot form',
+      allowClear: false
+  });
+
+  $("#id_lp_email_id").select2({
+      theme: 'bootstrap',
+      placeholder: 'select hubspot email',
+      allowClear: false
+  });
+
+  $("#site-group-page-update-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var form = $(this);
+    disable_element(form)
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        form.parent().html(data);
+        enable_element(form);
+      }
+      })
+    });
+</script>

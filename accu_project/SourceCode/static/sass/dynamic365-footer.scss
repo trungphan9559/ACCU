@@ -1,0 +1,57 @@
+#cta-banner-background-dynamics365{
+  width: 900px;
+  height: 327px;
+  display: inline-block;
+
+  &-left{
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+  }
+
+  &-right{
+
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 60px;
+
+    #title-cta{
+      font-size: 29px;
+      color: #ffffff;
+      margin-top: 13px;
+    }
+
+    #text-provider{
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    .hr-style-dynamics365{
+      border: 1px solid #afb8c7;
+    }
+
+    #text-desciption{
+      color: #ffffff;
+      font-size: 18px;
+      text-align: justify;
+    }
+
+    #btn-cta{
+      margin-top: 10px;
+    }
+
+  }
+
+  #dynamics365-img-book{
+    width: 196px;
+    margin-top: 23px;
+    box-shadow: 0 0 4px #fff;
+  }
+
+  
+}

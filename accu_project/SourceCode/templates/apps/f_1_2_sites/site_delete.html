@@ -1,0 +1,16 @@
+
+
+
+<form action="{{url('site_delete',args=(site.pk,))}}" id="site-delete-form" method="post">
+  <div class="text-center">
+    <p style="font-size: 20px;">Are you want to delete Site "{{site.name}}"?</p>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    <input class="btn btn-danger" type="submit" value="Confirm">  
+  </div>
+</form>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    disable_element($('#modalDeleteSite #modalBody'))
+  });
+</script>

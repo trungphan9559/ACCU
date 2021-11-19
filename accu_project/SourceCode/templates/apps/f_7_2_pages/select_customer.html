@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>アカウント一覧</span></li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    アカウント一覧
+  </h1>
+</div>
+
+<div class="row mt-4 mx-5">
+  <div class="col-12">
+    <div id="main-content mx-3">
+      <div class="row">
+
+        <!-- ========================================= -->
+        <!-- ========= Table Select Account ========== -->
+        <!-- ========================================= -->
+        <div class="col-12 p-0">
+          <table id="table-select-account" class="table table-not-in-card table-wrapper table-hover">
+            <thead>
+              <tr>
+                <th>アカウント名</th>
+                <th>プラン</th>
+                <th>メインチャンネル</th>
+                <th>契約状態</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for customer in list_customers %}
+                <tr>
+
+                  <!-- Customer Name -->
+                  <td>
+                    <a href="{{url('after_select_account',args=(customer.pk, ))}}">
+                      <span class="d-block font-1xl text-primary font-weight-bold">{{ customer.name }}</span>
+                    </a>
+                    <small class="text-muted">{{ customer.code }}</small>
+                  </td>
+
+                  <!-- plan/ otion -->
+                  <td>
+                    <span class="d-block font-1xl">{{ customer.plan_name }} {% if customer.options_name %} ({{customer.options_name |join(", ")}}){% endif %}</span>
+                  </td>
+
+                  <!-- Site Main Name -->
+                  <td>
+                  {% if customer.main_chanel_name != none %}
+                    <span class="d-block font-1xl">{{ customer.main_chanel_name }}</span>
+                  {% else %}
+                    <span class="d-block font-1xl">-</span>
+                  {% endif %}
+                    
+                  </td>
+
+                  <!-- status -->
+                  <td>
+                    {% if customer.status == "契約中" %}
+                      <span class="badge badge-success badge-pill">{{customer.status}}</span>
+                    {% elif customer.status == "開始前" %}
+                      <span class="badge badge-warning badge-pill">{{customer.status}}</span>
+                    {% elif customer.status == "終了" %}
+                      <span class="badge badge-secondary badge-pill">{{customer.status}}</span>
+                    {% else %}
+                      {{customer.status}}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}
+
+{% block script %}
+<script>
+  $(document).ready(function(){
+
+    var table = $('#table-select-account').DataTable(get_option_datatable())
+
+    show_sort_datatable(table)
+  });
+</script>
+{% endblock script %}

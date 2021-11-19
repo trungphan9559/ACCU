@@ -1,0 +1,20 @@
+<script>
+    $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+        disable_element($('#{{modal_id}} #modalBody'))
+        var user_id = $(e.relatedTarget).data('user-id');
+        var url = `/accounts/${user_id}/update`
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html",
+            data: {
+            },
+            success: function (response) {
+                $('#{{modal_id}} #modalBody').html(response)
+                enable_element($('#{{modal_id}} #modalBody'))
+            },
+            error: function (xhr, status, e) {
+            }
+        });
+    });
+</script>

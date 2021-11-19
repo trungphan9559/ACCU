@@ -1,0 +1,808 @@
+/*----- Analytics data -----*/
+table.table tr td .item-wrap label {
+  margin-bottom: 2px;
+}
+
+table.table tr td .num-wrap  {
+  height: 15px;
+  display: block;
+  background: #8eddf9;
+}
+
+table.table tr td .num-wrap .num {
+  display: block;
+  background-color: #20a8d8;
+  height: 15px;
+  transition: width 0.8s;
+}
+
+td.text-right {
+  padding-right: 18px;
+}
+
+#card_body {
+  min-height: 600px;
+}
+
+.modal-header{
+  padding-left: 24px;
+  padding-right: 19px;
+}
+
+.modal-footer{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.modal-body{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+table.table-loading {
+  width: 100%;
+}
+
+table.table-loading thead,
+table.table-loading tbody {
+  display: table;
+  width: 100%;
+}
+
+.table-wrapper{
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  box-shadow: 0 0 5px #e8e8e8;
+}
+
+.table{
+  margin-bottom: 0 !important;
+  font-size: 14px;
+}
+
+.table-hover tbody tr:hover{
+  background-color: #e6f7ff !important;
+}
+
+.custom-datatable-toolbar{
+  position: absolute;
+  width: calc(100% - 215px);
+  z-index: 100;
+  top: 16px;
+}
+
+/* =========================================== */
+/* ============ Table Not In Card ============ */
+/* =========================================== */
+
+.table-not-in-card.table thead th{
+  border-bottom: none;
+  border-top: none;
+  padding: 7px 15px 7px 15px;
+}
+
+.table-not-in-card.table tbody td{
+  border-top: 1px solid #e8e8e8;
+  padding: 6px 15px 6px 15px;
+}
+
+.table-fill-color{
+  background-color: #f0f8ff;
+}
+
+/* =========================================== */
+/* ============ Table Not In Card ============ */
+/* =========================================== */
+
+.table-in-card.table thead th{
+  border-bottom: 1px solid #e8e8e8 !important;
+  border-top: 1px solid #e8e8e8;
+}
+
+.table-in-card.table td{
+  border-top: 1px solid #e8e8e8;
+}
+
+/* ========================================== */
+/* ================ DataTable =============== */
+/* ========================================== */
+
+
+/* Sort của table */
+table.dataTable thead .sorting span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_both.png') no-repeat center right; background-size: 16px;}
+table.dataTable thead .sorting_asc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc.png') no-repeat center right; background-size: 16px;}
+table.dataTable thead .sorting_desc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc.png') no-repeat center right; background-size: 16px;}
+
+table.dataTable thead .sorting_asc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc_disabled.png') no-repeat center right; background-size: 16px;}
+table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc_disabled.png') no-repeat center right; background-size: 16px;}
+
+table.dataTable.table-sm .sorting:before, table.dataTable.table-sm .sorting_asc:before, table.dataTable.table-sm .sorting_desc:before{
+  color: white;
+}
+
+table.dataTable.table-sm .sorting:after, table.dataTable.table-sm .sorting_asc:after, table.dataTable.table-sm .sorting_desc:after{
+  color: white;
+}
+
+table.dataTable thead span.sort-icon{
+  display: inline-block;
+  padding-left: 5px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  margin-top: 2px;
+}
+
+/* ================================================== */
+/* ================ Delete sort icon ================ */
+/* ================================================== */
+/* Datatables sort icons */
+table.dataTable thead .sorting::before,
+table.dataTable thead .sorting_asc::before,
+table.dataTable thead .sorting_desc::before,
+table.dataTable thead .sorting_asc_disabled::before,
+table.dataTable thead .sorting_desc_disabled::before {
+    display: none !important;
+}
+ 
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_desc::after,
+table.dataTable thead .sorting_asc_disabled::after,
+table.dataTable thead .sorting_desc_disabled::after {
+  display: none !important;
+}
+ 
+/* Active sort icon */
+table.dataTable thead .sorting_asc::before,
+table.dataTable thead .sorting_desc::after {
+  display: none !important;
+}
+
+/* =========================================== */
+/* ============= Data Table Scroll =========== */
+/* =========================================== */
+/* ========== Ẩn khi nhấn vào sort =========== */
+.dataTables_sizing .sort-icon {
+  display: none !important;
+}
+
+/* =========================================== */
+/* ================ DATATABLE ================ */
+/* =========================================== */
+.dataTables_length{
+  float: right;
+  display: inline;
+  padding-left: 15px;
+  padding-top: 2px;
+}
+
+.dataTables_paginate{
+  float: right
+}
+
+/* =============================================== */
+/* ===================== Card ==================== */
+/* =============================================== */
+/* ================================================= */
+/* ================== Select site ================== */
+/* ================================================= */
+.select-site-card .card:hover{
+  box-shadow: 0 0 5px #63c2de !important;
+  border: 1px solid #63c2de !important;
+}
+
+.select-site-card .card:hover .card-footer{
+  border-top: 1px solid #63c2de;
+}
+
+.card {
+  border: 1px solid #e4e7ea !important;
+  box-shadow: 0 0 20px #e4e7ea !important;
+  /* margin-bottom: 0 !important; */
+}
+.card .card-header {
+  border-bottom: 1px solid #e4e7ea !important;
+  background-color: #fff !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  color: #8f9ba6 !important;
+}
+.card .card-header .a-card-header-action {
+  text-transform: capitalize !important;
+  font-weight: normal;
+  font-size: 12px;
+}
+.card .card-header .a-card-header-action:hover {
+  text-decoration: underline;
+}
+.card .card-body .number-in-card {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2f353a;
+}
+.card .card-body .text-for-number-in-card {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.card .card-body .ant-table-small {
+  border: unset !important;
+}
+.card .card-body .button-bottom-in-card {
+  position: absolute;
+  bottom: 15px;
+  left: 28px;
+}
+.card .card-footer {
+  border-top: 1px solid #e4e7ea;
+  background-color: #fff;
+}
+
+/* ===================================================== */
+/* ==================== PROGRESS ======================= */
+/* ===================================================== */
+.progress-v2 .progress{
+  border-radius: 0 !important;
+}
+
+/* ===================================================== */
+/* =================== Date range ====================== */
+/* ===================================================== */
+#reportrange {
+  border: 1px solid #e4e7ea;
+  font-size: 12px;
+  color: #5c6872;
+  background: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+#reportrange .fa-caret-down{
+  margin-left: 5px !important;
+}
+
+/* ====================================================== */
+/* =================== Nav - Tab ======================== */
+/* ====================================================== */
+.nav-tabs {
+  /* margin-left: 25px; */
+}
+
+.tab-content{
+  border-top: 1px solid #e4e7ea;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* ======================================================= */
+/* ====================== Class cần ====================== */
+/* ======================================================= */
+.text-eclipse{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lp-text-eclipse{
+  width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.badge{
+  padding-top: 4px;
+}
+
+#wrapper-content{
+  
+}
+
+/* ======================================================== */
+/* ======================== Badge ========================= */
+/* ======================================================== */
+.badge-border-darkorange{
+  border: 1px solid darkorange;
+  color: darkorange;
+}
+
+.badge-border-darkorchild{
+  border: 1px solid darkorchid;
+  color: darkorchid;
+}
+
+.badge-border-darkseegreen{
+  border: 1px solid darkseagreen; 
+  color: darkseagreen;
+}
+
+.badge-border-darkviolet{
+  border: 1px solid darkviolet;
+  color: darkviolet;
+}
+
+.badge-border-deepskyblue{
+  border: 1px solid deepskyblue;
+  color: deepskyblue;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+/* ================================================ */
+/* ==================== Select 2  ================= */
+/* ================================================ */
+.select-small .select2-selection__rendered{
+  font-size: 12px !important;
+}
+
+.select-small .select2-container--bootstrap .select2-selection--single{
+  height: 28px !important;
+  line-height: 16px !important;
+}
+
+.custom-datatable-toolbar .select2-container{
+  display: inline-block !important;
+}
+
+.custom-datatable-toolbar .select2-selection__rendered{
+  font-size: 12px !important;
+}
+
+.custom-datatable-toolbar .select2-container--bootstrap .select2-selection--single{
+  height: 28px !important;
+  line-height: 16px !important;
+}
+
+/* ================================================ */
+/* ==================== Button ==================== */
+/* ================================================ */
+.show-all-button{
+  font-size: 11px;
+  border: 1px solid #c8ced3;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  color: #5c6873
+}
+
+.show-all-button:hover{
+  cursor: pointer;
+  background-color: #f0f3f5;
+}
+
+/* ======================================================= */
+/* ================== Button big icon ==================== */
+/* ======================================================= */
+.wrapper-btn-big-icon{
+  position: absolute;
+  right: 15px;
+  top: -15px;
+}
+
+.btn-big-icon{
+  background-color: #fff;
+  border: none;
+  padding: 8px;
+  color: rgb(115, 129, 143);
+}
+
+.btn-big-icon i{
+  font-size: 20px;
+  display: block;
+}
+
+.btn-big-icon span.text-button{
+  font-size: 10px;
+  display: block;
+  padding-top: 5px;
+}
+
+
+/* ================================================ */
+/* ===================== Other ==================== */
+/* ================================================ */
+.number-in-table{
+  /* padding-right: 25px !important; */
+}
+
+.title-ellipsis{
+  max-width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================================================ */
+/* ========== Show and hide button in table ======= */
+/* ================================================ */
+.td-have-button{
+  position: relative;
+}
+
+.text-hover-hidden {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  padding-right: 0.5rem;
+}
+.fa-external-link {
+  color: #20a8d8
+}
+.table tbody tr td .button-in-table{
+  display: none;
+}
+
+table tbody tr:hover td .button-in-table{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: #e6f7ff;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ================================================= */
+/* ================== Main title =================== */
+/* ================================================= */
+.text-main-title{
+  color: #2f353a;
+}
+
+/* ================================================= */
+/* ================== Lable input =================== */
+/* ================================================= */
+#fileLabel {
+  right: 1rem;
+  left: 1rem;
+  overflow: hidden;
+}
+
+.popover {
+  max-width: 1000px !important;
+}
+
+/* ================================================= */
+/* ==================    Chart   =================== */
+/* ================================================= */
+.highcharts-axis-labels > span > a {
+  text-align: left !important;
+}
+
+/* ================================================ */
+/* ==================== Form ====================== */
+/* ================================================ */
+
+/* Dấu "*" */
+.asteriskField{
+  color:#f86c6b;
+}
+
+/* Alert error message */
+.alert ul {
+  list-style: none;
+  padding: 0 !important;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.dropdown-in-table{
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+/* ul */
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/* 403 style */
+.style-403 .number-403{
+  font-family: 'Finger Paint', cursive;
+  font-size: 100px;
+  margin: 0;
+  -webkit-text-fill-color: transparent;
+  background: -webkit-gradient(linear,left top,left bottom,from(#ff0052),to(#8e2b88));
+-webkit-background-clip: text;
+}
+
+.style-403 .text-explain-403{
+  font-size: 17px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Button loading in report */
+.table > tbody > tr > td.td-create-report > button.btn-outline-success > span.ladda-spinner > div > div > div {
+  background: #4dbd74 !important;
+}
+
+.form-control-toolbar{
+  width: unset !important;
+  display: inline !important;
+  padding-top: 2px;
+  max-width: 150px;
+}
+
+/* Tooltip */
+.icon-tooltip-explain {
+  font-size: 13px;
+  color: #cfd1d3;
+}
+.icon-tooltip-explain:hover {
+  color: #a8aaac;
+}
+
+.logo-in-table{
+  max-height: 30px;
+  max-width: 100px;
+}
+
+.small-button-in-table{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.padding-modal{
+  padding: 35px;
+}
+
+/* .custom-control{
+  display: inline-block !important;
+  width: 49%;
+} */
+
+.text-ellipsis{
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#modalBody .alert-dismissible{
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.main .alert-dismissible{
+  margin-top: 24px !important;
+  margin-left: 32px !important;
+  margin-right: 32px !important;
+}
+
+.text-account-info{
+  font-size: 17px;
+  padding: 3px 0px;
+  display: inline-block;
+}
+
+.btn-custom-card{
+  display: block;
+  width: 100%;
+  border: 1px solid #e4e7ea !important;
+  box-shadow: 0 0 20px #e4e7ea !important;
+  font-size: 20px;
+  height: 150px;
+}
+
+.btn-custom-card:hover{
+  border: 1px solid #63c2de !important;
+  box-shadow: 0 0 10px #63c2de !important;
+}
+
+.group-link{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.title-ellipsis{
+  display: inline-block;
+  max-width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-datepicker-style{
+  background: #fff !important;
+}
+
+.input-group-addon{
+  padding: 6px 15px;
+  border: 1px solid #e4e7ea;
+  border-left: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: #f7f9fa;
+}
+
+.pointer-disable{
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.custom-datatable-toolbar select {
+  min-width: 120px;
+}
+
+.custom-file-label{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 75px;
+}
+
+.value-slider{
+  display: inline-block;
+  font-size: 12px;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.button-common{
+  position: absolute;
+  right: 12px;
+}
+
+.button-common i{
+  color: #73818d;
+}
+
+.button-common .text-button{
+  font-weight: bold;
+  color: #73818d;
+}
+
+.title-border{
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-left: 3px solid #20a8d8;
+  padding-left: 15px;
+  color: #5c6873;
+}
+
+.modal-footer-django{
+  display: block;
+  border-top: none;
+  padding-top: 0;
+}
+
+.resend{
+  font-size: 12px;
+}
+
+.resend-button{
+  color: #20a8d8 !important;
+  cursor: pointer;
+}
+
+.resend-button:hover{
+  color: #187da1 !important;
+}
+
+.message-resend{
+  padding: 4px 0;
+}
+
+.min-height-seminar-list{
+  min-height: 226px;
+}
+
+.icon-last-text{
+  position: relative;
+}
+
+.icon-last-text .fa-external-link{
+  color: #20a8d8;
+  position: absolute;
+  top: 7px;
+  padding-left: 3px;
+}
+
+
+#PartnerContentDataTab span.badge {
+  display: inline-block;
+  min-width: 70px;
+}
+
+
+.table.table-font-small td,
+.table.table-font-small th {
+  font-size: 12px;
+}
+
+#table_data_detail_time .td_val {
+  line-height: 1em;
+}
+
+
+#table_data .line-wrap {
+  position: relative;
+}
+
+#table_data .line-wrap .line {
+  position: absolute;
+  background: rgba(115, 129, 143, 0.6);
+  width: 1px;
+  height: 15px;
+  top: 4px;
+}
+
+.bg-danger-wrap {
+  background: rgba(248, 108, 107, 0.4);
+}
+
+.border-left-custom{
+  border-left: solid 3px #26a9d6;
+}
+
+/* Create Table Row */
+
+.create-table-row .row-border:not(:last-child) .col-border{
+  border-bottom: none;
+}
+
+.create-table-row .row-border .col-border:not(:last-child){
+  border-right: none;
+}
+
+.col-border{
+  border: 1px solid #dad9d9;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.row-border{
+  margin-left: 30px;
+}
+
+label{
+  font-weight: 600;
+}
+
+.title-bg-form{
+  background-color: #F2FBFF;
+  border-left: 3px solid #20A8D8;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 57px;
+  padding-right: 24px;
+  color: #5C6873;
+  font-weight: bold;
+}
+
+.note-multi-line{
+  display: inline-block;
+  line-height: 14px;
+}

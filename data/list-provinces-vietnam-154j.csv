@@ -1,0 +1,68 @@
+Sr.No,Province,Capital,Area (km2),Population,Density (/km2),% Urban,Region
+1,Ha Noi (city),-----,"3,119.00","64,51,909","2,068.60",41,Red River Delta
+2,Ha Giang Province,Ha Giang,"7,945.80","7,24,537",91.2,11.6,Northeast
+3,Cao Bang Province,Cao Bang,"6,724.60","5,07,183",75.4,16.9,Northeast
+4,Bac Kan Province,Bac Kan,"4,868.40","2,93,826",60.4,16.1,Northeast
+5,Tuyen Quang Province,Tuyen Quang,"5,870.40","7,24,821",123.5,13,Northeast
+6,Lao Cai Province,Lao Cai,"6,383.90","6,14,595",96.3,21,Northeast
+7,Dien Bien Province,Dien Bien Phu,"9,562.50","4,90,306",51.3,15,Northwest
+8,Lai Chau Province,Lai Chau,"9,112.30","3,70,502",40.7,14.2,Northwest
+9,Son La Province,Son La,"14,174.40","10,76,055",75.9,13.8,Northwest
+10,Yen Bai Province,Yen Bai,"6,899.50","7,40,397",107.3,18.8,Northeast
+11,Hoa Binh Province,Hoa Binh,"4,684.20","7,85,217",167.6,15,Northwest
+12,Thai Nguyen Province,Thai Nguyen,"3,546.60","11,23,116",316.7,25.6,Northeast
+13,Lang Son Province,Lang Son,"8,331.20","7,32,515",87.9,19.2,Northeast
+14,Quang Ninh Province,Ha Long,"6,099.00","11,44,988",187.7,51.9,Northeast
+15,Bac Giang Province,Bac Giang,"3,827.40","15,54,131",406.1,9.4,Northeast
+16,Phu Tho Province,Viet Tri,"3,528.40","13,16,389",373.1,15.8,Northeast
+17,Vinh Phuc Province,Vinh Yen,"1,373.20","9,99,786",728.1,22.4,Red River Delta
+18,Bac Ninh Province,Bac Ninh,823.1,"10,24,472","1,244.70",23.5,Red River Delta
+19,Hai Duong Province,Hai Duong,"1,652.80","17,05,059","1,031.60",19,Red River Delta
+20,Hai Phong (city),-----,"1,520.70","18,37,173","1,208.10",46.1,Red River Delta
+21,Hung Yen Province,Hung Yen,923.5,"11,27,903","1,221.30",12.1,Red River Delta
+22,Thai Binh Province,Thai Binh,"1,546.50","17,81,842","1,152.10",9.7,Red River Delta
+23,Ha Nam Province,Phu Ly,859.7,"7,84,045",912,9.5,Red River Delta
+24,Nam Dinh Province,Nam Dinh,"1,650.80","18,28,111","1,107.40",17.6,Red River Delta
+25,Ninh Binh Province,Ninh Binh,"1,392.40","8,98,999",645.6,17.9,Red River Delta
+26,Thanh Hoa Province,Thanh Hoa,"11,136.30","34,00,595",305.4,10.4,North Central Coast
+27,Nghe An Province,Vinh,"16,498.50","29,12,041",176.5,12.9,North Central Coast
+28,Ha Tinh Province,Ha Tinh,"6,026.50","12,27,038",203.6,14.9,North Central Coast
+29,Quang Binh Province,Dong Hoi,"8,065.30","8,44,893",104.8,15,North Central Coast
+30,Quang Tri Province,Dong Ha,"4,760.10","5,98,324",125.7,27.4,North Central Coast
+31,Thua Thien-Hue Province,Hue,"5,065.30","10,87,420",214.7,36,North Central Coast
+32,Da Nang (city),-----,"1,257.30","8,87,435",705.8,86.9,South Central Coast
+33,Quang Nam Province,Tam Ky,"10,438.30","14,22,319",136.3,18.6,South Central Coast
+34,Quang Ngai Province,Quang Ngai,"5,152.70","12,16,773",236.1,14.6,South Central Coast
+35,Binh Dinh Province,Qui Nhon,"6,039.60","14,86,465",246.1,27.7,South Central Coast
+36,Phu Yen Province,Tuy Hoa,"5,060.60","8,62,231",170.4,21.8,South Central Coast
+37,Khanh Hoa Province,Nha Trang,"5,217.60","11,57,604",221.9,39.9,South Central Coast
+38,Ninh Thuan Province,Phan Rang-Thap Cham,"3,363.10","5,64,993",168,36.1,South Central Coast
+39,Binh Thuan Province,Phan Thiet,"7,836.90","11,67,023",148.9,39.3,South Central Coast
+40,Kon Tum Province,Kon Tum,"9,690.50","4,30,133",44.4,33.5,Central Highlands
+41,Gia Lai Province,Pleiku,"15,536.90","12,74,412",82,28.6,Central Highlands
+42,Dak Lak Province,Buon Ma Thuot,"13,139.20","17,33,624",131.9,24,Central Highlands
+43,Dak Nong Province,Gia Nghia,"6,516.90","4,89,382",75.1,14.7,Central Highlands
+44,Lam Dong Province,Da Lat,"9,776.10","11,87,574",121.5,37.8,Central Highlands
+45,Binh Phuoc Province,Dong Xoai,"6,883.40","8,73,598",126.9,16.5,Southeast
+46,Tay Ninh Province,Tay Ninh,"4,035.90","10,66,513",264.3,15.6,Southeast
+47,Binh Duong Province,Thu Dau Mot,"2,696.20","14,81,550",549.5,29.9,Southeast
+48,Dong Nai Province,Bien Hoa,"5,903.90","24,86,154",421.1,33.2,Southeast
+49,Ba Ria-Vung Tau Province,Vung Tau,"1,989.60","9,96,682",500.9,49.9,Southeast
+50,Thanh pho Ho Chi Minh (city),-----,"2,095.10","71,62,864","3,418.90",83.3,Southeast
+51,Long An Province,Tan An,"4,493.80","14,36,066",319.6,17.4,Mekong Delta
+52,Tien Giang Province,My Tho,"2,484.20","16,72,271",673.2,13.7,Mekong Delta
+53,Ben Tre Province,Ben Tre,"2,360.20","12,55,946",532.1,9.9,Mekong Delta
+54,Tra Vinh Province,Tra Vinh,"2,295.10","10,03,012",437,15.3,Mekong Delta
+55,Vinh Long Province,Vinh Long,"1,479.10","10,24,707",692.8,15.3,Mekong Delta
+56,Dong Thap Province,Cao Lanh,"3,376.40","16,66,467",493.9,17.8,Mekong Delta
+57,An Giang Province,Long Xuyen,"3,536.80","21,42,709",605.8,28.4,Mekong Delta
+58,Kien Giang Province,Rach Gia,"6,348.30","16,88,248",265.9,27,Mekong Delta
+59,Can Tho (city),-----,"1,401.60","11,88,435",847.9,65.9,Mekong Delta
+60,Hau Giang Province,Vi Thanh,"1,601.10","7,57,300",473,19.6,Mekong Delta
+61,Soc Trang Province,Soc Trang,"3,312.30","12,92,853",390.3,19.4,Mekong Delta
+62,Bac Lieu Province,Bac Lieu,"2,584.10","8,56,518",331.5,26.1,Mekong Delta
+63,Ca Mau Province,Ca Mau,"5,331.70","12,06,938",226.4,20.4,Mekong Delta
+,,,,,,,
+For other more formats kindly visit www.downloadexcelfiles.com,,,,,,,
+,,,,,,,
+Original source : en.wikipedia.org/wiki/Provinces_of_Vietnam,,,,,,,

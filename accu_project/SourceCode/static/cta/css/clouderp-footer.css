@@ -1,0 +1,66 @@
+#clouderp-cta {
+  display: inline-block; }
+  #clouderp-cta-background {
+    width: 745px;
+    height: 300px;
+    display: inline-block; }
+    #clouderp-cta-background-left {
+      display: inline-block;
+      position: relative;
+      height: 100%;
+      width: 254px;
+      float: left; }
+      #clouderp-cta-background-left #img-book {
+        width: 190px;
+        height: 246px;
+        margin-top: 27px;
+        margin-left: 32px;
+        position: relative; }
+        #clouderp-cta-background-left #img-book #img-book-center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); }
+          #clouderp-cta-background-left #img-book #img-book-center .img-horizontal {
+            max-width: 190px;
+            max-height: 200px; }
+          #clouderp-cta-background-left #img-book #img-book-center .img-btn {
+            margin-top: 20px; }
+    #clouderp-cta-background-right {
+      display: inline-block;
+      height: 100%;
+      width: calc(100% - 254px);
+      float: left; }
+      #clouderp-cta-background-right-top {
+        display: inline-block;
+        width: 100%;
+        height: calc(100% - 170px);
+        float: left;
+        position: relative; }
+        #clouderp-cta-background-right-top .title-main {
+          position: absolute;
+          font-weight: bold;
+          font-style: normal;
+          font-size: 33px;
+          color: #003366;
+          top: 50%;
+          transform: translateY(-50%);
+          margin-left: 20px;
+          margin-right: 20px;
+          line-height: 40px;
+          text-shadow: 0 0 10px #fff; }
+      #clouderp-cta-background-right-bottom {
+        display: inline-block;
+        height: 170px;
+        width: 100%; }
+        #clouderp-cta-background-right-bottom .text-description {
+          display: inline-block;
+          font-weight: 600;
+          font-style: normal;
+          color: #ffffff;
+          padding-left: 25px;
+          padding-right: 23px;
+          width: 100%;
+          padding: 25px;
+          font-size: 15.1px;
+          line-height: 26px; }

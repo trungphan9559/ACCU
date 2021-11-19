@@ -1,0 +1,49 @@
+#m365-background #m365-title .title-main, #m365-background #m365-subtitle .text-description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+#m365-background {
+  width: 745px;
+  height: 795px;
+  display: inline-block; }
+  #m365-background #m365-title {
+    width: 100%;
+    height: 158px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Meiryo W53', sans-serif;
+    font-size: 29px;
+    font-weight: bold;
+    line-height: 36px;
+    vertical-align: baseline;
+    position: relative; }
+    #m365-background #m365-title .title-main {
+      width: 100%; }
+  #m365-background #m365-book {
+    width: 100%;
+    height: 384px;
+    position: relative; }
+    #m365-background #m365-book #m365-book-img {
+      max-width: 366px;
+      max-height: 384px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+  #m365-background #m365-subtitle {
+    width: 100%;
+    height: 158px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    position: relative; }
+    #m365-background #m365-subtitle .text-description {
+      padding-left: 91px;
+      padding-right: 91px;
+      width: 100%; }
+  #m365-background #m365-btn {
+    height: 95px;
+    width: 100%;
+    text-align: center; }

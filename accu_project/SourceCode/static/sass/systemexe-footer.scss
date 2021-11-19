@@ -1,0 +1,72 @@
+@import "./Abstracts/extend";
+
+#systemexe-footer-background{
+  width: 900px;
+  height: 327px;
+  display: inline-block;
+
+  &-left{
+    display: inline-block;
+    width: 308px;
+    height: 100%;
+    float: left;
+    position: relative;
+  }
+
+  &-right{
+
+    width: calc(100% - 308px);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-right: 47px;
+    position: relative;
+
+    #title-cta{
+      font-size: 34px;
+      color: #1b2a47;
+      margin-top: 15px;
+      font-weight: bold;
+      .title-main{
+        text-shadow: 0 0 #1b2a47, 0 0px #1b2a47, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+      }
+    }
+
+    #text-provider{
+      color: #fff;
+      text-align: right;
+      margin-top: 14px;
+      font-size: 15px;
+      color: #1b2a47;
+    }
+
+    .hr-style-systemexe{
+      border: 1px solid #1b2a47;
+    }
+
+    #text-desciption{
+      color: #1b2a47;
+      font-size: 19px;
+      font-weight: bold;
+      text-align: justify;
+      line-height: 30px;
+      text-shadow: 0 0 #1b2a47, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+    }
+
+    #btn-cta{
+      position: absolute;
+      bottom: 25px;
+      right: 30px;
+    }
+
+  }
+
+  #systemexe-img-book{
+    max-width: 245px;
+    max-height: 280px;
+    box-shadow: 0 0 4px #fff;
+    @extend %TextAlignCenter;
+  }
+
+  
+}

@@ -1,0 +1,39 @@
+#cta-mb-background {
+  width: 765px;
+  display: inline-block;
+  background: pink;
+  padding: 24px 50px 32px 50px;
+  position: relative; }
+  #cta-mb-background #cta-mb-logo {
+    position: absolute;
+    right: 9px;
+    top: 7px; }
+  #cta-mb-background #cta-mb-title {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 42px; }
+  #cta-mb-background #mb-img-book {
+    max-width: 224px;
+    float: left; }
+  #cta-mb-background #cta-mb-right {
+    padding-left: 30px;
+    display: inline-block;
+    width: calc(100% - 224px); }
+    #cta-mb-background #cta-mb-right #cta-mb-provider {
+      color: #ffffff;
+      font-size: 19px; }
+    #cta-mb-background #cta-mb-right hr {
+      border-top: 0.1px solid #b7b7b7; }
+    #cta-mb-background #cta-mb-right #cta-mb-text-desciption {
+      color: #ffffff;
+      font-size: 27px;
+      text-align: justify;
+      margin-bottom: 60px; }
+    #cta-mb-background #cta-mb-right #mb-img-button {
+      margin-top: 25px;
+      float: right;
+      position: absolute;
+      right: 50px;
+      bottom: 32px; }

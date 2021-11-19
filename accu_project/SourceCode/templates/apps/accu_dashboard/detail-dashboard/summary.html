@@ -1,0 +1,57 @@
+<div class="col-12 mt-3">
+    <table id="table_battery" class="table table-not-in-card table-wrapper table-hover table-font-small">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th class="no-sort" style="width: 150px;">Time</th>
+          <th class="no-sort" style="width: 50px;">SITE_ID</th>
+          <th class="no-sort" style="width: 400px;">ALARM_NAME</th>
+          <th class="no-sort">PROVINCE</th>
+          <th class="no-sort">DISTRICT</th>
+          <th class="no-sort">MA_PHONG_XL</th>
+          <th class="no-sort">NETWORK</th>
+          <th class="no-sort">THOI_GIAN_MAT_DIEN</th>
+          <th class="">THOI_GIAN_CHAY_ACCU</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for summary in list_data_sumary %}
+        <tr>
+          <td class="td-check">{{loop.index}}</td>
+
+          <td class="pt-2 pb-3">{{summary.time}} </td>
+          <td class="pt-2 pb-3">{{summary.site_id}} </td>
+          <td class="pt-2 pb-3">{{summary.alarm_name}} </td>
+          <td class="pt-2 pb-3">{{summary.province}} </td>
+          <td class="pt-2 pb-3">{{summary.district}} </td>
+          <td class="pt-2 pb-3">{{summary.room_code}} </td>
+          <td class="pt-2 pb-3">{{summary.network}} </td>
+          <td class="pt-2 pb-3">{{summary.time_cut_off}} </td>
+          <td class="pt-2 pb-3">{{summary.time_run_accu}} </td>
+         
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    var option_addition = {
+      fixedHeader: {
+          header: true,
+          headerOffset: $('header').height()
+      }
+    }
+
+    var table = $('#table_battery').DataTable(get_option_datatable(option_addition))
+
+    show_sort_datatable(table)
+
+  });
+    
+</script>
+{% endblock %}

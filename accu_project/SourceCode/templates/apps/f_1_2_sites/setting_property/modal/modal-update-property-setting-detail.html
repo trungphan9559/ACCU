@@ -1,0 +1,93 @@
+
+<input type="hidden" id="data_list_property" value="{{property_info.properties}}" />
+<input type="hidden" id="hidden_property_id" value="{{property_info.id}}" />
+
+<!-- Property -->
+<div class="row">
+  <label class="col-12">Property interal name : </label>
+  <div class="col-12">
+    <input id="txt-property-interal-name" value="{{property_info.property_internal_name}}" type="text" class="form-control" disabled />
+  </div>
+</div>
+
+<!-- Property Name -->
+<div class="row mt-3">
+  <label class="col-12">Property Name <small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-property-name-edit" value="{{property_info.property_label}}" type="text" class="form-control" />
+  </div>
+</div>
+
+<!-- Property Sort -->
+<div class="row mt-3">
+  <label class="col-12">Sort<small class="text-danger">(*)</small>: </label>
+  <div class="col-12">
+    <input id="txt-sort-edit" value="{{property_info.sort}}" type="number" min="1" class="form-control" />
+  </div>
+</div>
+
+<!-- LIST PROPERTY-->
+<div id="property_container" class=" row mt-3 d-none">
+  <label class="col-12">Property Options :</label>
+  <div class="col-12" id="property_content_edit">
+
+  </div>
+</div>
+
+<!-- Show message-->
+<div class="row mt-4">
+  <div id="msg-update-property-setting" class="col-12">
+
+</div>
+<div>
+
+<script type="text/javascript">
+
+  var list_property = $("#data_list_property").val();
+  list_property = list_property.replace(/'/g, "\"").toString();
+  list_property =  JSON.parse(list_property)
+  
+  $(document).ready(function(){
+    show_property(list_property);
+  });
+
+  function show_property(list_property) {
+    var html_add = ""
+    $("#property_container").addClass("d-none");
+
+    if(list_property.length > 0){
+      var j = 0; 
+    $("#property_container").removeClass("d-none");
+    for (let key of list_property) {
+      for (var i = 0 in key) {
+        j += 1
+        var internal_name = Object.keys(key)[0];
+        var label = key[i];
+        html_add = html_add + `<div class='col-12 mt-2'>
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <input id="txt-property-internal-name-edit-${j}" value="${internal_name}" disabled type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-6">
+                                      <input id="txt-property-label-edit-${j}" value="${label}" type="text" class="form-control" />
+                                    </div>
+                                  </div>
+                                   
+                               </div>   
+                              `
+      }
+    }
+      $("#property_content_edit").html(html_add);
+    }
+    
+  };
+
+  
+   // xử lý select multi exclude page
+  $('#select_forms_edit').select2({
+    theme: 'bootstrap',
+    placeholder: 'Select Forms',
+    allowClear: true
+  });
+
+</script>

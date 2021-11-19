@@ -1,0 +1,93 @@
+<header class="app-header navbar">
+  <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">
+    <img class="navbar-brand-full" src='{{ static ("/img/logo/accu-logo.svg") }}' width="89" height="25" alt="accu">
+    <img class="navbar-brand-minimized" src='{{ static ("/img/brand/favicon.ico") }}' width="25" height="25" alt="CoreUI Logo">
+  </a>
+  {% if request.user.is_authenticated or request.user.groups.filter(name='MS_User').exists() %}
+  <!-- -------------------------------
+  ---------- Side Bar ----------------
+  ------------------------------------ -->
+  <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- -------------------------------
+  ---------- Select site -------------
+  ------------------------------------ -->
+  <!-- <div>
+    <select class="form-control" id="header-select-site">
+    </select>
+  </div> -->
+
+  <!-- -------------------------------
+  -------------- Info ----------------
+  ------------------------------------ -->
+
+  <ul class="nav navbar-nav ml-auto">
+    <li>
+      <a class="nav-link pr-4 text-center" href="/util">
+        <i class="fa fa-suitcase" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>サイト活用情報</span>
+      </a>
+    </li>
+     <li>
+      <a class="nav-link pr-4 text-center" href="/docs">
+        <i class="fa fa-book" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>ガイド・マニュアル/依頼用書式</span>
+      </a>
+    </li>
+    <li>
+      <a class="nav-link pr-4 text-center" target="_blank" href="https://www.accu.net/microsoft/contact">
+        <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>お問い合わせ</span>
+      </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link pr-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <img class="img-avatar" src='{{ static ("/img/avatars/user-avatar.png") }}' alt="User Img">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-header text-center">
+          <strong>アカウント メニュー</strong>
+        </div>
+        {% if not user.is_superuser %}
+        {% if request.session.customer_multi %}
+          <a class="dropdown-item" href="{{url('select_customer')}}"><i class="fa fa-group"></i> 全てアカウント</a>
+        {% endif %}
+
+        {% if request.session.customer_id %}
+          <a class="dropdown-item" href="{{url('customer_user')}}"><i class="fa fa-info"></i> アカウント情報</a>
+        {% endif %}
+
+        {% endif %}
+        <a class="dropdown-item" href="{{url('change_password')}}"><i class="fa fa-key"></i> パスワード変更</a> 
+        <a class="dropdown-item" href="{{url('logout')}}"><i class="fa fa-unlock-alt"></i> ログアウト</a>
+      </div>
+    </li>
+  </ul>
+  {% else %}
+  <ul class="nav navbar-nav ml-auto">
+    <li>
+      <a class="nav-link pr-4 text-center" target="_blank" href="/guide">
+        <i class="fa fa-book" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>マニュアル</span>
+      </a>
+    </li>
+    <li>
+      <a class="nav-link pr-4 text-center" target="_blank" href="https://www.accu.net/microsoft/contact">
+        <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>お問い合わせ</span>
+      </a>
+    </li>
+    <li>
+      <a class="nav-link pr-4 text-center"href="/accounts/login/">
+        <i class="fa fa-sign-in" aria-hidden="true" style="font-size: 18px;"></i>
+        <span>ログイン</span>
+      </a>
+    </li>
+    </ul>
+  {% endif %}
+</header>

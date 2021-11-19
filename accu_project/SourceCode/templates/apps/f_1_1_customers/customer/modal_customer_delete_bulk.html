@@ -1,0 +1,42 @@
+<div class="text-center">
+  <p style="font-size: 20px;" id="id_confirm_delete_bulk"></p>
+  <input class="btn btn-danger" type="submit" value="Confirm" onclick='del_list_customers()'>  
+</div>
+
+<script type="text/javascript">
+  $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+    var list_id = $('.checkbox:checked').map(function(){
+                        return $(this).val();
+                  }).get();
+    
+    if(list_id.length == 1){
+      $('#id_confirm_delete_bulk').text(`本当に「: ${list_id.length} customer?」`)
+    }else{
+      $('#id_confirm_delete_bulk').text(`本当に「:　${list_id.length} customers?`)
+    }
+  })
+
+  function del_list_customers() {
+    disable_element($('#{{modal_id}} #modalBody'))
+    
+    var list_id = $('.checkbox:checked').map(function(){
+                        return $(this).val();
+                  }).get();
+
+    $.ajax({
+        type: "POST",
+        url: "{{url('customer_delete_bulk')}}",
+        dataType: "html",
+        data : { 
+          'list_id' : list_id.toString(), 
+          'csrfmiddlewaretoken' : '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          location.reload();
+        }
+    });
+  };
+</script>
+
+
+

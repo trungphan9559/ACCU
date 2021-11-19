@@ -1,0 +1,133 @@
+<div class="modal fade" id="modalUpdatePropertySetting"  role="dialog" aria-labelledby="modalUpdatePropertySetting" aria-hidden="true" data-dropback="static">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Update Property</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="modalUpdatePropertySettingBody" class="modal-body">
+        <div class="body-content">
+          
+        </div><!--End body content-->
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button onclick="update_property_setting();" id="btnUpdatePropertySetting" class="btn btn-primary" type="button">
+          Update</button>
+      </div>
+    </div>
+    <!-- /.modal-content-->
+  </div>
+  <!-- /.modal-dialog-->
+</div>
+<!-- /.modal-->
+
+<script type="text/javascript">
+  
+  var is_submit_form_create = false
+  $('#modalUpdatePropertySetting').on('hidden.bs.modal', function (e) {
+    $('#modalUpdatePropertySettingBody .body-content').children().remove();
+    
+  });
+  
+
+  $('#modalUpdatePropertySetting').on('shown.bs.modal', function (e) {
+    
+    disable_element($("#modalUpdatePropertySetting .modal-body"))
+    //Xử lý option select type_seminar khi mở modal create
+    
+    $('#btnUpdatePropertySetting').attr('disabled', true);
+    var property_id = $(e.relatedTarget).data('property-id');
+    
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-update-property-setting",
+      dataType: "html",
+      data : {
+        "property_id": property_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}' 
+      },
+      success : function(response) {
+        $('#modalUpdatePropertySetting .body-content').html(response);
+        $('#btnUpdatePropertySetting').attr('disabled', false);
+        
+        enable_element($("#modalUpdatePropertySetting .modal-body"))
+      },
+      error: function(xhr, status, e) {
+        $('#modalUpdatePropertySetting .body-content').html('Load form failed.');
+        enable_element($("#modalUpdatePropertySetting .modal-body"))
+      }
+      });
+    
+  });
+
+  function update_property_setting() {
+    var property_id = $("#hidden_property_id").val();
+    var property_label = $("#txt-property-name-edit").val();
+    var property_sort = $("#txt-sort-edit").val();
+
+    var list_property = $("#data_list_property").val();
+    
+    list_property = list_property.replace(/'/g, "\"").toString();
+    list_property =  JSON.parse(list_property);
+
+    var list_option_property = [];
+    
+    if (list_property.length > 0){
+      for (i of range(1, list_property.length)) {
+          
+          let label_option = $(`#txt-property-label-edit-${i}`).val();
+          let internal_option = $(`#txt-property-internal-name-edit-${i}`).val();
+          
+          let object_option = {}
+          object_option[internal_option] = label_option;
+          
+          list_option_property.push(object_option);
+      }
+    }
+    
+    $('#btnUpdatePropertySetting').attr('disabled', true);
+    
+    hide_message('msg-update-property-setting');
+    disable_element($("#modalUpdatePropertySetting .body-content"));
+    
+    if(property_label != "" && property_sort !=""){
+      
+      $.ajax({
+        type: "POST",
+        url: "/sites/ajax/update-property-setting",
+        dataType: "html",
+        data : {
+          "property_id" : property_id,
+          "property_label" : property_label,
+          "property_sort" : property_sort,
+          "list_option_property" : JSON.stringify(list_option_property),
+          'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          $('#btnUpdatePropertySetting').attr('disabled', false);
+          enable_element($("#modalUpdatePropertySetting .body-content"));
+          if (response == 1){
+            show_success_message('msg-update-property-setting','Update Setting Property Success!');
+            load_data();
+          }
+          
+        },
+        error: function(xhr, status, e) {
+          $('#modalUpdatePropertySetting .body-content').html('Load form failed.');
+        }
+      });
+      
+      }
+     else{
+        $('#btnUpdatePropertySetting').attr('disabled', false);
+        enable_element($("#modalUpdatePropertySetting .body-content"));
+        show_error_message('msg-update-property-setting','Please complete the required fields!');
+      } 
+    
+  };
+
+
+    
+</script>

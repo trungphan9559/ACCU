@@ -1,0 +1,47 @@
+{# Setting form #}
+ <div class="modal fade" id={{modal_id}} role="dialog" aria-labelledby={{modal_id}} aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog  {{ modal_class_size if modal_class_size else 'modal-md' }} " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="modalBody" class="modal-body" style="min-height: 200px;">
+        
+        {% with modal_id = modal_id%}
+          {% include modal_body_tmp %}
+        {% endwith %} 
+      </div>
+    </div>
+    <!-- /.modal-content-->
+  </div>
+  <!-- /.modal-dialog-->
+</div>
+<!-- /.modal-->
+{# End Setting form #}
+
+<script>
+  var modal_submit = false;
+
+  $('#{{modal_id}}').on('shown.bs.modal', function (e) {
+    
+    
+  });
+
+  $('#{{modal_id}} .modal-button-submit').click(function(){
+    modal_submit = true
+  });
+
+  $('#{{modal_id}}').on('hidden.bs.modal', function (e) {
+
+    $('#{{modal_id}} #modalBody').children().html("") // xóa hết dữ liệu model sau khi tắt
+    if(modal_submit == true) {
+      disable_element($(".table-loading"))
+      location.reload(); //Auto refresh
+    }
+  });
+
+      
+</script>

@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active"><span>機能一覧</span></li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+  <h1 class="pt-4 text-center font-weight-bold text-primary">
+    機能一覧
+  </h1>
+</div>
+        
+<div class="rows mt-4 text-center">
+    <div class="col-12">
+        <div class="row justify-content-center text-center">
+        
+            <div class="col-sm-3">
+                <a href="/overview-report-pptx?group=1&date={{''|pre_month}}" class="text-dark">
+                    <div class="card" style="width: 100%;">
+                        <img src="/static/img/function-01.jpg" alt="月次パフォーマンスレポート" />
+                        <div class="card-body">
+                            <h5 class="card-title">月次パフォーマンスレポート</h5>
+                            <p class="card-text">(PowerPoint形式)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-3">
+                <a href="/contact-report-excel/?group=1&date={{''|pre_month}}" class="text-dark">
+                    <div class="card" style="width: 100%;">
+                        <img src="/static/img/function-02.jpg" alt="月次コンタクトリスト" />
+                        <div class="card-body">
+                            <h5 class="card-title">月次コンタクトリスト</h5>
+                            <p class="card-text">(Excel形式)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-3">
+                <a href="/seminars/?group=1" class="text-dark">
+                    <div class="card" style="width: 100%;">
+                        <img src="/static/img/function-03.jpg" alt="セミナーコンタクトリスト" />
+                        <div class="card-body">
+                            <h5 class="card-title">セミナーコンタクトリスト</h5>
+                            <p class="card-text">(Excel形式)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

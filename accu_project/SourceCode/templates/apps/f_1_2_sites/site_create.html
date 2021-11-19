@@ -1,0 +1,29 @@
+{% include 'base/message.html' %}
+<div id="form">
+  <form action="{{url('site_create')}}" method="post" id="site-create-form">
+    {{ crispy(form) }}
+    <input class="btn btn-primary mt-3" type="submit" value="Save">
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+  $("#site-create-form").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+    disable_element(form)
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        $('#form').html(data)
+        
+      }
+    });
+  })
+</script>

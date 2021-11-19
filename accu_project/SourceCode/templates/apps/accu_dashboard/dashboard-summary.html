@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+
+{% block main %}
+<div class="container">
+    <h1 class="pt-4 text-center font-weight-bold text-primary">
+        Summary
+    </h1>
+</div>
+
+<div class="row mt-4 mx-4">
+    <div class="col-12">
+        <div class="table-loading">
+            <div class="row mx-3 position-relative">
+                <div class="col-12 custom-datatable-toolbar">
+                    <div class="row">
+                        <div class="col-8">
+                            <select class="form-control form-control-toolbar form-control-sm" id="time-duration"
+                                onchange="load_data()">
+                                <option value="-1">- Time duration -</option>
+                                <option value="1" {{ "selected" if request.GET.get('type')=='1' }}>0-5</option>
+                                <option value="2" {{ "selected" if request.GET.get('type')=='2' }}>5-15</option>
+                                <option value="3" {{ "selected" if request.GET.get('type')=='3' }}>15-30</option>
+                                <option value="4" {{ "selected" if request.GET.get('type')=='4' }}>30-60</option>
+                                <option value="5" {{ "selected" if request.GET.get('type')=='5' }}>more than 60</option>
+                            </select>
+
+                            <!-- Start date -->
+                            <input type="text" id='time-select' name="daterange" value="10/01/2021 - 10/30/2021" />
+
+
+                        </div>
+                        <div class=" col-4 text-right pr-0">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3" id='data-content-summary'>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock main %}
+
+{% block script %}
+<script type="text/javascript">
+
+    function load_data(){
+        var start_date = $('#time-select').data('daterangepicker').startDate.format('YYYY-MM-DD');
+        var end_date = $('#time-select').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        var time_duration = $("#time-duration").val()
+
+        disable_element($(" .table-loading"));
+        $.ajax({
+        type: "POST",
+        url: "/get-data-summary",
+        dataType: "html",
+        data : {
+            "start_date" : start_date,
+            "end_date" : end_date,
+            "time_duration" : time_duration,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        },
+        success : function(response) {
+            enable_element($(" .table-loading"));
+            $('#data-content-summary').html(response);
+
+        },
+        error: function(xhr, status, e) {
+
+        }
+        });
+
+
+    }
+
+    $(document).ready(function () {
+
+        //Init calendar
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left'
+        }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+
+        //Load data
+        load_data();
+
+
+    });
+
+
+</script>
+{% endblock %}

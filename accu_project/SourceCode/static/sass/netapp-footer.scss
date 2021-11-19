@@ -1,0 +1,59 @@
+@font-face{
+  font-family: 'Meiryo W53';
+  src: url('font/Meiryo W53 Regular.ttf')
+}
+
+$box-shadow-book: 0 0 6px #bdc3c7;
+$width-left: 251px;
+$height-full: 327px;
+$text-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff;
+
+#cta-banner-background-azure{
+  width: 900px;
+  height: $height-full;
+  display: inline-block;
+
+  &-left{
+    display: inline-block;
+    width: $width-left;
+    height: 100%;
+    float: left;
+    position: relative;
+
+    #azure-img-book{
+      max-width: 196px;
+      max-height: 277px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-right{
+    width: calc(100% - 251px);
+    height: $height-full;
+    float: left;
+
+    #netapp-title{
+      width: 100%;
+      height: 134px;
+      font-family: 'Meiryo W53', sans-serif;
+      font-size: 32px;
+      font-weight: bold;
+      padding-top: 15px;
+      padding-right: 15px;
+      color: #033864;
+      text-shadow: $text-shadow;
+    }
+
+    #netapp-description{
+      width: 100%;
+      height: calc(100% - 134px);
+      font-size: 18px;
+      color: #fff;
+      padding-right: 15px;
+      font-weight: 600;
+    }
+  } 
+}

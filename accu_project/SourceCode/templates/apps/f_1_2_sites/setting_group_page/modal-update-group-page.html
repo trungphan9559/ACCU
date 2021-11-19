@@ -1,0 +1,170 @@
+<div class="modal fade" id="modalUpdateSiteGroupPage"  role="dialog" aria-labelledby="modalUpdateSiteGroupPage" aria-hidden="true" data-dropback="static">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Update Site Group Page</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="modalUpdateSiteGroupPageBody" class="modal-body">
+        <div class="body-content">
+          
+        </div><!--End body content-->
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button onclick="update_site_group_page();" id="btnUpdateSiteGroupPage" class="btn btn-primary" type="button">
+          Update</button>
+      </div>
+    </div>
+    <!-- /.modal-content-->
+  </div>
+  <!-- /.modal-dialog-->
+</div>
+<!-- /.modal-->
+
+<script type="text/javascript">
+  
+  var is_submit_form_create = false
+  $('#modalUpdateSiteGroupPage').on('hidden.bs.modal', function (e) {
+    $('#modalUpdateSiteGroupPageBody .body-content').children().remove();
+    if ( is_submit_form_create == true ){
+      disable_element($(".table-loading"));
+      location.reload();  
+    }
+    
+  });
+  
+
+  $('#modalUpdateSiteGroupPage').on('shown.bs.modal', function (e) {
+    is_submit_form_create = false;
+    disable_element($("#modalUpdateSiteGroupPage .modal-body"))
+    //Xử lý option select type_seminar khi mở modal create
+    
+    $('#btnUpdateSiteGroupPage').attr('disabled', true);
+    var group_page_id = $(e.relatedTarget).data('group-page-id');
+        
+    $.ajax({
+      type: "POST",
+      url: "/sites/ajax/load-update-group-page-setting",
+      dataType: "html",
+      data : {
+        "group_page_id": group_page_id,
+        'csrfmiddlewaretoken': '{{ csrf_token }}' 
+      },
+      success : function(response) {
+        $('#modalUpdateSiteGroupPageBody .body-content').html(response);
+        $('#btnUpdateSiteGroupPage').attr('disabled', false);
+        
+        enable_element($("#modalUpdateSiteGroupPage .modal-body"))
+      },
+      error: function(xhr, status, e) {
+        $('#modalUpdateSiteGroupPageBody .body-content').html('Load form failed.');
+        enable_element($("#modalUpdateSiteGroupPage .modal-body"))
+      }
+      });
+    
+  });
+
+  function update_site_group_page() {
+    
+    var group_page_id = $("#group_page_id_hidden").val();
+    var site_id = $("#site_id_hidden").val();
+    var folder_thumb_id_current = $("#folder_thumb_id_hidden").val();
+    var folder_thumb_id = $("#treeview_thumb").data("kendoDropDownTree").value(); 
+
+    var folder_pdf_id_current = $("#folder_pdf_id_hidden").val();
+    var folder_pdf_id = $("#treeview_pdf").data("kendoDropDownTree").value();
+
+    var group_name = $("#txt-group-name").val(); 
+    var hb_list_name_default = $("#txt-hb-list-name").val();   
+    var resource_page_id = $("#select_resource_top_page").val(); 
+    var hb_list_master_id = $("#select_hb_list_master").val(); 
+    var is_common = 0;
+    if ($('#check_is_common').is(":checked"))
+    {
+      // it is checked
+      is_common = 1
+    }
+
+    // check_folder_thumb_id 
+    var check_folder_thumb_id = false;
+    if (folder_thumb_id_current != "" && folder_thumb_id == undefined ){
+      check_folder_thumb_id = true;
+      folder_thumb_id = folder_thumb_id_current;
+    }
+    else if (folder_thumb_id_current == "" && folder_thumb_id != undefined){
+      check_folder_thumb_id = true;
+    }
+    else if (folder_thumb_id_current != "" && folder_thumb_id != undefined){
+      check_folder_thumb_id = true;
+    }
+
+    // check_folder_pdf_id 
+    var check_folder_pdf_id = false;
+    if (folder_pdf_id_current != "" && folder_pdf_id == undefined ){
+      folder_pdf_id = folder_pdf_id_current
+      check_folder_pdf_id = true;
+    }
+    else if (folder_pdf_id_current == "" && folder_pdf_id != undefined){
+      check_folder_pdf_id = true;
+    }
+    else if (folder_pdf_id_current != "" && folder_pdf_id != undefined){
+      check_folder_pdf_id = true;
+    }
+
+   
+
+    $('#btnUpdateSiteGroupPage').attr('disabled', true);
+    
+    hide_message('msg-update-group-page');
+    disable_element($("#modalUpdateSiteGroupPage .body-content"));
+        
+    if(hb_list_name_default != "" && group_name != "" && check_folder_thumb_id && check_folder_pdf_id ){
+      
+      $.ajax({
+        type: "POST",
+        url: "/sites/ajax/save-update-group-page-setting",
+        dataType: "html",
+        data : {
+          "group_page_id" : group_page_id,
+          "site_id" : site_id,
+          "group_name" : group_name,
+          "folder_thumb_id" : folder_thumb_id,
+          "resource_page_id" : resource_page_id,
+          "hb_list_master_id" : hb_list_master_id,
+          "folder_pdf_id" : folder_pdf_id,
+          "is_common" : is_common,
+          "hb_list_name_default" : hb_list_name_default,
+          'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        },
+        success : function(response) {
+          $('#btnUpdateSiteGroupPage').attr('disabled', false);
+          enable_element($("#modalUpdateSiteGroupPage .body-content"));
+          if (response == 1){
+            show_success_message('msg-update-group-page','Update Group Page Success!');
+            is_submit_form_create = true;
+          }
+          else{
+            show_error_message('msg-update-group-page','Group Name was exist!');
+          }
+  
+        
+        },
+        error: function(xhr, status, e) {
+          $('#modalUpdateSiteGroupPageBody .body-content').html('Load form failed.');
+        }
+      });
+      
+      }
+     else{
+        $('#btnUpdateSiteGroupPage').attr('disabled', false);
+        enable_element($("#modalUpdateSiteGroupPageBody .body-content"));
+        show_error_message('msg-update-group-page','Please complete the required fields!');
+      } 
+    
+  };
+
+
+    
+</script>
