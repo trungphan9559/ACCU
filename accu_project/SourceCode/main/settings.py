@@ -117,7 +117,6 @@ if CONFIG_ENV_TYPE == 'local':
     CURRENT_URL = 'http://127.0.0.1:8000'
     INSTALLED_APPS.append('sslserver')
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
