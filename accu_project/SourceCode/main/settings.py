@@ -118,19 +118,15 @@ if CONFIG_ENV_TYPE == 'local':
     INSTALLED_APPS.append('sslserver')
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': DB_NAME,
-#         'USER': 'root',
-#         'PASSWORD': DB_PASS,
-#         'HOST': DB_HOST,
-#         'PORT':'3306',
-#         'OPTIONS': {
-#             'init_command': 'SET default_storage_engine=INNODB',    
-#         }
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': "10.16.150.77:1521/soca",
+        'USER': 'smartw_view_only',
+        'PASSWORD': "smartw_view_only",
+       
+    }
+}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

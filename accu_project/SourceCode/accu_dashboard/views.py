@@ -122,6 +122,7 @@ def get_data_summary(request):
  
 	xl_file = pd.ExcelFile(file)
 
+
 	dfs = {sheet_name: xl_file.parse(sheet_name) 
           for sheet_name in xl_file.sheet_names}
 
@@ -145,7 +146,7 @@ def get_data_summary(request):
 	for idx, data_time_even in enumerate(dict_data_excel["DATETIME"]):
 		
 		# Filter thowif gian mat dien
-		if param_time_duration != -1  and int(param_time_duration) < len(TIME_DURATION_LIST) :
+		if str(param_time_duration) != "-1"  and int(param_time_duration) < len(TIME_DURATION_LIST) :
 			time_min = TIME_DURATION_LIST[int(param_time_duration) -1]["min"]
 			time_max = TIME_DURATION_LIST[int(param_time_duration) -1]["max"]
 			print("time_min",time_min)
