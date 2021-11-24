@@ -30,7 +30,7 @@ class AuthenticationPageView(LoginRequiredMixin, FormView):
 
 class CustomAuthenticationForm(AuthenticationForm):
   username = UsernameField(
-    label='メールアドレス',
+    label='Email',
     widget=forms.TextInput(attrs={'autofocus': True})
   )
 
