@@ -7,6 +7,8 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),  
     path('index', views.IndexDashBoard.as_view(), name='index_dashboard'),  
     url(r'^get-data-summary$', views.get_data_summary),
+    url(r'^test$', views.test),
+
 
 
     

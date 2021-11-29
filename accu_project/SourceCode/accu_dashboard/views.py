@@ -1,9 +1,12 @@
+from calendar import month
 from math import nan
 from re import I
 from django.shortcuts import render
 from __Config.Include.Common_Include import *
 from random import randrange
 import pandas as pd
+from __Security_Data.data_daily.lib_data_daily.data_daily import DataDaily
+
 
 TIME_DURATION_LIST = [{
 						"min" : 0,
@@ -182,3 +185,59 @@ def get_data_summary(request):
 	tmp_file_path = 'apps/accu_dashboard/detail-dashboard/summary.html'
 	return render(request, tmp_file_path, data)
 
+
+#==============Test connect Oracle================#
+from connect_oracle import OracleDatabase
+def test(request):
+  db_conect = OracleDatabase()
+
+  # start_date= "01-11-2021"
+  # end_date = '01-11-2021'
+
+  # GET_SYNC_DATA_R_ALARM_LOG = f"""
+  #  select DISTRICT,PROVINCE,GROUPS,NETWORK,VENDOR,NE,SITE,SDATE,EDATE,ALARM_TYPE,ALARM_NAME,ALARM_INFO from soca.r_alarm_log
+  #     where (Sdate >= to_date('{start_date}','dd-mm-yyyy') and (Sdate <= to_date('{end_date}','dd-mm-yyyy') and region = 'MT' and ALARM_NAME like '%Battery-Deep-Discharge%') or
+  #     (Sdate >= to_date('{start_date}','dd-mm-yyyy') and Sdate <= to_date('{end_date}','dd-mm-yyyy') and region = 'MT' and ALARM_INFO like '%Low battery Alarm%')or
+  #     (Sdate >= to_date('{start_date}','dd-mm-yyyy') and Sdate <= to_date('{end_date}','dd-mm-yyyy') and region = 'MT' and ALARM_TYPE in ('POWER','GENERATOR')))
+
+  # """
+  # print(GET_SYNC_DATA_R_ALARM_LOG)
+  # data_db = db_conect.run_query(GET_SYNC_DATA_R_ALARM_LOG)
+  # print("testtttttt", len(data_db))
+  data = []
+  dd = DataDaily()
+
+  for i in range(1):
+    date = datetime.now() - timedelta(27 + i) 
+    date_up = date + timedelta(1)
+    print("checking for : ",date )
+
+    data = sync_data_r_alarm_log(date.strftime("%d-%m-%Y"), date_up.strftime("%d-%m-%Y"))
+	# dd.read_data(
+	# 	date = date,
+	# 	data = data
+	# )
+
+	# dd.write_data(date.strftime("%d-%m-%Y"), data)
+
+
+    print("trsult ; ", len(data))
+    print(data[1])
+  
+  return HttpResponse(json.dumps(data))
+
+def sync_data_r_alarm_log(date, date_up):
+  db_conect = OracleDatabase()
+  print("date : ", date)
+
+  GET_SYNC_DATA_R_ALARM_LOG = f"""
+     select DISTRICT,PROVINCE,GROUPS,NETWORK,VENDOR,NE,SITE,SDATE,EDATE,ALARM_TYPE,ALARM_NAME,ALARM_INFO from soca.r_alarm_log
+      where (Sdate  < to_date('{date_up}','dd-mm-yyyy') and Sdate >= to_date('{date}','dd-mm-yyyy')  and region = 'MT' and ALARM_NAME like '%Battery-Deep-Discharge%') or
+      (Sdate < to_date('{date_up}','dd-mm-yyyy') and Sdate >= to_date('{date}','dd-mm-yyyy') and region = 'MT' and ALARM_INFO like '%Low battery Alarm%')or
+      (Sdate < to_date('{date_up}','dd-mm-yyyy')  and Sdate >= to_date('{date}','dd-mm-yyyy')and region = 'MT' and ALARM_TYPE in ('POWER','GENERATOR'))
+      order by Sdate desc
+
+  """
+
+  data_db = db_conect.run_query(GET_SYNC_DATA_R_ALARM_LOG)
+  return data_db
